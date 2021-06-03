@@ -36,3 +36,18 @@
     transform: rotate(360deg);
   }
 }
+
+#page-header {
+  height: 10vh;
+  background-color: black;
+}
+
+#page-content {
+  height: 80vh;
+  background-color: cornsilk;
+}
+
+#page-footer {
+  height: 10vh;
+  background-color: black;
+}

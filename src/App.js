@@ -1,11 +1,14 @@
 import './App.css';
-import { NavBar } from './components/NavBar/NavBar';
-
+import { PageHeader } from './components/layouts/PageHeader';
+import { PageContent } from './components/layouts/PageContent';
+import { PageFooter } from './components/layouts/PageFooter';
 
 const App = props => {
 
   return <>
-    <NavBar/>
+    <PageHeader/>
+    <PageContent/>
+    <PageFooter/>
   </>
 }
 
