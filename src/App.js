@@ -1,14 +1,10 @@
 import './App.css';
-import { PageHeader } from './components/layouts/PageHeader';
-import { PageContent } from './components/layouts/PageContent';
-import { PageFooter } from './components/layouts/PageFooter';
+import { HomePage } from './components/screens/HomePage/HomePage.jsx';
 
 const App = props => {
 
   return <>
-    <PageHeader/>
-    <PageContent/>
-    <PageFooter/>
+    <HomePage/>
   </>
 }
 

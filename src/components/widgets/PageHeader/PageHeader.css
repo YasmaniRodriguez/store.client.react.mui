@@ -1,0 +1,28 @@
+#page-header {
+    height: 10vh;
+    background-color: #f7ebd5;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+#brand-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#store-view-cta {
+    cursor: pointer;
+}
+
+.brand-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#discount-view-cta {
+    cursor: pointer;
+}
