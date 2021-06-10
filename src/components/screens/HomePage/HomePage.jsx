@@ -1,8 +1,8 @@
 import React from 'react';
 import './HomePage.css';
-import { PageHeader } from '../../widgets/PageHeader/PageHeader.jsx';
-import { PageContent } from '../../widgets/PageContent/PageContent.jsx';
-import { PageFooter } from '../../widgets/PageFooter/PageFooter.jsx';
+import { PageHeader } from '../PageHeader/PageHeader.jsx';
+import { PageContent } from '../PageContent/PageContent.jsx';
+import { PageFooter } from '../PageFooter/PageFooter.jsx';
 
 export const HomePage = () => {
 

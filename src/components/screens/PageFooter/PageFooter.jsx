@@ -1,5 +1,5 @@
 import React from 'react';
-import { CartWidget } from '../CartWidget/CartWidget.jsx';
+import { CartWidget } from '../../widgets/CartWidget/CartWidget.jsx';
 import './PageFooter.css';
 
 export const PageFooter = () => {
