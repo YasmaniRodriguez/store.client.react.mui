@@ -2,6 +2,7 @@ import React from 'react';
 import './PageHeader.css';
 import MenuIcon from '@material-ui/icons/Menu';
 import LocalOfferIcon from '@material-ui/icons/LocalOffer';
+import { SearcherWidget } from '../../widgets/SearchWidget/SearcherWidget.jsx';
 
 export const PageHeader = () => {
 
@@ -9,10 +10,7 @@ export const PageHeader = () => {
         <div className="cta" id="store-view-cta">
             <MenuIcon/>
         </div>
-        <div id="brand-container">
-            <p>Yeah!</p>
-            <p>Pizzas, Tartas & Empanadas</p>
-        </div>
+        <SearcherWidget></SearcherWidget>
         <div className="cta" id="discount-view-cta">
             <LocalOfferIcon/>
         </div>

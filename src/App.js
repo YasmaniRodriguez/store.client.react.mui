@@ -1,5 +1,5 @@
 import './App.css';
-import { HomePage } from './components/screens/HomePage/HomePage.jsx';
+import { HomePage } from './components/layouts/HomePage/HomePage.jsx';
 
 const App = props => {
 

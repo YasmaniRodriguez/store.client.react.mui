@@ -1,0 +1,16 @@
+#page-header {
+    height: 10vh;
+    width: 100vw;
+    background-color: #8e6995;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#store-view-cta {
+    cursor: pointer;
+}
+
+#discount-view-cta {
+    cursor: pointer;
+}
