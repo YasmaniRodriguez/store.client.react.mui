@@ -6,11 +6,3 @@
     justify-content: space-around;
     align-items: center;
 }
-
-#store-view-cta {
-    cursor: pointer;
-}
-
-#discount-view-cta {
-    cursor: pointer;
-}

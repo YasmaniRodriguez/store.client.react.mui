@@ -1,9 +1,9 @@
 import React from 'react';
 import './CategoryWidget.css';
 
-export const CategoryWidget = props => {
+export const CategoryWidget = ({name}) => {
 
     return <div className='category-container'>
-        <p>{props.name}</p>
+        <p>{name}</p>
     </div>
 }

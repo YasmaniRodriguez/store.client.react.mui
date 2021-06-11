@@ -1,8 +1,8 @@
 import React from 'react';
-import './ProductCategory.css';
+import './CategoryListContainer.css';
 import { CategoryWidget } from '../../widgets/CategoryWidget/CategoryWidget.jsx';
 
-export const ProductCategory = () => {
+export const CategoryListContainer = () => {
 
     return <div id="product-category">
         <CategoryWidget name="ctg 100"/>
