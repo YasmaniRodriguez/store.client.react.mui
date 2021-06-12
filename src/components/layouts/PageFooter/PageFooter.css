@@ -1,11 +1,9 @@
 #page-footer {
-    height: 10vh;
     background-color: #8e6995;
     display: flex;
     justify-content: center;
     align-self: flex-end;
     position: fixed;
     bottom: 0;
-    width: 100vw;
     z-index: 100;
 }

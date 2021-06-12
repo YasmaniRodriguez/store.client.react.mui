@@ -2,21 +2,54 @@ body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
+  margin: 0;
   padding: 0;
   min-width: 100vw;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+  box-sizing: border-box;
   font-family: 'Montserrat';
 }
 
+/* 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+} 
+*/
+
+div {
+  height: 100%;
+  width: 100%;
+}
+
+header {
+  height: 10vh;
+  width: 100vw;
+}
+
+#page-content {
+  height: 80vh;
+  width: 100vw;
+  overflow-x: auto;
+  overflow-y: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  column-gap: 1em;
+  background-color: #ededed;
+}
+
+footer {
+  height: 10vh;
+  width: 100vw;
 }
 
 p {
   margin: 0;
+}
+
+@media only screen and (max-width: 650px) {
+  #page-content {
+    grid-template-columns: 1fr;
+    row-gap: 1em;
+  }
 }
