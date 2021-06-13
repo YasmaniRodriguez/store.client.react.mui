@@ -1,9 +1,0 @@
-#page-footer {
-    background-color: #8e6995;
-    display: flex;
-    justify-content: center;
-    align-self: flex-end;
-    position: fixed;
-    bottom: 0;
-    z-index: 100;
-}

@@ -1,10 +1,15 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/core';
+import { pageFooterStyle } from './PageFooterStyles.jsx'
 import { CartWidget } from '../../widgets/CartWidget/CartWidget.jsx';
-import './PageFooter.css';
+
+const useStyles = makeStyles((theme) => pageFooterStyle(theme));
 
 export const PageFooter = () => {
 
-    return <footer id="page-footer">
+    const classes = useStyles();
+
+    return <footer className={classes.pageFooter}>
         <CartWidget/>
     </footer>
 }

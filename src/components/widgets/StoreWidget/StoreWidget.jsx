@@ -1,10 +1,9 @@
 import React from 'react';
-import './StoreWidget.css';
-import MenuIcon from '@material-ui/icons/Menu';
+import { Menu } from '@material-ui/icons';
 
 export const StoreWidget = () => {
 
     return <div className="cta" id="store-view-cta">
-        <MenuIcon/>
+        <Menu/>
     </div>
 }
