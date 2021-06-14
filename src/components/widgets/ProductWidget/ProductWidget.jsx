@@ -1,27 +1,21 @@
 import React from 'react';
-import './ProductWidget.css';
+import { makeStyles } from '@material-ui/core';
+import { productStyle } from './ProductWidgetStyles.jsx';
+import './ProductWidgetStyles.jsx';
 
-export const ProductWidget = ({price, description}) => {
+const useStyles = makeStyles((theme) => productStyle(theme));
 
-    return <div className='product-card-container'>
-        <div className='product-galery'></div>
+export const ProductWidget = ({id, category, name, description, price, icon}) => {
+
+    const classes = useStyles();
+
+    return <div className={classes.productContainer}>
+        <div className='product-galery'>
+            <img src={icon}/>
+        </div>
         <div className='product-description'>
             <p>{price}</p>
-            <p>{description}</p>
-        </div>
-        <div className='product-purchase'>
-            <div className='product-quantity'>
-                <div className='pdt-qty-value'>
-                    <p className='qty-value'>0</p>
-                </div>
-                <div className='pdt-qty-action'>
-                    <div className='qty-action qty-more-cta'><span></span></div>
-                    <div className='qty-action qty-less-cta'><span></span></div>
-                </div>
-            </div>
-            <div className='product-add-cta'>
-                <p>Agregar a la Orden</p>
-            </div>
+            <p>{name}</p>
         </div>
     </div>
 }

@@ -30,11 +30,8 @@ header {
 #page-content {
   height: 80vh;
   width: 100vw;
-  overflow-x: auto;
-  overflow-y: hidden;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  column-gap: 1em;
+  overflow-x: hidden;
+  overflow-y: auto;
   background-color: #ededed;
 }
 

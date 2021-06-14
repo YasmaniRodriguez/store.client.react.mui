@@ -6,5 +6,6 @@ export const PageContent = () => {
 
     return <div id="page-content">
         <CategoryListContainer />
+        <ProductListContainer />
     </div>
 }
