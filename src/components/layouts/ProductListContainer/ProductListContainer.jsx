@@ -148,7 +148,7 @@ export const products = [
 ]
 
 //sugar sintax?:
-function getIcon(category) {
+export const getCtgIcon = (category) => {
     let icon;
     for(const ctg of categories) {
         if(category === ctg.id) {
@@ -157,6 +157,17 @@ function getIcon(category) {
     }
     return icon;
 }
+
+// export const getPdtPrice = (product) => {
+//     let price;
+//     for(const pdt of products) {
+//         if(product === pdt.id) {
+//             price = pdt.price;
+//         }
+//     }
+//     return price;
+// }
+
 //
 
 const useStyles = makeStyles((theme) => productListStyle(theme));
@@ -167,7 +178,7 @@ export const ProductListContainer = () => {
 
     return <div className={classes.productCatalog}>
         {products.map((product, i) => <React.Fragment key={i}>
-            <ProductWidget id={product.id} category={product.category} name={product.name} description={product.description} price={product.price} icon={getIcon(product.category)}/>
+            <ProductWidget id={product.id} category={product.category} name={product.name} description={product.description} price={product.price} icon={getCtgIcon(product.category)}/>
          </React.Fragment>)}
     </div>
 }
