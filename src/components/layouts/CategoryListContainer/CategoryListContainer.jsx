@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core';
 import { categoryListStyle } from './CategoryListContainerStyles.jsx';
 import { CategoryWidget } from '../../widgets/CategoryWidget/CategoryWidget.jsx';
 
-const categories = [
+export const categories = [
     {
         id: 'ctg01',
         name: 'pizzas',
