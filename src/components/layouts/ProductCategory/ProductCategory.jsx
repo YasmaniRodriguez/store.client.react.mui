@@ -1,7 +1,9 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core';
-import { categoryListStyle } from './CategoryListContainerStyles.jsx';
+import { ProductCategoryStyle } from './ProductCategoryStyles.jsx';
 import { CategoryWidget } from '../../widgets/CategoryWidget/CategoryWidget.jsx';
+
+const useStyles = makeStyles((theme) => ProductCategoryStyle(theme));
 
 export const categories = [
     {
@@ -30,13 +32,11 @@ export const categories = [
     }
 ]
 
-const useStyles = makeStyles((theme) => categoryListStyle(theme));
-
-export const CategoryListContainer = () => {
+export const ProductCategory = () => {
 
     const classes = useStyles();
 
-    return <div className={classes.categoryList}>
+    return <div className={classes.productCategory}>
         {categories.map((category, i) => <React.Fragment key={i}>
                 <CategoryWidget icon={category.icon} />
         </React.Fragment>)}

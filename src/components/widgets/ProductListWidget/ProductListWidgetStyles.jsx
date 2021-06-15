@@ -1,7 +1,7 @@
 export const productListStyle = theme => {
 
     return ({
-        productCatalog: {
+        productListContainer: {
             height: '70vh',
             width: '100vw',
             display: 'grid',

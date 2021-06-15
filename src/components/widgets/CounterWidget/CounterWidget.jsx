@@ -5,9 +5,9 @@ import { counterStyle } from './CounterWidgetStyles';
 const useStyles = makeStyles((theme)=> counterStyle(theme));
 
 export const CounterWidget = () => {
-    const [counter,setCounter] = useState(0);
-
     const classes = useStyles();
+
+    const [counter,setCounter] = useState(0);
 
     const increment = () => {
         setCounter(counter +1);

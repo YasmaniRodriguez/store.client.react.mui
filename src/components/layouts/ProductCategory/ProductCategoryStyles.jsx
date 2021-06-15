@@ -1,7 +1,7 @@
-export const categoryListStyle = theme => {
+export const ProductCategoryStyle = theme => {
 
     return ({
-        categoryList: {
+        productCategory: {
             height: '10vh',
             width: '100vw',
             backgroundColor: '#e2d8e4',
