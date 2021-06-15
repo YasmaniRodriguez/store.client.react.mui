@@ -5,7 +5,6 @@ import { counterStyle } from './CounterWidgetStyles';
 const useStyles = makeStyles((theme)=> counterStyle(theme));
 
 export const CounterWidget = () => {
-
     const [counter,setCounter] = useState(0);
 
     const classes = useStyles();
@@ -15,12 +14,12 @@ export const CounterWidget = () => {
     }
 
     const decrement = () => {
-        setCounter(counter -1);
+        counter == 0 ? setCounter(0) : setCounter(counter -1);
     }
 
     return <div className={classes.counterQtyCta}>
         <button onClick={e => decrement()}>-</button>
-        {counter >= 0 && <p>{counter}</p> }
+        <p>{counter}</p>
         <button onClick={e => increment()}>+</button>
     </div>
 }
