@@ -27,7 +27,7 @@ export const ProductListWidget = () => {
 
     return <div className={classes.productListContainer}>
             {products.map((product, i) => <React.Fragment key={i}>
-                <ProductWidget id={product.id} category={product.category} name={product.name} description={product.description} price={product.price} icon={getCtgIcon(product.category)}/>
+                <ProductWidget index={i} {...product}/>
             </React.Fragment>)}
     </div>
 }
