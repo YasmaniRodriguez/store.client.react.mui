@@ -1,33 +1,32 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core';
+import React, { useState, useEffect } from 'react';
+import { Icon, makeStyles } from '@material-ui/core';
 import { productListStyle } from './ProductListWidgetStyles';
 import { ProductWidget } from '../../widgets/ProductWidget/ProductWidget.jsx';
-import { categories } from '../../layouts/ProductCategory/ProductCategory.jsx'
-import { products } from '../../layouts/ProductCatalog/ProductCatalog';
+import { myPromise } from '../../layouts/ProductCatalog/ProductCatalog.jsx';
+import { getCtgIcon } from '../../layouts/ProductCatalog/ProductCatalog.jsx';
 
 const useStyles = makeStyles((theme) => productListStyle(theme));
 
-const getProducts = new Promise((resolve, reject) => {
-    setTimeout(() => resolve(products) , 2000);
-});
-
-export const getCtgIcon = (category) => {
-    let icon;
-    for(const ctg of categories) {
-        if(category === ctg.id) {
-            icon = ctg.icon;
-        }
-    }
-    return icon;
-}
-
 export const ProductListWidget = () => {
+
+    const [products, setProducts] = useState([]);
+
+    const myProducts = () => {
+        myPromise().then(data => {
+            const filteredData = data;
+            setProducts(filteredData);
+        })
+    } 
+
+    useEffect(() => {
+        myProducts();
+    }, []);
 
     const classes = useStyles();
 
     return <div className={classes.productListContainer}>
             {products.map((product, i) => <React.Fragment key={i}>
-                <ProductWidget index={i} {...product}/>
+                <ProductWidget icon = {getCtgIcon(product.category)} {...product} />
             </React.Fragment>)}
     </div>
 }
