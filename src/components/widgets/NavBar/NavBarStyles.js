@@ -4,16 +4,35 @@ export const navBarStyle = theme => {
         container: {
             backgroundColor: '#8e6995',
             display: 'flex',
-            justifyContent: 'space-between',
             alignItems: 'center',
-            '& #store-view-cta': {
-                cursor: 'pointer'
+            justifyContent: 'space-around',
+            '& #header-store-container': {
+                display: 'flex',
+                '& #store-view-cta': {
+                    cursor: 'pointer'
+                },
+                '& #brand-container': {
+                    display: 'flex',
+                },
             },
-            '& #my-brand': {
-
+            '& #header-category-container': {
+                display: 'flex',
+                '& .category': {
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    textTransform: 'uppercase',
+                    padding: '0px 5px'
+                }
             },
-            '& #discount-view-cta': {
-                cursor: 'pointer'
+            '& #header-order-container': {
+                display: 'flex',
+                '& #discount-view-cta': {
+                    cursor: 'pointer'
+                },
+                '& #order-view-cta': {
+                    cursor: 'pointer'
+                }
             }
         }
     })

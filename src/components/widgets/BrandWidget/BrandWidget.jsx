@@ -2,10 +2,9 @@ import React from 'react';
 
 export const BrandWidget = props => {
 
-    const {brand, slogan} = props;
+    const {brand} = props;
     
-    return <div id="my-brand">
-        <h1>{brand}</h1>
-        <h3>{slogan}</h3>
+    return <div id="brand">
+        <h2>{brand}</h2>
     </div>
 }

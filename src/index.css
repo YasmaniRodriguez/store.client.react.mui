@@ -16,23 +16,9 @@ code {
     monospace;
 } 
 */
-
-div {
-  height: 100%;
-  width: 100%;
-}
-
 header {
   height: 10vh;
   width: 100vw;
-}
-
-#page-content {
-  height: 80vh;
-  width: 100vw;
-  overflow-x: hidden;
-  overflow-y: auto;
-  background-color: #ededed;
 }
 
 footer {
@@ -46,11 +32,4 @@ p {
 
 h1,h2,h3,h4,h5,h6 {
   margin: 0;
-}
-
-@media only screen and (max-width: 650px) {
-  #page-content {
-    grid-template-columns: 1fr;
-    row-gap: 1em;
-  }
 }

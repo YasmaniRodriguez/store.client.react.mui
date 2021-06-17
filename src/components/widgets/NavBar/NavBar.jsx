@@ -38,14 +38,20 @@ export const NavBar = () => {
     const classes= useStyles(); /*trae la contante al export*/
 
     return <header className={classes.container}>
-        <StoreWidget/>
-        <BrandWidget brand="Yeah!"/>
-        <div id='product-category'>
+        <div id="header-store-container">
+            <StoreWidget/>
+            <BrandWidget brand="Yeah!"/>
+        </div>
+
+        <div id="header-category-container">
         {categories.map((category, i) => <React.Fragment key={i}>
                 <CategoryWidget name={category.name} />
         </React.Fragment>)}
         </div>
-        <DiscountWidget/>
-        <CartWidget/>
+
+        <div id="header-order-container">
+            <DiscountWidget/>
+            <CartWidget/>
+        </div>
     </header>
 }
