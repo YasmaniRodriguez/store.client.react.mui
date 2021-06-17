@@ -16,21 +16,25 @@ export const getCategoryList = new Promise((resolve, reject)=>{
     );
 });
 
+getCategoryList.then( resolve => {
+    const icons = [];
+
+    const newicons = resolve.map((data, i) => {
+        return {id: data.id, icon: data.icon}
+    })
+
+    const myiconslist = [...icons, newicons]
+
+    console.log(myiconslist)
+})
+
 export const ProductCategory = () => {
 
     const [categories, setCategories] = useState([]);
-    const [icons, setIcons] = useState([]);
 
     useEffect(() => {
         getCategoryList
         .then(result => {setCategories(result)})
-    }, []);
-
-    useEffect(() => {
-        categories.map((ctg,i)=>{
-            const icons = {id:ctg.id, icon:ctg.icon} 
-            return setCategories(icons);
-        });
     }, []);
 
     const classes = useStyles();
