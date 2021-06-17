@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Icon, makeStyles } from '@material-ui/core';
 import { productListStyle } from './ProductListWidgetStyles';
 import { ProductWidget } from '../../widgets/ProductWidget/ProductWidget.jsx';
-import { myPromise } from '../../layouts/ProductCatalog/ProductCatalog.jsx';
-import { getCtgIcon } from '../../layouts/ProductCatalog/ProductCatalog.jsx';
+import { getItemList } from '../../screens/ProductCatalog/ProductCatalog.jsx';
 
 const useStyles = makeStyles((theme) => productListStyle(theme));
 
@@ -11,22 +10,23 @@ export const ProductListWidget = () => {
 
     const [products, setProducts] = useState([]);
 
-    const myProducts = () => {
-        myPromise().then(data => {
-            const filteredData = data;
+    const filterItems = () => {
+        getItemList().then(data => {
+            const filteredData = data; //mas adelante los productos seran filtrados
             setProducts(filteredData);
         })
     } 
 
     useEffect(() => {
-        myProducts();
+        filterItems();
     }, []);
 
     const classes = useStyles();
 
     return <div className={classes.productListContainer}>
             {products.map((product, i) => <React.Fragment key={i}>
-                <ProductWidget icon = {getCtgIcon(product.category)} {...product} />
+            <ProductWidget {...product} />
+                {/* <ProductWidget icon = {getCtgIcon(product.category)} {...product} /> */}
             </React.Fragment>)}
     </div>
 }

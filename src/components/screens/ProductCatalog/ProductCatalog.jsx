@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core';
 import { productCatalogStyle } from './ProductCatalogStyles.jsx';
 import { ProductListWidget } from '../../widgets/ProductListWidget/ProductListWidget.jsx';
-import { categories } from '../ProductCategory/ProductCategory.jsx';
 
 const useStyles = makeStyles((theme) => productCatalogStyle(theme));
 
-export const myPromise = () => {
+export const getItemList = () => {
     return new Promise((resolve, reject) => {
         setTimeout(() => resolve(
             [
@@ -31,18 +30,8 @@ export const myPromise = () => {
                 { id: 'pdt19', category: 'ctg04', name: 'agua sin gas', price: '80', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '},
                 { id: 'pdt20', category: 'ctg04', name: 'cerveza', price: '80', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '}
             ]
-        ), 3000)
+        ), 3000);
     })
-}
-
-export const getCtgIcon = (category) => {
-    let icon;
-    for(const ctg of categories) {
-        if(category === ctg.id) {
-            icon = ctg.icon;
-        }
-    }
-    return icon;
 }
 
 export const ProductCatalog = () => {
