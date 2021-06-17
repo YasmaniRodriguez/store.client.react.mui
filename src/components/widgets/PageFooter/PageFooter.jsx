@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core';
 import { pageFooterStyle } from './PageFooterStyles.jsx'
-import { CartWidget } from '../../widgets/CartWidget/CartWidget.jsx';
+import { CartWidget } from '../CartWidget/CartWidget.jsx';
 
 const useStyles = makeStyles((theme) => pageFooterStyle(theme));
 

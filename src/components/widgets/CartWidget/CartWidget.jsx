@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core';
-import { cartStyle } from './CartWidgetStyles';
+import { cartStyle } from './CartWidgetStyles.js';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 
 const useStyles = makeStyles((theme) => cartStyle(theme));

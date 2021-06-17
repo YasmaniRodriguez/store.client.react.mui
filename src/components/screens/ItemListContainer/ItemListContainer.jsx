@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core';
-import { productCatalogStyle } from './ProductCatalogStyles.jsx';
-import { ProductListWidget } from '../../widgets/ProductListWidget/ProductListWidget.jsx';
+import { ItemListContainerStyle } from './ItemListContainerStyles.js';
+import { ProductListWidget } from '../../widgets/ItemList/ProductListWidget.jsx';
 
-const useStyles = makeStyles((theme) => productCatalogStyle(theme));
+const useStyles = makeStyles((theme) => ItemListContainerStyle(theme));
 
 export const getItemList = () => {
     return new Promise((resolve, reject) => {
@@ -34,11 +34,11 @@ export const getItemList = () => {
     })
 }
 
-export const ProductCatalog = () => {
+export const ItemListContainer = () => {
 
     const classes = useStyles();
 
-    return <div className={classes.productCatalog}>
+    return <div className={classes.container}>
         <ProductListWidget/>
     </div>
 }

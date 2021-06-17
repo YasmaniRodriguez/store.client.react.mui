@@ -1,14 +1,12 @@
 import './App.css';
-import { PageHeader } from './components/screens/PageHeader/PageHeader.jsx';
-import { PageContent } from './components/screens/PageContent/PageContent.jsx';
-import { PageFooter } from './components/screens/PageFooter/PageFooter.jsx';
+import { NavBar } from './components/widgets/NavBar/NavBar.jsx';
+import { ItemListContainer } from './components/screens/ItemListContainer/ItemListContainer.jsx'
 
 const App = props => {
 
   return <>
-    <PageHeader/>
-    <PageContent/>
-    <PageFooter/>
+    <NavBar/>
+    <ItemListContainer/>
   </>
 }
 

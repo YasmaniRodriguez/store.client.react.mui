@@ -1,7 +1,7 @@
-export const pageHeaderStyle = theme => {
+export const navBarStyle = theme => {
 
     return ({
-        pageHeader: {
+        container: {
             backgroundColor: '#8e6995',
             display: 'flex',
             justifyContent: 'space-between',
