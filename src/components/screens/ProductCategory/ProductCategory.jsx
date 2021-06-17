@@ -16,17 +16,29 @@ export const getCategoryList = new Promise((resolve, reject)=>{
     );
 });
 
-getCategoryList.then( resolve => {
-    const icons = [];
+const icons = [];
 
-    const newicons = resolve.map((data, i) => {
-        return {id: data.id, icon: data.icon}
-    })
+const newicons = getCategoryList.then(resolve => {
+    return resolve.map((data, i) => {
+        return {id: data.id, icon: data.icon};
+    });
+});
 
-    const myiconslist = [...icons, newicons]
+export const categoryIcons = [...icons, newicons];
 
-    console.log(myiconslist)
-})
+console.log(categoryIcons);
+
+// getCategoryList.then( resolve => {
+//     const icons = [];
+
+//     const newicons = resolve.map((data, i) => {
+//         return {id: data.id, icon: data.icon}
+//     })
+
+//     const myiconslist = [...icons, newicons]
+
+//     console.log(myiconslist)
+// })
 
 export const ProductCategory = () => {
 
