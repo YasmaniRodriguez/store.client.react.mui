@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Icon, makeStyles } from '@material-ui/core';
-import { productListStyle } from './ProductListWidgetStyles';
-import { ProductWidget } from '../Item/ProductWidget.jsx';
+import { itemListStyle } from './ItemListStyles.js';
+import { Item } from '../Item/Item.jsx';
 import { getItemList } from '../../screens/ItemListContainer/ItemListContainer.jsx';
 
-const useStyles = makeStyles((theme) => productListStyle(theme));
+const useStyles = makeStyles((theme) => itemListStyle(theme));
 
-export const ProductListWidget = () => {
+export const ItemList = () => {
 
     const [products, setProducts] = useState([]);
 
@@ -25,7 +25,7 @@ export const ProductListWidget = () => {
 
     return <div className={classes.container}>
             {products.map((product, i) => <React.Fragment key={i}>
-            <ProductWidget {...product} />
+            <Item {...product} />
                 {/* <ProductWidget icon = {getCtgIcon(product.category)} {...product} /> */}
             </React.Fragment>)}
     </div>

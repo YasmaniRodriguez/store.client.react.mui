@@ -4,10 +4,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
   margin: 0;
   padding: 0;
-  min-width: 100vw;
-  min-height: 100vh;
+  /* min-width: 100vw;
+  min-height: 100vh; */
+  overflow-x: hidden;
   box-sizing: border-box;
-  font-family: 'Montserrat';
+  /* font-family: 'Montserrat', sans-serif; */
+  font-family: 'Ranchers', cursive;
 }
 
 /* 
@@ -18,12 +20,10 @@ code {
 */
 header {
   height: 10vh;
-  width: 100vw;
 }
 
 footer {
   height: 10vh;
-  width: 100vw;
 }
 
 p {

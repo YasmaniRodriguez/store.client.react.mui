@@ -1,10 +1,10 @@
 import React , {useState} from 'react';
 import { makeStyles } from '@material-ui/core';
-import { counterStyle } from './CounterWidgetStyles';
+import { itemCountStyle } from './ItemCountStyles.js';
 
-const useStyles = makeStyles((theme)=> counterStyle(theme));
+const useStyles = makeStyles((theme)=> itemCountStyle(theme));
 
-export const CounterWidget = () => {
+export const ItemCount = () => {
     const classes = useStyles();
 
     const [counter,setCounter] = useState(0);
@@ -17,7 +17,7 @@ export const CounterWidget = () => {
         counter == 0 ? setCounter(0) : setCounter(counter -1);
     }
 
-    return <div className={classes.counterQtyCta}>
+    return <div className={classes.container}>
         <button onClick={e => decrement()}>-</button>
         <p>{counter}</p>
         <button onClick={e => increment()}>+</button>

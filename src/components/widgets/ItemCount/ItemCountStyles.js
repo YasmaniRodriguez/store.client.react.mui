@@ -1,7 +1,7 @@
-export const counterStyle = theme => {
+export const itemCountStyle = theme => {
 
     return ({
-        counterQtyCta: {
+        container: {
             height: '200px',
             width: '400px',
             backgroundColor: '#ffffff',

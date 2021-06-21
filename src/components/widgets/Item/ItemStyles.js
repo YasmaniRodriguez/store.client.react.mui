@@ -1,7 +1,7 @@
-export const productStyle = theme => {
+export const itemStyle = theme => {
 
     return ({
-        productContainer: {
+        container: {
             height: '40vh',
             width: '20vh',
             backgroundColor: '#ffffff',

@@ -1,4 +1,4 @@
-export const productListStyle = theme => {
+export const itemListStyle = theme => {
 
     return ({
         container: {

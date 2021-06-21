@@ -1,10 +1,15 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/core';
+import { brandWidgetStyle } from './BrandWidgetStyles.js';
 
-export const BrandWidget = props => {
+const useStyles = makeStyles((theme) => brandWidgetStyle(theme));
 
-    const {brand} = props;
-    
-    return <div id="brand">
-        <h2>{brand}</h2>
+export const BrandWidget = () => {
+
+    const classes = useStyles();
+
+    return <div className={classes.container}>
+        <img src="images/logo.png" alt="" />
+        <h2>Yeah!</h2>
     </div>
 }

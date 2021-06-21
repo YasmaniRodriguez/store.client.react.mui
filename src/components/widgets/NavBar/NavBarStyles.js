@@ -1,3 +1,5 @@
+import { red } from "@material-ui/core/colors"
+
 export const navBarStyle = theme => {
 
     return ({
@@ -6,33 +8,25 @@ export const navBarStyle = theme => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-around',
-            '& #header-store-container': {
+            // maxWidth: '100vw',
+
+            '& #header-brand-container': {
                 display: 'flex',
-                '& #store-view-cta': {
-                    cursor: 'pointer'
-                },
-                '& #brand-container': {
-                    display: 'flex',
-                },
+                justifyContent: 'center',
+                minWidth: '10vw'
             },
+
             '& #header-category-container': {
                 display: 'flex',
-                '& .category': {
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    textTransform: 'uppercase',
-                    padding: '0px 5px'
-                }
+                flexWrap: 'wrap',
+                justifyContent: 'space-around',
+                minWidth: '70vw'
             },
+
             '& #header-order-container': {
                 display: 'flex',
-                '& #discount-view-cta': {
-                    cursor: 'pointer'
-                },
-                '& #order-view-cta': {
-                    cursor: 'pointer'
-                }
+                justifyContent: 'space-around',
+                minWidth: '10vw'
             }
         }
     })

@@ -1,8 +1,14 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/core';
+import { categoryWidgetStyle } from './CategoryWidgetStyles.js';
 
-export const CategoryWidget = ({name}) => {
+const useStyles = makeStyles((theme) => categoryWidgetStyle(theme));
 
-    return <div className="category">
+export const CategoryWidget = ({name, icon}) => {
+
+    const classes = useStyles();
+
+    return <div className={classes.container}>
         <p>{name}</p>
     </div>
 }

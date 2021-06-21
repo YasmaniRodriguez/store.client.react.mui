@@ -1,15 +1,14 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core';
-import { productStyle } from './ProductWidgetStyles.jsx';
-import './ProductWidgetStyles.jsx';
+import { itemStyle } from './ItemStyles.js';
 
-const useStyles = makeStyles((theme) => productStyle(theme));
+const useStyles = makeStyles((theme) => itemStyle(theme));
 
-export const ProductWidget = ({id, category, name, description, price, icon}) => {
+export const Item = ({id, category, name, description, price, icon}) => {
 
     const classes = useStyles();
 
-    return <div className={classes.productContainer}>
+    return <div className={classes.container}>
         <div className='product-galery'>
             <img src={icon}/>
         </div>

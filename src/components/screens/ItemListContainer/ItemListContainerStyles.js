@@ -4,7 +4,7 @@ export const ItemListContainerStyle = theme => {
         container: {
             height: '70vh',
             width: '100vw',
-            display: 'flex',
+            display: 'flex'
         }
     })
 }

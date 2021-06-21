@@ -1,4 +1,4 @@
-export const ItemDetailContainerStyle = theme => {
+export const itemDetailContainerStyle = theme => {
 
     return ({
         container: {
