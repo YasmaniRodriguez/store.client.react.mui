@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core'; /*importa los estilos de materia
 import { navBarStyle } from './NavBarStyles.js';
 import { BrandWidget } from '../BrandWidget/BrandWidget.jsx';
 import { CategoryWidget } from '../CategoryWidget/CategoryWidget.jsx';
-import { DiscountWidget } from '../DiscountWidget/DiscountWidget.jsx';
 import { CartWidget } from '../CartWidget/CartWidget.jsx'
 import { categories } from '../../../App.js';
 
@@ -25,7 +24,6 @@ export const NavBar = props => {
         </div>
 
         <div id="header-order-container">
-            <DiscountWidget/>
             <CartWidget/>
         </div>
     </header>

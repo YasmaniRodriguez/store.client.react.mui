@@ -16,7 +16,7 @@ const App = props => {
 
   return <>
     <NavBar/>
-    <ItemDetailContainer/>
+    <ItemListContainer/>
   </>
 }
 

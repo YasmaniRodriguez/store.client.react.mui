@@ -38,7 +38,7 @@ export const ItemDetailContainer = props => {
 
     const classes = useStyles();
 
-    return <div className={classes.container}>
+    return <section className={classes.container}>
         <ItemDetail {...item} {...icon}/>
-    </div>
+    </section>
 }
