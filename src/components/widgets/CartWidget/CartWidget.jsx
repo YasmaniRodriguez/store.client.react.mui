@@ -1,9 +1,9 @@
 import React from 'react';
-import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
+import {ShoppingCart} from '@material-ui/icons';
 
 export const CartWidget = () => {
 
     return <div className="cta" id="order-view-cta">
-        <ShoppingBasketIcon style={{ fontSize: 40, cursor: 'pointer', padding: '0px 10px' }}/>
+        <ShoppingCart style={{ fontSize: 40, cursor: 'pointer'}}/>
     </div>
 }

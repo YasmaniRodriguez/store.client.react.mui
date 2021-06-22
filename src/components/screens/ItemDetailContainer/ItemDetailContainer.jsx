@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core';
 import { itemDetailContainerStyle } from './ItemDetailContainerStyles.js';
 import { ItemDetail } from '../../widgets/ItemDetail/ItemDetail.jsx';
-import { icons } from '../../../App.js';
+import { getIcon } from '../../widgets/ItemList/ItemList.jsx';
 
 const useStyles = makeStyles((theme) => itemDetailContainerStyle(theme));
 
@@ -20,25 +20,17 @@ export const ItemDetailContainer = props => {
 
     const filterItems = () => {
         getItems().then(data => {
-            const filteredData = data;
-            setItem(filteredData);
+            setItem(data);
         })
-    }
-    
-    const filteredIcon = () => {
-        const myicon = icons.filter(category => category.id === item.category);
-        return myicon[0];
     }
 
     useEffect(() => {
         filterItems();
     }, []);
 
-    const icon = filteredIcon();
-
     const classes = useStyles();
 
     return <section className={classes.container}>
-        <ItemDetail {...item} {...icon}/>
+        <ItemDetail {...item} icon={getIcon(item.category)}/>
     </section>
 }
