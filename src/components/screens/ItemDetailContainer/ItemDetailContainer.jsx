@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
-import { itemDetailContainerStyle } from './ItemDetailContainerStyles.js';
 import { ItemDetail } from '../../widgets/ItemDetail/ItemDetail.jsx';
 import { getIcon } from '../../widgets/ItemList/ItemList.jsx';
-
-const useStyles = makeStyles((theme) => itemDetailContainerStyle(theme));
 
 export const getItems = () => {
     return new Promise((resolve, reject) => {
@@ -34,3 +32,11 @@ export const ItemDetailContainer = props => {
         <ItemDetail {...item} icon={getIcon(item.category)}/>
     </section>
 }
+
+
+const useStyles = makeStyles((theme) => ({
+    container: {
+        width: '100vw',
+        display: 'flex'
+    }
+}));

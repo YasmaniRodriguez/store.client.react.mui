@@ -1,5 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import { Button, Typography, makeStyles, IconButton, useMediaQuery } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import {ShoppingBasket} from '@material-ui/icons';
 import { Pizza } from '../CustomIcons/Pizza';
 import { Pie } from '../CustomIcons/Pie';
@@ -15,10 +16,31 @@ export const NavBar = props => {
     return <header className={classes.container}>
         <Button><Typography variant="h2">Yeah!</Typography></Button>
         <div className={classes.categories}>
-            <Button><Typography variant="h4">Pizzas</Typography></Button>
-            <Button><Typography variant="h4">Tartas</Typography></Button>
-            <Button><Typography variant="h4">Empanadas</Typography></Button>
-            <Button><Typography variant="h4">Bebidas</Typography></Button>
+
+            {matchesMobile ? <IconButton
+            arial-label="close"
+            color="inherit">
+                <Pizza/>
+            </IconButton> : <Button><Typography variant="h4">Pizzas</Typography></Button>}
+
+            {matchesMobile ? <IconButton
+            arial-label="close"
+            color="inherit">
+                <Pie/>
+            </IconButton> : <Button><Typography variant="h4">Tartas</Typography></Button>}
+
+            {matchesMobile ? <IconButton
+            arial-label="close"
+            color="inherit">
+                <Patty/>
+            </IconButton> : <Button><Typography variant="h4">Empanadas</Typography></Button>}
+
+            {matchesMobile ? <IconButton
+            arial-label="close"
+            color="inherit">
+                <Drink/>
+            </IconButton> : <Button><Typography variant="h4">Bebidas</Typography></Button>}
+
         </div>
         <Button className={classes.cart}>
             <ShoppingBasket style={{ fontSize: 40, cursor: 'pointer'}}/>
@@ -48,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
         '& > button': {
             ...buttonCommonStyles,
             '&:hover': {
-                // background: 'none',
+                background: 'none',
             },
             '& h2': {
                 fonSize: 'clamp(2rem,100%,3.75rem)',
@@ -58,6 +80,10 @@ const useStyles = makeStyles((theme) => ({
         }
     },
     categories: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+        alignItems: 'center',
         '& > button': {
             ...buttonCommonStyles,
             '&:hover': {
