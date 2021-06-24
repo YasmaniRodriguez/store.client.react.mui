@@ -12,10 +12,10 @@ const App = props => {
       <Route exact path="/">
          <ItemListContainer/>
       </Route>
-      <Route path="/category/:ctgid">
+      <Route path="/category/:id">
           <ItemListContainer/>
       </Route>
-      <Route path="/product/:pdtid">
+      <Route path="/product/:id">
           <ItemDetailContainer/>
       </Route>
     </Switch>

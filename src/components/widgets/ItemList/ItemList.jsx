@@ -14,7 +14,7 @@ export const getIcon = category => categoryIcons[category];
 
 export const ItemList = props => {
 
-    const {products} = useContext(ItemListComponentContext);
+    const {products, categories} = useContext(ItemListComponentContext);
 
     console.log(products)
 
