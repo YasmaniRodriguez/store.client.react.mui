@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
 import { ItemDetail } from '../../widgets/ItemDetail/ItemDetail.jsx';
-import { getIcon } from '../../widgets/ItemList/ItemList.jsx';
+// import { getIcon } from '../../widgets/ItemList/ItemList.jsx';
 
 export const getItems = () => {
     return new Promise((resolve, reject) => {
@@ -29,7 +29,7 @@ export const ItemDetailContainer = props => {
     const classes = useStyles();
 
     return <section className={classes.container}>
-        <ItemDetail {...item} icon={getIcon(item.category)}/>
+        <ItemDetail {...item}/>
     </section>
 }
 
