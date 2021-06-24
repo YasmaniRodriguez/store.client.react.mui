@@ -12,7 +12,7 @@ const getCategories = new Promise((resolve, reject) => {
     ];
 
     resolve(categories);
-})
+});
 
 const getProducts = new Promise((resolve, reject) => {
 
@@ -41,11 +41,11 @@ const getProducts = new Promise((resolve, reject) => {
 
     resolve(products);
 
-})
+});
 
 export const BusinessContext = createContext();
 
-export const ContextComponent = ({children}) => {
+export const BusinessContextProvider = ({children}) => {
 
     const [categories, setCategories] = useState([]);
     const [products, setProducts] = useState([]);
@@ -73,7 +73,7 @@ export const ContextComponent = ({children}) => {
         return products.find(product => product.id === id)
     }; 
 
-    return <BusinessContext.Provider value={{ categories, products, getCategoryById, getProductById}}>
+    return <BusinessContext.Provider value={{ categories, products: products, getCategoryById, getProductById}}>
         {children}
     </BusinessContext.Provider>
 };
