@@ -15,6 +15,9 @@ const App = props => {
           <Route exact path="/">
             <ItemListContainerLayout/>
           </Route>
+          <Route path="/category/:onlyShowCategory">
+            <ItemListContainerLayout/>
+          </Route>
         </Switch>
     </BrowserRouter>      
     </BusinessContextProvider>

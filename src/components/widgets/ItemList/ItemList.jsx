@@ -5,14 +5,12 @@ import { BusinessContext, BusinessContextProvider } from '../../contexts/Busines
 
 export const ItemList = props => {
 
-    const {products} = useContext(BusinessContext);
-
-    console.log(products);
+    const {productsToShow} = useContext(BusinessContext);
     
     return <BusinessContextProvider>
         <Grid container spacing={24} justify="center">
             {
-                products.map((product, i) =>
+                productsToShow.map((product, i) =>
                 <React.Fragment key={i}>
                     <Item index={i} {...product}/>
                 </React.Fragment>)

@@ -1,5 +1,4 @@
-
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 
 //creando el context:
 export const BusinessContext = createContext();
@@ -9,21 +8,12 @@ export const BusinessContextProvider = ({children}) => {
 
     const [categories, setCategories] = useState([]);
     const [products, setProducts] = useState([]);
+    const [productsToShow, setProductsToShow] = useState([]);
 
     const getCategories = arr => setCategories(arr);
     const getProducts = arr => setProducts(arr);
 
-    return <BusinessContext.Provider value={{categories, products, getCategories, getProducts}}>
+    return <BusinessContext.Provider value={{categories, products, getCategories, getProducts, productsToShow, setProductsToShow}}>
         {children}
     </BusinessContext.Provider>
 };
-
-// const [productsToShow, setProductsToShow] = useState([]);
-// const {onlyShowCategory} = useParams('');
-// const filterProducts = products => {
-//     return onlyShowCategory !== '' ? products.filter(product => product.category === onlyShowCategory) :products;
-// }
-
-// useEffect(() => {
-//     setProductsToShow(filterProducts());
-// }, [onlyShowCategory])
