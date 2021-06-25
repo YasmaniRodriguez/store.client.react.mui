@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import { Grid } from '@material-ui/core';
 import { Item } from '../Item/Item.jsx';
-import { BusinessContextProvider } from '../../contexts/BusinessContext';
+import { BusinessContext, BusinessContextProvider } from '../../contexts/BusinessContext';
 
 export const ItemList = props => {
 
-    const {products} = useContext(BusinessContextProvider);
+    const {products} = useContext(BusinessContext);
 
     console.log(products);
     
