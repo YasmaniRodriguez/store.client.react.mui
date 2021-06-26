@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button, Typography, makeStyles, IconButton, useMediaQuery } from '@material-ui/core';
-import { Link } from 'react-router-dom';
 import {ShoppingBasket} from '@material-ui/icons';
 import { Pizza } from '../CustomIcons/Pizza';
 import { Pie } from '../CustomIcons/Pie';

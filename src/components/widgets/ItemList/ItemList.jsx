@@ -8,7 +8,7 @@ export const ItemList = props => {
     const {productsToShow} = useContext(BusinessContext);
     
     return <BusinessContextProvider>
-        <Grid container spacing={24} justify="center">
+        <Grid container spacing={10} justify="center">
             {
                 productsToShow.map((product, i) =>
                 <React.Fragment key={i}>

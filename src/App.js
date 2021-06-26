@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { BusinessContextProvider } from './components/contexts/BusinessContext.js';
 import { NavBar } from './components/widgets/NavBar/NavBar.jsx';
-import { ItemListContainerLayout } from './components/screens/ItemListContainer/ItemListContainer.jsx';
+import { ItemListContainer } from './components/screens/ItemListContainer/ItemListContainer.jsx';
 //import { ItemDetailContainer } from './components/screens/ItemDetailContainer/ItemDetailContainer.jsx';
 
 const App = props => {
@@ -13,10 +13,10 @@ const App = props => {
         <NavBar/>
         <Switch>
           <Route exact path="/">
-            <ItemListContainerLayout/>
+            <ItemListContainer/>
           </Route>
-          <Route path="/category/:onlyShowCategory">
-            <ItemListContainerLayout/>
+          <Route path="/category/:id">
+            <ItemListContainer/>
           </Route>
         </Switch>
     </BrowserRouter>      
