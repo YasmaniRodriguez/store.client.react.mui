@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, useState } from 'react';
 
 //creando el context:
 export const BusinessContext = createContext();
@@ -8,9 +8,8 @@ export const BusinessContextProvider = ({children}) => {
 
     const [categories, setCategories] = useState([]);
     const [products, setProducts] = useState([]);
-    const [productsToShow, setProductsToShow] = useState([]);
 
-    return <BusinessContext.Provider value={{categories, setCategories, products, setProducts, productsToShow, setProductsToShow}}>
+    return <BusinessContext.Provider value={{ categories, setCategories, products, setProducts }}>
         {children}
     </BusinessContext.Provider>
 };
