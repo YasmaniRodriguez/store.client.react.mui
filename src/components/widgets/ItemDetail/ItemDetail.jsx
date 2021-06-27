@@ -6,15 +6,15 @@ const useStyles = makeStyles((theme) => itemDetailStyle(theme));
 
 export const ItemDetail = props => {
 
-    const { name, price, description, icon} = props;
+    const {name, price, image, description} = props;
 
-    console.log(icon);
+    console.log(name);
 
     const classes = useStyles();
 
     return <div className={classes.container}>
         <div id="item-galery">
-            <img src={icon} alt="" />
+            <img src={image} alt="" />
         </div>
         <span id="vertical-line"></span>
         <div id="item-detail">

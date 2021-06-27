@@ -10,9 +10,9 @@ al componente dummy encargado de la visualizacion.
 */
 export const ItemList = ({ onlyShowCategory }) => {
 
-    const { availableProducts } = useContext(BusinessContext);
-
     const classes = useStyles();
+
+    const { availableProducts } = useContext(BusinessContext);
 
     const filterProducts = () => {
         return onlyShowCategory !== undefined ? availableProducts.filter(product => product.category === onlyShowCategory) : availableProducts;
@@ -22,7 +22,7 @@ export const ItemList = ({ onlyShowCategory }) => {
     
     return (
         <>
-        {products.length === 0 ? (<div className={classes.loadingContainer}><Typography variant="h3">Cargando...</Typography></div>) : (
+        {products.length === 0 ? (<div className={classes.loadingContainer}><Typography className={classes.loadingText} variant="h3">Cargando...</Typography></div>) : (
             <Grid container spacing={10} justify="center">
             {
                 products.map((product, i) =>
@@ -42,7 +42,9 @@ const useStyles = makeStyles((theme) => ({
         height: '100%',
         display: 'flex',
         justifyContent: 'center',
-        alignItems: 'center',
-        fontFamily: theme.typography.fontFamily.Ranchers
+        alignItems: 'center'  
+    },
+    loadingText: {
+        fontFamily: 'Ranchers'
     }
 }));

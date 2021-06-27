@@ -8,7 +8,7 @@ body {
   min-height: 100vh; */
   overflow-x: hidden;
   box-sizing: border-box;
-  font-family: 'Ranchers', cursive;
+  /*font-family: 'Ranchers', cursive;*/
   background-color: #ebebeb;
 }
 

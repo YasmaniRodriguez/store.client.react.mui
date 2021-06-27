@@ -1,19 +1,22 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Button, Card, CardMedia, CardContent, Typography, makeStyles } from '@material-ui/core';
 
-export const Item = ({id, category, name, description, price, icon}) => {
+export const Item = ({id, name, price, image}) => {
 
     const classes = useStyles();
 
     return <Card className={classes.container}>
-            <CardMedia className={classes.media}
-            image={icon}
-            style={{backgroundSize: 'contain'}}
-            />
+            <Link to={'/product/'+id}>
+                <CardMedia className={classes.media}
+                image={image}
+                style={{backgroundSize: 'contain'}}
+                />
+            </Link>
         <CardContent className={classes.content}>
             <Typography className={classes.product} variant="h6">{name}</Typography>
             <Typography className={classes.price}>{price}</Typography>
-            <Button className={classes.button} size="medium" variant="outlined" font-family='Ranchers'>Agregar al carrito</Button>
+            <Button className={classes.button} size="medium" variant="outlined" fontFamily='Ranchers'>Agregar al carrito</Button>
         </CardContent>
     </Card>
 }

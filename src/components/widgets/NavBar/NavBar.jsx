@@ -9,14 +9,18 @@ import { Drink } from '../CustomIcons/Drink';
 
 export const NavBar = props => {
 
+    const myCategory = {
+        'pizzas': 'ctg01',
+        'tartas': 'ctg02',
+        'empanadas': 'ctg03',
+        'bebidas': 'ctg04'
+    } 
+
+    const getCategoryId = name => myCategory[name];
+
     const classes= useStyles();
 
     const matchesMobile = useMediaQuery('(max-width: 650px)');
-
-    const pizzas = 'ctg01';
-    const tartas = 'ctg02';
-    const empanadas = 'ctg03';
-    const bebidas = 'ctg04';
 
     return <header className={classes.container}>
         <Link to={'/'}><Typography variant="h2">Yeah!</Typography></Link>
@@ -27,25 +31,25 @@ export const NavBar = props => {
             aria-label="close"
             color="inherit">
                 <Pizza/>
-            </IconButton> : <Link to={'/category/'+pizzas}><Typography variant="h4">Pizzas</Typography></Link>}
+            </IconButton> : <Link to={'/category/'+getCategoryId('pizzas')}><Typography variant="h4">Pizzas</Typography></Link>}
 
             {matchesMobile ? <IconButton
             aria-label="close"
             color="inherit">
                 <Pie/>
-            </IconButton> : <Link to={'/category/'+tartas}><Typography variant="h4">Tartas</Typography></Link>}
+            </IconButton> : <Link to={'/category/'+getCategoryId('tartas')}><Typography variant="h4">Tartas</Typography></Link>}
 
             {matchesMobile ? <IconButton
             aria-label="close"
             color="inherit">
                 <Patty/>
-            </IconButton> : <Link to={'/category/'+empanadas}><Typography variant="h4">Empanadas</Typography></Link>}
+            </IconButton> : <Link to={'/category/'+getCategoryId('empanadas')}><Typography variant="h4">Empanadas</Typography></Link>}
 
             {matchesMobile ? <IconButton
             aria-label="close"
             color="inherit">
                 <Drink/>
-            </IconButton> : <Link to={'/category/'+bebidas}><Typography variant="h4">Bebidas</Typography></Link>}
+            </IconButton> : <Link to={'/category/'+getCategoryId('bebidas')}><Typography variant="h4">Bebidas</Typography></Link>}
 
         </div>
 
