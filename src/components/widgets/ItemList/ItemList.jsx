@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { BusinessContext } from '../../contexts/BusinessContext.js';
 import { Grid } from '@material-ui/core';
 import { Item } from '../Item/Item.jsx';
@@ -11,11 +11,11 @@ export const ItemList = ({ onlyShowCategory }) => {
 
     const { availableProducts } = useContext(BusinessContext);
 
-    const filterProducts = (onlyShowCategory) => {
+    const filterProducts = () => {
         return onlyShowCategory !== undefined ? availableProducts.filter(product => product.category === onlyShowCategory) : availableProducts;
     }
 
-    const products = filterProducts(onlyShowCategory);
+    const products = filterProducts();
     
     return <Grid container spacing={10} justify="center">
         {
