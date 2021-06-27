@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
+import { Typography, makeStyles } from '@material-ui/core';
 import { BusinessContext } from '../../contexts/BusinessContext.js';
 import { Grid } from '@material-ui/core';
 import { Item } from '../Item/Item.jsx';
@@ -11,18 +12,37 @@ export const ItemList = ({ onlyShowCategory }) => {
 
     const { availableProducts } = useContext(BusinessContext);
 
+    const classes = useStyles();
+
     const filterProducts = () => {
         return onlyShowCategory !== undefined ? availableProducts.filter(product => product.category === onlyShowCategory) : availableProducts;
     }
 
     const products = filterProducts();
     
-    return <Grid container spacing={10} justify="center">
-        {
-            products.map((product, i) =>
-            <React.Fragment key={i}>
-                <Item index={i} {...product}/>
-            </React.Fragment>)
-        }
-    </Grid>        
+    return (
+        <>
+        {products.length === 0 ? (<div className={classes.loadingContainer}><Typography variant="h3">Cargando...</Typography></div>) : (
+            <Grid container spacing={10} justify="center">
+            {
+                products.map((product, i) =>
+                <React.Fragment key={i}>
+                    <Item index={i} {...product}/>
+                </React.Fragment>)
+            }
+        </Grid> 
+        )}
+        </>
+    )      
 }
+
+const useStyles = makeStyles((theme) => ({
+    loadingContainer: {
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        fontFamily: theme.typography.fontFamily.Ranchers
+    }
+}));

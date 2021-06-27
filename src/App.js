@@ -10,12 +10,12 @@ const App = props => {
   return <>
     <BusinessContextProvider>
       <BrowserRouter>
-        <NavBar/>
+      <NavBar/>
         <Switch>
           <Route exact path="/">
             <ItemListContainer/>
           </Route>
-          <Route path="/category/:id">
+          <Route excat path="/category/:id">
             <ItemListContainer/>
           </Route>
         </Switch>

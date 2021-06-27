@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Button, Typography, makeStyles, IconButton, useMediaQuery } from '@material-ui/core';
 import {ShoppingBasket} from '@material-ui/icons';
 import { Pizza } from '../CustomIcons/Pizza';
@@ -12,35 +13,42 @@ export const NavBar = props => {
 
     const matchesMobile = useMediaQuery('(max-width: 650px)');
 
+    const pizzas = 'ctg01';
+    const tartas = 'ctg02';
+    const empanadas = 'ctg03';
+    const bebidas = 'ctg04';
+
     return <header className={classes.container}>
-        <Button><Typography variant="h2">Yeah!</Typography></Button>
+        <Link to={'/'}><Typography variant="h2">Yeah!</Typography></Link>
+
         <div className={classes.categories}>
 
             {matchesMobile ? <IconButton
-            arial-label="close"
+            aria-label="close"
             color="inherit">
                 <Pizza/>
-            </IconButton> : <Button><Typography variant="h4">Pizzas</Typography></Button>}
+            </IconButton> : <Link to={'/category/'+pizzas}><Typography variant="h4">Pizzas</Typography></Link>}
 
             {matchesMobile ? <IconButton
-            arial-label="close"
+            aria-label="close"
             color="inherit">
                 <Pie/>
-            </IconButton> : <Button><Typography variant="h4">Tartas</Typography></Button>}
+            </IconButton> : <Link to={'/category/'+tartas}><Typography variant="h4">Tartas</Typography></Link>}
 
             {matchesMobile ? <IconButton
-            arial-label="close"
+            aria-label="close"
             color="inherit">
                 <Patty/>
-            </IconButton> : <Button><Typography variant="h4">Empanadas</Typography></Button>}
+            </IconButton> : <Link to={'/category/'+empanadas}><Typography variant="h4">Empanadas</Typography></Link>}
 
             {matchesMobile ? <IconButton
-            arial-label="close"
+            aria-label="close"
             color="inherit">
                 <Drink/>
-            </IconButton> : <Button><Typography variant="h4">Bebidas</Typography></Button>}
+            </IconButton> : <Link to={'/category/'+bebidas}><Typography variant="h4">Bebidas</Typography></Link>}
 
         </div>
+
         <Button className={classes.cart}>
             <ShoppingBasket style={{ fontSize: 40, cursor: 'pointer'}}/>
         </Button>
