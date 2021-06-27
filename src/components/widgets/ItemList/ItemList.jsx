@@ -23,7 +23,7 @@ export const ItemList = ({ onlyShowCategory }) => {
     return (
         <>
         {products.length === 0 ? (<div className={classes.loadingContainer}><Typography className={classes.loadingText} variant="h3">Cargando...</Typography></div>) : (
-            <Grid container spacing={10} justify="center">
+            <Grid container spacing={20} justify="center">
             {
                 products.map((product, i) =>
                 <React.Fragment key={i}>

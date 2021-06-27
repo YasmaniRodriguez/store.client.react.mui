@@ -8,8 +8,6 @@ export const ItemDetail = props => {
 
     const {name, price, image, description} = props;
 
-    console.log(name);
-
     const classes = useStyles();
 
     return <div className={classes.container}>
