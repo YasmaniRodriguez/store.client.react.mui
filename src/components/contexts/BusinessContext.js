@@ -6,10 +6,10 @@ export const BusinessContext = createContext();
 //creando el provider:
 export const BusinessContextProvider = ({children}) => {
 
-    const [categories, setCategories] = useState([]);
-    const [products, setProducts] = useState([]);
+    const [availableCategories, setAvailableCategories] = useState([]);
+    const [availableProducts, setAvailableProducts] = useState([]);
 
-    return <BusinessContext.Provider value={{ categories, setCategories, products, setProducts }}>
+    return <BusinessContext.Provider value={{ availableCategories, setAvailableCategories, availableProducts, setAvailableProducts }}>
         {children}
     </BusinessContext.Provider>
 };
