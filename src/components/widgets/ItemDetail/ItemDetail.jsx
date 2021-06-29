@@ -12,9 +12,9 @@ export const ItemDetail = ({name, price, description, image}) => {
     </Paper>
     <div>
         <div className={classes.detailContent}>
-            <Typography>{name}</Typography>
-            <Typography>{price}</Typography>
-            <Typography>{description}</Typography>
+            <Typography variant="h1" component="p">{name}</Typography>
+            <Typography variant="h3" component="p">{price}</Typography>
+            <Typography variant="h5" component="p">{description}</Typography>
         </div>
         <ItemCount/>
     </div>
