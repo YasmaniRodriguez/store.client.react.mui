@@ -1,22 +1,23 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core';
+import { Paper, Typography, makeStyles } from '@material-ui/core';
+import { ItemCount } from '../ItemCount/ItemCount.jsx'
 
-export const ItemDetail = product => {
-
-    const {name, price, image, description} = product;
+export const ItemDetail = ({name, price, description, image}) => {
 
     const classes = useStyles();
 
     return <div className={classes.container}>
-        <div id="item-galery">
-            <img src={image} alt="" />
+    <Paper elevation={0}>
+        <img src={image} alt={name}></img>
+    </Paper>
+    <div>
+        <div className={classes.detailContent}>
+            <Typography>{name}</Typography>
+            <Typography>{price}</Typography>
+            <Typography>{description}</Typography>
         </div>
-        <span id="vertical-line"></span>
-        <div id="item-detail">
-            <p>{name}</p>
-            <p>{price}</p>
-            <p>{description}</p>
-        </div>
+        <ItemCount/>
+    </div>
     </div>
 }
 
@@ -26,45 +27,44 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'space-around',
+        justifyContent: 'space-around'
+    },
+    '& #item-galery': {
+        minWidth: '30vw',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        
+        '& img': {
+            width: '80%',
+            height: '80%'
+        }
+    },
 
-        '& #item-galery': {
-            minWidth: '30vw',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            
-            '& img': {
-                width: '80%',
-                height: '80%'
-            }
+    '& #vertical-line': {
+        width: '1px',
+        height: '70vh',
+        backgroundColor: '#8e6995'
+    },
+
+    '& #item-detail': {
+        minWidth: '65vw',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        padding: '10px 20px',
+
+        '& :nth-child(1)': {
+            fontSize: '3em',
+            textTransform: 'uppercase'
         },
 
-        '& #vertical-line': {
-            width: '1px',
-            height: '70vh',
-            backgroundColor: '#8e6995'
+        '& :nth-child(2)': {
+            fontSize: '2em'
         },
 
-        '& #item-detail': {
-            minWidth: '65vw',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            padding: '10px 20px',
-
-            '& :nth-child(1)': {
-                fontSize: '3em',
-                textTransform: 'uppercase'
-            },
-
-            '& :nth-child(2)': {
-                fontSize: '2em'
-            },
-
-            '& :nth-child(3)': {
-                fontSize: '2em'
-            }
+        '& :nth-child(3)': {
+            fontSize: '2em'
         }
     }
 }));

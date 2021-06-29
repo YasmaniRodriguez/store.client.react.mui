@@ -1,8 +1,5 @@
 import React , {useState} from 'react';
-import { makeStyles } from '@material-ui/core';
-import { itemCountStyle } from './ItemCountStyles.js';
-
-const useStyles = makeStyles((theme)=> itemCountStyle(theme));
+import { Button, makeStyles } from '@material-ui/core';
 
 export const ItemCount = () => {
     const classes = useStyles();
@@ -23,3 +20,13 @@ export const ItemCount = () => {
         <button onClick={e => increment()}>+</button>
     </div>
 }
+
+const useStyles = makeStyles((theme)=> ({
+    container: {
+        height: '200px',
+        width: '400px',
+        backgroundColor: '#ffffff',
+        border: 'solid 1px black',
+        display: 'flex'
+    }
+}));

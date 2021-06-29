@@ -1,12 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Typography, makeStyles, IconButton, useMediaQuery } from '@material-ui/core';
-import {ShoppingBasket} from '@material-ui/icons';
+import { Typography, makeStyles, withStyles, Badge, IconButton, Chip, Avatar, useMediaQuery } from '@material-ui/core';
+import { ShoppingBasket, MenuIcon } from '@material-ui/icons';
 import { Pizza } from '../CustomIcons/Pizza';
 import { Pie } from '../CustomIcons/Pie';
 import { Patty } from '../CustomIcons/Patty';
 import { Drink } from '../CustomIcons/Drink';
 
+/*
+implementar componente chip para las categorias
+implementar hamburg menu para las dimensiones mobile
+*/
 export const NavBar = props => {
 
     const myCategory = {
@@ -52,10 +56,11 @@ export const NavBar = props => {
             </IconButton> : <Link to={'/category/'+getCategoryId('bebidas')}><Typography variant="h4">Bebidas</Typography></Link>}
 
         </div>
-
-        <Button className={classes.cart}>
+        <IconButton aria-label="cart">
+            <StyledBadge badgeContent={4} color="secondary">
             <ShoppingBasket style={{ fontSize: 40, cursor: 'pointer'}}/>
-        </Button>
+            </StyledBadge>
+        </IconButton>
     </header>
 }
 
@@ -112,3 +117,12 @@ const useStyles = makeStyles((theme) => ({
         ...buttonCommonStyles
     }
 }));
+
+const StyledBadge = withStyles((theme) => ({
+    badge: {
+      right: -3,
+      top: 13,
+      border: `2px solid ${theme.palette.background.paper}`,
+      padding: '0 4px',
+    },
+  }))(Badge);
