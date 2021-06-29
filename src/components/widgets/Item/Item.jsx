@@ -1,18 +1,20 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 import { Button, Card, CardMedia, CardContent, Typography, makeStyles } from '@material-ui/core';
 
 export const Item = ({id, name, price, image}) => {
 
     const classes = useStyles();
+    const history = useHistory();
 
     return <Card className={classes.container}>
-            <Link to={'/product/'+id}>
-                <CardMedia className={classes.media}
-                image={image}
-                style={{backgroundSize: 'contain'}}
-                />
-            </Link>
+
+            <CardMedia 
+            className={classes.media} 
+            image={image}
+            style={{backgroundSize: 'contain'}}
+            onClick={()=> history.push(`/product/${id}`)}
+            />
         <CardContent className={classes.content}>
             <Typography className={classes.product} variant="h6">{name}</Typography>
             <Typography className={classes.price}>{price}</Typography>
@@ -33,7 +35,8 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: theme.typography.fontFamily.Ranchers
     },
     media: {
-        height: '10em'
+        height: '10em',
+        cursor: 'pointer'
     },
     content: {
         display: 'flex',

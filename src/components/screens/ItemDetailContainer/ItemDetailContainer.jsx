@@ -17,14 +17,10 @@ export const ItemDetailContainer = props => {
 
     const { availableProducts } = useContext(BusinessContext);
 
-    const findProduct = () => {
-        return availableProducts.find(product => product.id === onlyShowProduct);
-    }
-
-    const product = findProduct();
+    const findProduct = listOfProducts => listOfProducts.find(product => product.id === onlyShowProduct) 
 
     return <section className={classes.container}>
-        <ItemDetail {...product}/>
+        <ItemDetail {...findProduct(availableProducts)}/>
     </section>
 }
 

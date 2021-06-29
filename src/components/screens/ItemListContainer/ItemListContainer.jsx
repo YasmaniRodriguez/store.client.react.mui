@@ -5,9 +5,9 @@ import { makeStyles } from '@material-ui/core';
 import { ItemList } from '../../widgets/ItemList/ItemList.jsx';
 /*
 Este es un componente contenedor de primer nivel y su responsabilidad es conectarse a los 
-endpoints correspondientes para conseguir las Categorias y Productos disponibles.
-Y dado que estas son el core del modelo de negocios planteado, seran disponibilizadas
-en el BusinessContext.
+endpoints correspondientes para conseguir las Categorias y Productos disponibles y filtrarlos
+segun el criterior que se defina. Y dado que estas son el core del modelo de negocios planteado, 
+seran disponibilizadas en el BusinessContext.
 */
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -21,7 +21,7 @@ export const ItemListContainer = () => {
 
     const classes = useStyles();
     
-    const { setAvailableCategories, setAvailableProducts } = useContext(BusinessContext);
+    const { setAvailableCategories, availableProducts, setAvailableProducts } = useContext(BusinessContext);
 
     const myCategories = () => {
         return new Promise((resolve, reject)=> {
@@ -92,7 +92,11 @@ export const ItemListContainer = () => {
 
     const {id:onlyShowCategory} = useParams();
 
+    const filterProducts = () => {
+        return onlyShowCategory !== undefined ? availableProducts.filter(product => product.category === onlyShowCategory) : availableProducts;
+    }
+
     return <section className={classes.container}>
-        <ItemList onlyShowCategory={onlyShowCategory}/>
+        <ItemList products={filterProducts()}/>
     </section>
 }

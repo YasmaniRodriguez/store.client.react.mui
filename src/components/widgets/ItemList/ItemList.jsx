@@ -1,24 +1,15 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Typography, makeStyles } from '@material-ui/core';
-import { BusinessContext } from '../../contexts/BusinessContext.js';
 import { Grid } from '@material-ui/core';
 import { Item } from '../Item/Item.jsx';
 /*
-Este es un componente contenedor de segundo nivel y su responsabilidad es fitrar 
-los Productos disponibiizaos en el BusinessContext y pasarselos por array.map() y props 
+Este es un componente contenedor de segundo nivel y su responsabilidad es 
+mapear los productos que recibio de su padre y pasarle cada uno por props 
 al componente dummy encargado de la visualizacion.
 */
-export const ItemList = ({ onlyShowCategory }) => {
+export const ItemList = ({ products }) => {
 
     const classes = useStyles();
-
-    const { availableProducts } = useContext(BusinessContext);
-
-    const filterProducts = () => {
-        return onlyShowCategory !== undefined ? availableProducts.filter(product => product.category === onlyShowCategory) : availableProducts;
-    }
-
-    const products = filterProducts();
     
     return (
         <>
