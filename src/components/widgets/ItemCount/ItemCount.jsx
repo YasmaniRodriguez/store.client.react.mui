@@ -1,51 +1,41 @@
-import React , {useState} from 'react';
-import { Button, makeStyles, Typography, Avatar, IconButton } from '@material-ui/core';
+import React from 'react';
+import { makeStyles, Typography, Avatar, IconButton } from '@material-ui/core';
 import {Add, Remove} from '@material-ui/icons';
 
-export const ItemCount = props => {
+export const ItemCount = ({minQty, maxQty, qty:currentQuantity, setQty}) => {
+
     const classes = useStyles();
+
+    const incrementQuantity = () => {
+        currentQuantity == maxQty ? setQty(maxQty) : setQty(currentQuantity + 1);
+    }
+
+    const decrementQuantity = () => {
+        currentQuantity == minQty ? setQty(minQty) : setQty(currentQuantity - 1);
+    }
 
     return <div className={classes.container}>
         <div className={classes.counter}>
-            <Typography variant="h1" component="p">1</Typography>
+            <Typography variant="h1" component="p">{currentQuantity}</Typography>
             <div className={classes.button}>
-                <IconButton className={classes.cta}>
+                <IconButton className={classes.cta}
+                onClick={e => incrementQuantity()}
+                >
                     <Avatar>
                         <Add/>
                     </Avatar>
                 </IconButton>
-                <IconButton className={classes.cta}>
+                <IconButton className={classes.cta}
+                onClick={e => decrementQuantity()}
+                >
                     <Avatar>
                         <Remove/>
                     </Avatar>
                 </IconButton>
             </div>
         </div>
-        <Button variant="outlined">Agregar al carrito</Button>
     </div>
 }
-
-// export const ItemCount = () => {
-//     const classes = useStyles();
-
-//     const [counter,setCounter] = useState(0);
-//     const initial = 1;
-//     const stock = 10;
-
-//     const increment = () => {
-//         setCounter(counter +1);
-//     }
-
-//     const decrement = () => {
-//         counter == 0 ? setCounter(0) : setCounter(counter -1);
-//     }
-
-//     return <div className={classes.container}>
-//         <button onClick={e => decrement()}>-</button>
-//         <p>{counter}</p>
-//         <button onClick={e => increment()}>+</button>
-//     </div>
-// }
 
 const useStyles = makeStyles((theme)=> ({
     container: {

@@ -4,6 +4,7 @@ import { BusinessContextProvider } from './components/contexts/BusinessContext.j
 import { NavBar } from './components/widgets/NavBar/NavBar.jsx';
 import { ItemListContainer } from './components/screens/ItemListContainer/ItemListContainer.jsx';
 import { ItemDetailContainer } from './components/screens/ItemDetailContainer/ItemDetailContainer.jsx';
+import { Cart } from './components/screens/Cart/Cart.jsx';
 
 const App = props => {
 
@@ -20,6 +21,9 @@ const App = props => {
           </Route>
           <Route excat path="/product/:id">
             <ItemDetailContainer/>
+          </Route>
+          <Route excat path="/cart">
+            <Cart/>
           </Route>
         </Switch>
     </BrowserRouter>      

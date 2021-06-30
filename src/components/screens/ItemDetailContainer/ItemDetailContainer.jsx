@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { BusinessContext } from '../../contexts/BusinessContext.js';
 import { makeStyles } from '@material-ui/core';
@@ -10,17 +10,24 @@ con valor del parametro onlyShowProduct que recibo por useParams() y asi pasarse
 al componente dummy encargado de la visualizacion.
 */
 export const ItemDetailContainer = props => {
-
     const classes = useStyles();
-
     const {id:onlyShowProduct} = useParams();
-
     const { availableProducts } = useContext(BusinessContext);
+    const [quantity, setQuantity] = useState(1);
+    const [showCheckOutButton, setShowCheckOutButton] = useState(false);
 
     const findProduct = listOfProducts => listOfProducts.find(product => product.id === onlyShowProduct) 
 
+    const product = findProduct(availableProducts);
+    
     return <section className={classes.container}>
-        <ItemDetail {...findProduct(availableProducts)}/>
+        <ItemDetail 
+        product={product}
+        qty={quantity}
+        setQty={setQuantity}
+        showCheckOut={showCheckOutButton}
+        setShowCheckOut={setShowCheckOutButton}
+        />
     </section>
 }
 

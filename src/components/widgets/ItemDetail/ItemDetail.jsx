@@ -1,25 +1,46 @@
 import React from 'react';
-import { Paper, Typography, makeStyles } from '@material-ui/core';
-import { ItemCount } from '../ItemCount/ItemCount.jsx'
+import { useHistory } from "react-router-dom";
+import { Button, Paper, Typography, makeStyles } from '@material-ui/core';
+import { ItemCount } from '../ItemCount/ItemCount.jsx';
 
-export const ItemDetail = ({name, price, description, image}) => {
+export const ItemDetail = ({product, qty, setQty, showCheckOut, setShowCheckOut}) => {
 
     const classes = useStyles();
+    const history = useHistory();
 
     return <div className={classes.container}>
     <Paper elevation={0}>
-        <img src={image} alt={name}></img>
+        <img src={product.image} alt={product.name}></img>
     </Paper>
     <div>
         <div className={classes.detailContent}>
-            <Typography variant="h1" component="p">{name}</Typography>
-            <Typography variant="h3" component="p">{price}</Typography>
-            <Typography variant="h5" component="p">{description}</Typography>
+            <Typography variant="h1" component="p">{product.name}</Typography>
+            <Typography variant="h3" component="p">{product.price}</Typography>
+            <Typography variant="h5" component="p">{product.description}</Typography>
         </div>
-        <ItemCount/>
+        <div className={classes.detailButton}>
+            {!showCheckOut? (
+            <>
+                <ItemCount minQty={1} maxQty={product.stock} qty={qty} setQty={setQty}/>
+                <Button onClick={e => setShowCheckOut(true)} variant="outlined">Agregar al carrito</Button>
+            </>    
+            ) : (
+            <>
+                <Button onClick={()=> history.push(`/cart`)} variant="outlined">Finalizar mi compra</Button>
+                <Button onClick={e => setShowCheckOut(false)}>Cancelar</Button>
+            </> 
+                )}
+        </div>
     </div>
     </div>
 }
+
+
+
+// const myButtom = () => {
+//     return orderQuantity === 0 ? <AddToCartButton onClick={e => setOrderQuantity(currentQuantity)} /> : <CheckOutButton/>
+// }
+
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -29,42 +50,13 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         justifyContent: 'space-around'
     },
-    '& #item-galery': {
-        minWidth: '30vw',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        
-        '& img': {
-            width: '80%',
-            height: '80%'
-        }
-    },
+    detailContent: {
 
-    '& #vertical-line': {
-        width: '1px',
-        height: '70vh',
-        backgroundColor: '#8e6995'
     },
-
-    '& #item-detail': {
-        minWidth: '65vw',
-        display: 'flex',
+    detailButton: {
+        display:'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        padding: '10px 20px',
-
-        '& :nth-child(1)': {
-            fontSize: '3em',
-            textTransform: 'uppercase'
-        },
-
-        '& :nth-child(2)': {
-            fontSize: '2em'
-        },
-
-        '& :nth-child(3)': {
-            fontSize: '2em'
-        }
+        alignItems: 'center',
     }
 }));

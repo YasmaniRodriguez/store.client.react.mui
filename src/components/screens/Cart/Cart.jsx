@@ -5,9 +5,9 @@ export const Cart = props => {
     
     const classes = useStyles();
 
-    return <>
+    return <section>
 
-    </>
+    </section>
 }
 
 const useStyles = makeStyles((theme) => ({
