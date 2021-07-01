@@ -14,7 +14,12 @@ export const CartContextProvider = ({children}) => {
         console.log(orderRow);
     }, [orderRow])
 
-    return <CartContext.Provider value={{ orderRow, addOrderRow }}>
+    const removeOrderRow = (arr, id) => {
+        const item = arr.find(row => row.product.id === id); 
+        setOrderRow(arr.filter(row => row !== item)) ;
+    }
+
+    return <CartContext.Provider value={{ orderRow, addOrderRow, removeOrderRow }}>
         {children}
     </CartContext.Provider>
 };

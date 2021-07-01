@@ -17,6 +17,8 @@ export const ItemDetailContainer = props => {
     const [quantity, setQuantity] = useState(1);
     const [showCheckOutButton, setShowCheckOutButton] = useState(false);
     const {addOrderRow} = useContext(CartContext);
+    const {removeOrderRow} = useContext(CartContext);
+    const {orderRow} = useContext(CartContext);
 
     const findProduct = listOfProducts => listOfProducts.find(product => product.id === onlyShowProduct) 
 
@@ -39,7 +41,9 @@ export const ItemDetailContainer = props => {
         setQty={setQuantity}
         showCheckOut={showCheckOutButton}
         setShowCheckOut={setShowCheckOutButton}
+        order={orderRow}
         addToOrder={addOrderRow}
+        removeToOrder={removeOrderRow}
         newOrderRow={newOrderRow}
         />
     </section>
