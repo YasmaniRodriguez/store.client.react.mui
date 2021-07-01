@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { BusinessContext } from '../../contexts/BusinessContext.js';
+import { CartContext } from '../../contexts/CartContext.js';
 import { makeStyles } from '@material-ui/core';
 import { ItemDetail } from '../../widgets/ItemDetail/ItemDetail.jsx';
 /*
@@ -15,10 +16,21 @@ export const ItemDetailContainer = props => {
     const { availableProducts } = useContext(BusinessContext);
     const [quantity, setQuantity] = useState(1);
     const [showCheckOutButton, setShowCheckOutButton] = useState(false);
+    const {addOrderRow} = useContext(CartContext);
 
     const findProduct = listOfProducts => listOfProducts.find(product => product.id === onlyShowProduct) 
 
     const product = findProduct(availableProducts);
+
+    const [newOrderRow, setNewOrderRow] = useState({
+        product: {},
+        quantity: 0 
+    });
+
+    useEffect(() => {
+        setNewOrderRow({ product: product, quantity: quantity});
+    }, [quantity])
+
     
     return <section className={classes.container}>
         <ItemDetail 
@@ -27,6 +39,8 @@ export const ItemDetailContainer = props => {
         setQty={setQuantity}
         showCheckOut={showCheckOutButton}
         setShowCheckOut={setShowCheckOutButton}
+        addToOrder={addOrderRow}
+        newOrderRow={newOrderRow}
         />
     </section>
 }

@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { Button, Paper, Typography, makeStyles } from '@material-ui/core';
 import { ItemCount } from '../ItemCount/ItemCount.jsx';
 
-export const ItemDetail = ({product, qty, setQty, showCheckOut, setShowCheckOut}) => {
+export const ItemDetail = ({product, qty, setQty, showCheckOut, setShowCheckOut, addToOrder, newOrderRow}) => {
 
     const classes = useStyles();
     const history = useHistory();
@@ -22,12 +22,12 @@ export const ItemDetail = ({product, qty, setQty, showCheckOut, setShowCheckOut}
             {!showCheckOut? (
             <>
                 <ItemCount minQty={1} maxQty={product.stock} qty={qty} setQty={setQty}/>
-                <Button onClick={e => setShowCheckOut(true)} variant="outlined">Agregar al carrito</Button>
+                <Button onClick={e => {setShowCheckOut(true); addToOrder(newOrderRow)}} variant="outlined">Agregar al carrito</Button>
             </>    
             ) : (
             <>
                 <Button onClick={()=> history.push(`/cart`)} variant="outlined">Finalizar mi compra</Button>
-                <Button onClick={e => setShowCheckOut(false)}>Cancelar</Button>
+                <Button onClick={e => {setShowCheckOut(false)}}>Cancelar</Button>
             </> 
                 )}
         </div>
