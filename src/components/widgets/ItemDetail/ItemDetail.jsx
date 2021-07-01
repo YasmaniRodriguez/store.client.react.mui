@@ -27,7 +27,7 @@ export const ItemDetail = ({product, qty, setQty, showCheckOut, setShowCheckOut,
             ) : (
             <>
                 <Button onClick={()=> history.push(`/cart`)} variant="outlined">Finalizar mi compra</Button>
-                <Button onClick={e => {setShowCheckOut(false); removeToOrder(product.id)}}>Cancelar</Button>
+                <Button onClick={e => {setShowCheckOut(false); history.push(`/`)}}>Seguir comprando</Button>
             </> 
                 )}
         </div>
