@@ -41,7 +41,6 @@ export const ItemDetailContainer = props => {
         setQty={setQuantity}
         showCheckOut={showCheckOutButton}
         setShowCheckOut={setShowCheckOutButton}
-        order={orderRow}
         addToOrder={addOrderRow}
         removeToOrder={removeOrderRow}
         newOrderRow={newOrderRow}
