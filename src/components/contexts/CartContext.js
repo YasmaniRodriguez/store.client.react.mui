@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { createContext, useState, useEffect } from 'react';
 
 //creando el context:
@@ -12,11 +13,16 @@ export const CartContextProvider = ({children}) => {
         console.log(orderRow);
     }, [orderRow])
 
-    const addOrderRow = newOrderRow => setOrderRow([...orderRow, newOrderRow]);
+    const addOrderRow = newOrderRow => {
+        const productId = newOrderRow.product.id;
+        orderRow.filter(row => row.product.id === productId).length === 0 
+        ? setOrderRow([...orderRow, newOrderRow])
+        : (removeOrderRow(productId), setOrderRow([...orderRow, newOrderRow]));   
+    }
 
-    const removeOrderRow = (productId) => {
-        const removedItem = findOrderRowByItemId(productId); 
-        setOrderRow(orderRow.filter(row => row !== removedItem)) ;
+    async function removeOrderRow(productId){
+        const removedItem = await findOrderRowByItemId(productId); 
+        return setOrderRow(orderRow.filter(row => row !== removedItem));
     }
 
     const findOrderRowByItemId = productId => orderRow.find(row => row.product.id = productId);
