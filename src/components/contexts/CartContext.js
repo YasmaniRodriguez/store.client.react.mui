@@ -14,18 +14,24 @@ export const CartContextProvider = ({ children }) => {
 
 	const addOrderRow = (newOrderRow) => {
 		const productId = newOrderRow.product.id;
+		const filteredOrder = filterOrderRowByItemId(productId);
 		orderRow.filter((row) => row.product.id === productId).length === 0
 			? setOrderRow([...orderRow, newOrderRow])
-			: (removeOrderRow(productId), setOrderRow([...orderRow, newOrderRow]));
+			: setOrderRow([...filteredOrder, newOrderRow]);
 	};
 
-	async function removeOrderRow(productId) {
-		const removedItem = await findOrderRowByItemId(productId);
-		return setOrderRow(orderRow.filter((row) => row !== removedItem));
-	}
+	const removeOrderRow = (productId) => {
+		const filteredOrder = filterOrderRowByItemId(productId);
+		return setOrderRow(filteredOrder);
+	};
 
-	const findOrderRowByItemId = (productId) =>
-		orderRow.find((row) => (row.product.id = productId));
+	//consigue un array con una lista de productos de la orden descartando el que recibió por parámetros:
+	const filterOrderRowByItemId = (itemId) =>
+		orderRow.filter((row) => row.product.id !== itemId);
+
+	//consigue un objeto con el producto que recibió por parámetros:
+	const findOrderRowByItemId = (itemId) =>
+		orderRow.find((row) => row.product.id === itemId);
 
 	return (
 		<CartContext.Provider value={{ orderRow, addOrderRow, removeOrderRow }}>
