@@ -8,6 +8,9 @@ export const BusinessContextProvider = ({ children }) => {
 	const [availableCategories, setAvailableCategories] = useState([]);
 	const [availableProducts, setAvailableProducts] = useState([]);
 
+	const findProduct = (productId) =>
+		availableProducts.find((product) => product.id === productId);
+
 	return (
 		<BusinessContext.Provider
 			value={{
@@ -15,6 +18,7 @@ export const BusinessContextProvider = ({ children }) => {
 				setAvailableCategories,
 				availableProducts,
 				setAvailableProducts,
+				findProduct,
 			}}>
 			{children}
 		</BusinessContext.Provider>

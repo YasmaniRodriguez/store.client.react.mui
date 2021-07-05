@@ -13,22 +13,16 @@ al componente dummy encargado de la visualizacion.
 export const ItemDetailContainer = (props) => {
 	const classes = useStyles();
 	const { id: onlyShowProduct } = useParams();
-	const { availableProducts } = useContext(BusinessContext);
+	const { findProduct } = useContext(BusinessContext);
 	const [quantity, setQuantity] = useState(1);
 	const [showCheckOutButton, setShowCheckOutButton] = useState(false);
+	const { newOrderRow } = useContext(CartContext);
+	const { setNewOrderRow } = useContext(CartContext);
+	const { resetNewOrderRow } = useContext(CartContext);
 	const { addOrderRow } = useContext(CartContext);
 	const { removeOrderRow } = useContext(CartContext);
-	const { orderRow } = useContext(CartContext);
 
-	const findProduct = (listOfProducts) =>
-		listOfProducts.find((product) => product.id === onlyShowProduct);
-
-	const product = findProduct(availableProducts);
-
-	const [newOrderRow, setNewOrderRow] = useState({
-		product: {},
-		quantity: 0,
-	});
+	const product = findProduct(onlyShowProduct);
 
 	useEffect(() => {
 		setNewOrderRow({ product: product, quantity: quantity });
@@ -45,6 +39,7 @@ export const ItemDetailContainer = (props) => {
 				addToOrder={addOrderRow}
 				removeToOrder={removeOrderRow}
 				newOrderRow={newOrderRow}
+				resetNewOrderRow={resetNewOrderRow}
 			/>
 		</section>
 	);

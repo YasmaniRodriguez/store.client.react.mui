@@ -8,8 +8,16 @@ export const CartContext = createContext();
 export const CartContextProvider = ({ children }) => {
 	const [orderRow, setOrderRow] = useState([]);
 
+	const newOrderRowInitialState = {
+		product: {},
+		quantity: 0,
+	};
+
+	const [newOrderRow, setNewOrderRow] = useState(newOrderRowInitialState);
+
 	useEffect(() => {
 		console.log(orderRow);
+		console.log(newOrderRow);
 	}, [orderRow]);
 
 	const addOrderRow = (newOrderRow) => {
@@ -33,8 +41,18 @@ export const CartContextProvider = ({ children }) => {
 	const findOrderRowByItemId = (itemId) =>
 		orderRow.find((row) => row.product.id === itemId);
 
+	const resetNewOrderRow = () => setNewOrderRow(newOrderRowInitialState);
+
 	return (
-		<CartContext.Provider value={{ orderRow, addOrderRow, removeOrderRow }}>
+		<CartContext.Provider
+			value={{
+				orderRow,
+				newOrderRow,
+				setNewOrderRow,
+				addOrderRow,
+				removeOrderRow,
+				resetNewOrderRow,
+			}}>
 			{children}
 		</CartContext.Provider>
 	);

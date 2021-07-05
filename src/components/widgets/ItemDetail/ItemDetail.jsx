@@ -10,8 +10,8 @@ export const ItemDetail = ({
 	showCheckOut,
 	setShowCheckOut,
 	addToOrder,
-	removeToOrder,
 	newOrderRow,
+	resetNewOrderRow,
 }) => {
 	const classes = useStyles();
 	const history = useHistory();
@@ -44,8 +44,9 @@ export const ItemDetail = ({
 							/>
 							<Button
 								onClick={(e) => {
-									setShowCheckOut(true);
 									addToOrder(newOrderRow);
+									setShowCheckOut(true);
+									resetNewOrderRow();
 								}}
 								variant='outlined'>
 								Agregar al carrito
@@ -70,10 +71,6 @@ export const ItemDetail = ({
 		</div>
 	);
 };
-
-// const myButtom = () => {
-//     return orderQuantity === 0 ? <AddToCartButton onClick={e => setOrderQuantity(currentQuantity)} /> : <CheckOutButton/>
-// }
 
 const useStyles = makeStyles((theme) => ({
 	container: {
