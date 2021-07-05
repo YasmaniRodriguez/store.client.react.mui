@@ -15,10 +15,10 @@ export const CartContextProvider = ({ children }) => {
 
 	const [newOrderRow, setNewOrderRow] = useState(newOrderRowInitialState);
 
-	useEffect(() => {
-		console.log(orderRow);
-		console.log(newOrderRow);
-	}, [orderRow]);
+	// useEffect(() => {
+	// 	console.log(orderRow);
+	// 	console.log(newOrderRow);
+	// }, [orderRow]);
 
 	const addOrderRow = (newOrderRow) => {
 		const productId = newOrderRow.product.id;

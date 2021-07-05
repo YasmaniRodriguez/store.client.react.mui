@@ -11,6 +11,14 @@ export const BusinessContextProvider = ({ children }) => {
 	const findProduct = (productId) =>
 		availableProducts.find((product) => product.id === productId);
 
+	const findCategory = (categoryId) =>
+		availableCategories.find((category) => category.id === categoryId);
+
+	const getCategoryIcon = (categoryId) => {
+		const category = findCategory(categoryId);
+		return category.icon;
+	};
+
 	return (
 		<BusinessContext.Provider
 			value={{
@@ -19,6 +27,8 @@ export const BusinessContextProvider = ({ children }) => {
 				availableProducts,
 				setAvailableProducts,
 				findProduct,
+				findCategory,
+				getCategoryIcon,
 			}}>
 			{children}
 		</BusinessContext.Provider>

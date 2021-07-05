@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
 	ListItem,
 	ListItemAvatar,
@@ -11,20 +11,21 @@ import {
 	makeStyles,
 } from "@material-ui/core";
 import { Delete } from "@material-ui/icons";
-import { Folder } from "@material-ui/icons";
 
 export const OrderRow = (props) => {
+	const name = props.product.name;
+	const price = props.product.price;
+	const myIcon = props.icon;
+
 	const classes = useStyles();
 
 	return (
 		<>
 			<ListItem>
 				<ListItemAvatar>
-					<Avatar>
-						<Folder />
-					</Avatar>
+					<Avatar src={myIcon} />
 				</ListItemAvatar>
-				<ListItemText primary='Item Name' secondary='Item Price' />
+				<ListItemText primary={name} secondary={"$" + price} />
 				<ListItemSecondaryAction>
 					<IconButton edge='end' aria-label='delete'>
 						<Delete />
