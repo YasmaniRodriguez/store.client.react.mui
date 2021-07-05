@@ -46,6 +46,7 @@ export const Cart = (props) => {
 											index={i}
 											{...row}
 											icon={getCategoryIcon(row.product.category)}
+											remove={removeOrderRow}
 										/>
 									</React.Fragment>
 								))}
