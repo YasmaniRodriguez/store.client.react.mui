@@ -16,13 +16,18 @@ export const CartContextProvider = ({ children }) => {
 
 	const [newOrderRow, setNewOrderRow] = useState(newOrderRowInitialState);
 
-	const total = orderRow.reduce((accumulator, currentValue) => {
+	const totalAmount = orderRow.reduce((accumulator, currentValue) => {
 		return (accumulator += currentValue.amount);
+	}, 0);
+
+	const totalQuantity = orderRow.reduce((accumulator, currentValue) => {
+		return (accumulator += currentValue.quantity);
 	}, 0);
 
 	useEffect(() => {
 		console.log(orderRow);
-		console.log(total);
+		console.log(totalAmount);
+		console.log(totalQuantity);
 	}, [orderRow]);
 
 	const addOrderRow = (newOrderRow) => {
@@ -57,7 +62,8 @@ export const CartContextProvider = ({ children }) => {
 				addOrderRow,
 				removeOrderRow,
 				resetNewOrderRow,
-				total,
+				totalAmount,
+				totalQuantity,
 			}}>
 			{children}
 		</CartContext.Provider>

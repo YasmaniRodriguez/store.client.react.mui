@@ -11,7 +11,7 @@ export const Cart = (props) => {
 	const history = useHistory();
 	const { getCategoryIcon } = useContext(BusinessContext);
 	const { orderRow } = useContext(CartContext);
-	const { total } = useContext(CartContext);
+	const { totalAmount } = useContext(CartContext);
 	const { newOrderRow } = useContext(CartContext);
 	const { setNewOrderRow } = useContext(CartContext);
 	const { resetNewOrderRow } = useContext(CartContext);
@@ -52,7 +52,7 @@ export const Cart = (props) => {
 							</List>
 						</div>
 						<Typography variant='h5' component='p'>
-							{"$" + total}
+							{"$" + totalAmount}
 						</Typography>
 						<Button
 							onClick={(e) => {
