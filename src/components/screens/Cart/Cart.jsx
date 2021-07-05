@@ -49,13 +49,16 @@ export const Cart = (props) => {
 									</React.Fragment>
 								))}
 							</List>
-							<Button
-								onClick={(e) => {
-									history.push(`/`);
-								}}>
-								Seguir comprando
-							</Button>
 						</div>
+						<Typography variant='h5' component='p'>
+							Total price
+						</Typography>
+						<Button
+							onClick={(e) => {
+								history.push(`/`);
+							}}>
+							Seguir comprando
+						</Button>
 					</Grid>
 				</Grid>
 			)}
