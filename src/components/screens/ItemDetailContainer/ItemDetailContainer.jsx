@@ -24,8 +24,14 @@ export const ItemDetailContainer = (props) => {
 
 	const product = findProduct(onlyShowProduct);
 
+	const setAmount = () => quantity * product.price;
+
 	useEffect(() => {
-		setNewOrderRow({ product: product, quantity: quantity });
+		setNewOrderRow({
+			product: product,
+			quantity: quantity,
+			amount: setAmount(),
+		});
 	}, [quantity]);
 
 	return (

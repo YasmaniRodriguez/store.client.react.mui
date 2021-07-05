@@ -17,12 +17,7 @@ export const OrderRow = (props) => {
 	const price = props.product.price;
 	const qty = props.quantity;
 	const myIcon = props.icon;
-
-	const [amount, setAmount] = useState(qty * price);
-
-	useEffect(() => {
-		setAmount(qty * price);
-	}, [amount]);
+	const amount = props.amount;
 
 	const classes = useStyles();
 
