@@ -1,11 +1,11 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import { BusinessContextProvider } from "./components/contexts/BusinessContext.js";
-import { CartContextProvider } from "./components/contexts/CartContext.js";
-import { NavBar } from "./components/widgets/NavBar/NavBar.jsx";
-import { ItemListContainer } from "./components/screens/ItemListContainer/ItemListContainer.jsx";
-import { ItemDetailContainer } from "./components/screens/ItemDetailContainer/ItemDetailContainer.jsx";
-import { Cart } from "./components/screens/Cart/Cart.jsx";
+import { BusinessContextProvider } from "./contexts/BusinessContext.js";
+import { CartContextProvider } from "./contexts/CartContext.js";
+import { NavBar } from "./components/NavBar/NavBar.jsx";
+import { ItemListContainer } from "./screens/ItemListContainer/ItemListContainer.jsx";
+import { ItemDetailContainer } from "./screens/ItemDetailContainer/ItemDetailContainer.jsx";
+import { Cart } from "./screens/Cart/Cart.jsx";
 
 const App = (props) => {
 	return (

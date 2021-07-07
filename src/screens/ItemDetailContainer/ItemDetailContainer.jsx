@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 import { BusinessContext } from "../../contexts/BusinessContext.js";
 import { CartContext } from "../../contexts/CartContext.js";
 import { makeStyles } from "@material-ui/core";
-import { ItemDetail } from "../../widgets/ItemDetail/ItemDetail.jsx";
-import { db } from "../../../firebase/firebase.js";
+import { ItemDetail } from "../../components/ItemDetail/ItemDetail.jsx";
+import { db } from "../../firebase/firebase.js";
 /*
 Este es un componente contenedor de primer nivel y su responsabilidad es buscar con array.find()
 dentro de las lista Productos disponibilizaos en el BusinessContext, aquel que coincida 

@@ -1,10 +1,10 @@
 import React, { useState, UseEffect, useContext } from "react";
+import { useHistory } from "react-router-dom";
 import { List, Button, Typography, Grid, makeStyles } from "@material-ui/core";
 import { Delete } from "@material-ui/icons";
 import { BusinessContext } from "../../contexts/BusinessContext";
 import { CartContext } from "../../contexts/CartContext";
-import { useHistory } from "react-router-dom";
-import { OrderRow } from "../../widgets/OrderRow/OrderRow";
+import { OrderRow } from "../../components/OrderRow/OrderRow";
 
 export const Cart = (props) => {
 	const classes = useStyles();
