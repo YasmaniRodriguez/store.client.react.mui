@@ -24,16 +24,16 @@ export const CartContextProvider = ({ children }) => {
 		return (accumulator += currentValue.quantity);
 	}, 0);
 
-	useEffect(() => {
-		console.log(orderRow);
-		console.log(totalAmount);
-		console.log(totalQuantity);
-	}, [orderRow]);
+	// useEffect(() => {
+	// 	console.log(orderRow);
+	// 	console.log(totalAmount);
+	// 	console.log(totalQuantity);
+	// }, [orderRow]);
 
 	const addOrderRow = (newOrderRow) => {
-		const productId = newOrderRow.product.id;
+		const productId = newOrderRow.product.pdtid;
 		const filteredOrder = filterOrderRowByItemId(productId);
-		orderRow.filter((row) => row.product.id === productId).length === 0
+		orderRow.filter((row) => row.product.pdtid === productId).length === 0
 			? setOrderRow([...orderRow, newOrderRow])
 			: setOrderRow([...filteredOrder, newOrderRow]);
 	};
@@ -51,7 +51,7 @@ export const CartContextProvider = ({ children }) => {
 	const findOrderRowByItemId = (itemId) =>
 		orderRow.find((row) => row.product.id === itemId);
 
-	const resetNewOrderRow = () => setNewOrderRow(newOrderRowInitialState);
+	//const resetNewOrderRow = () => setNewOrderRow(newOrderRowInitialState);
 
 	return (
 		<CartContext.Provider
@@ -61,7 +61,7 @@ export const CartContextProvider = ({ children }) => {
 				setNewOrderRow,
 				addOrderRow,
 				removeOrderRow,
-				resetNewOrderRow,
+				//resetNewOrderRow,
 				totalAmount,
 				totalQuantity,
 			}}>

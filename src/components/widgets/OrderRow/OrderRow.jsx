@@ -13,7 +13,7 @@ import {
 import { Delete } from "@material-ui/icons";
 
 export const OrderRow = (props) => {
-	const pdt = props.product.id;
+	const pdt = props.product.pdtid;
 	const name = props.product.name;
 	const price = props.product.price;
 	const qty = props.quantity;

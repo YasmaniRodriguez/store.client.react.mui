@@ -4,6 +4,7 @@ import { BusinessContext } from "../../contexts/BusinessContext.js";
 import { CartContext } from "../../contexts/CartContext.js";
 import { makeStyles } from "@material-ui/core";
 import { ItemDetail } from "../../widgets/ItemDetail/ItemDetail.jsx";
+import { db } from "../../../firebase/firebase.js";
 /*
 Este es un componente contenedor de primer nivel y su responsabilidad es buscar con array.find()
 dentro de las lista Productos disponibilizaos en el BusinessContext, aquel que coincida 
@@ -13,7 +14,7 @@ al componente dummy encargado de la visualizacion.
 export const ItemDetailContainer = (props) => {
 	const classes = useStyles();
 	const { id: onlyShowProduct } = useParams();
-	const { findProduct } = useContext(BusinessContext);
+	//const { findProduct } = useContext(BusinessContext);
 	const [quantity, setQuantity] = useState(1);
 	const [showCheckOutButton, setShowCheckOutButton] = useState(false);
 	const { newOrderRow } = useContext(CartContext);
@@ -22,22 +23,62 @@ export const ItemDetailContainer = (props) => {
 	const { addOrderRow } = useContext(CartContext);
 	const { removeOrderRow } = useContext(CartContext);
 
-	const product = findProduct(onlyShowProduct);
+	const [selectedProduct, setSelectedProduct] = useState({});
 
-	const setAmount = () => quantity * product.price;
+	const [amount, setAmount] = useState(0);
+
+	const calcAmount = () => {
+		return new Promise((resolve, reject) => {
+			resolve(selectedProduct.price * quantity);
+		});
+	};
+
+	const myProducts = () => {
+		return new Promise((resolve, reject) => {
+			const obj = db
+				.collection("products")
+				.where("pdtid", "==", onlyShowProduct);
+			if (obj.length === 0) {
+				reject(new Error("No se encontró el producto"));
+			} else {
+				obj.get().then((querySnapshot) => {
+					querySnapshot.forEach((doc) => {
+						resolve(doc.data());
+					});
+				});
+			}
+		});
+	};
 
 	useEffect(() => {
-		setNewOrderRow({
-			product: product,
-			quantity: quantity,
-			amount: setAmount(),
-		});
-	}, [quantity]);
+		async function getProducts() {
+			try {
+				const product = await myProducts();
+				setSelectedProduct(product);
+			} catch (err) {
+				console.log(err.message);
+			}
+		}
+		getProducts();
+	}, []);
+
+	useEffect(() => {}, [selectedProduct]);
+
+	// useEffect(() => {
+	// 	async function getOrderRow() {
+	// 		await setNewOrderRow({
+	// 			product: selectedProduct,
+	// 			quantity: quantity,
+	// 			amount: amount,
+	// 		});
+	// 	}
+	// 	getOrderRow();
+	// }, [quantity]);
 
 	return (
 		<section className={classes.container}>
 			<ItemDetail
-				product={product}
+				product={selectedProduct}
 				qty={quantity}
 				setQty={setQuantity}
 				showCheckOut={showCheckOutButton}

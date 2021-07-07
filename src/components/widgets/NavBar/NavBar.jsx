@@ -19,6 +19,7 @@ implementar componente chip para las categorias
 implementar hamburg menu para las dimensiones mobile
 */
 export const NavBar = (props) => {
+	//cambiar:
 	const myCategory = {
 		pizzas: "ctg01",
 		tartas: "ctg02",

@@ -2,22 +2,21 @@ import React from "react";
 import { makeStyles, Typography, Avatar, IconButton } from "@material-ui/core";
 import { Add, Remove } from "@material-ui/icons";
 
-export const ItemCount = ({ minQty, maxQty, qty: currentQuantity, setQty }) => {
+export const ItemCount = ({ minQty, maxQty, qty: curQty, setQty }) => {
 	const classes = useStyles();
-
 	const incrementQuantity = () => {
-		currentQuantity == maxQty ? setQty(maxQty) : setQty(currentQuantity + 1);
+		curQty === maxQty ? setQty(maxQty) : setQty(curQty + 1);
 	};
 
 	const decrementQuantity = () => {
-		currentQuantity == minQty ? setQty(minQty) : setQty(currentQuantity - 1);
+		curQty === minQty ? setQty(minQty) : setQty(curQty - 1);
 	};
 
 	return (
 		<div className={classes.container}>
 			<div className={classes.counter}>
 				<Typography variant='h1' component='p'>
-					{currentQuantity}
+					{curQty}
 				</Typography>
 				<div className={classes.button}>
 					<IconButton

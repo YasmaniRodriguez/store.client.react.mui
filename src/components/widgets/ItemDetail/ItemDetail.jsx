@@ -11,7 +11,7 @@ export const ItemDetail = ({
 	setShowCheckOut,
 	addToOrder,
 	newOrderRow,
-	resetNewOrderRow,
+	//resetNewOrderRow,
 }) => {
 	const classes = useStyles();
 	const history = useHistory();
@@ -46,7 +46,7 @@ export const ItemDetail = ({
 								onClick={(e) => {
 									addToOrder(newOrderRow);
 									setShowCheckOut(true);
-									resetNewOrderRow();
+									//resetNewOrderRow();
 								}}
 								variant='outlined'>
 								Agregar al carrito
