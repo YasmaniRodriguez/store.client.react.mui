@@ -9,7 +9,7 @@ import {
 	makeStyles,
 } from "@material-ui/core";
 
-export const Item = ({ pdtid, name, price, image }) => {
+export const Item = ({ id, name, price, image }) => {
 	const classes = useStyles();
 	const history = useHistory();
 
@@ -19,7 +19,7 @@ export const Item = ({ pdtid, name, price, image }) => {
 				className={classes.media}
 				image={image}
 				style={{ backgroundSize: "contain" }}
-				onClick={() => history.push(`/product/${pdtid}`)}
+				onClick={() => history.push(`/product/${id}`)}
 			/>
 			<CardContent className={classes.content}>
 				<Typography className={classes.product} variant='h6'>

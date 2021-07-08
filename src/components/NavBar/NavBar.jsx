@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import {
 	Toolbar,
@@ -14,58 +14,37 @@ import {
 } from "@material-ui/core";
 import { CartWidget } from "../CartWidget/CartWidget";
 import { Menu } from "@material-ui/icons";
+import { BusinessContext } from "../../contexts/BusinessContext";
 /*
 implementar componente chip para las categorias
 implementar hamburg menu para las dimensiones mobile
 */
 export const NavBar = (props) => {
-	//cambiar:
-	const myCategory = {
-		pizzas: "ctg01",
-		tartas: "ctg02",
-		empanadas: "ctg03",
-		bebidas: "ctg04",
-	};
-
-	const getCategoryId = (name) => myCategory[name];
+	const { availableCategories } = useContext(BusinessContext);
+	const route = "/category/";
 
 	const classes = useStyles();
 
 	const matchesMobile = useMediaQuery("(max-width: 800px)");
 
 	return (
-		<header className={classes.container}>
-			<Link to={"/"}>
-				<Typography variant='h2'>Yeah!</Typography>
-			</Link>
-
-			<div className={classes.categories}>
-				{!matchesMobile && (
-					<Link to={"/category/" + getCategoryId("pizzas")}>
-						<Typography variant='h4'>Pizzas</Typography>
-					</Link>
-				)}
-
-				{!matchesMobile && (
-					<Link to={"/category/" + getCategoryId("tartas")}>
-						<Typography variant='h4'>Tartas</Typography>
-					</Link>
-				)}
-
-				{!matchesMobile && (
-					<Link to={"/category/" + getCategoryId("empanadas")}>
-						<Typography variant='h4'>Empanadas</Typography>
-					</Link>
-				)}
-
-				{!matchesMobile && (
-					<Link to={"/category/" + getCategoryId("bebidas")}>
-						<Typography variant='h4'>Bebidas</Typography>
-					</Link>
-				)}
-			</div>
-			<CartWidget />
-		</header>
+		<>
+			<header className={classes.container}>
+				<Link to={"/"}>
+					<Typography variant='h2'>Yeah!</Typography>
+				</Link>
+				<CartWidget />
+			</header>
+			{!matchesMobile && (
+				<nav className={classes.container}>
+					{availableCategories.map((category, i) => (
+						<Link to={`${route}${category.ctgid}`}>
+							<Typography variant='h4'>{category.name}</Typography>
+						</Link>
+					))}
+				</nav>
+			)}
+		</>
 	);
 };
 

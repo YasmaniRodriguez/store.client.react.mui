@@ -15,7 +15,12 @@ export const ItemListContainer = () => {
 		const query = db.collection("categories");
 
 		query.get().then((querySnapshot) => {
-			const categories = querySnapshot.docs.map((category) => category.data());
+			const categories = querySnapshot.docs.map((category) => {
+				const myData = category.data();
+				const id = category.id;
+				const obj = { ...myData, id };
+				return obj;
+			});
 			setAvailableCategories(categories);
 		});
 	}, []);
@@ -26,7 +31,12 @@ export const ItemListContainer = () => {
 			: db.collection("products");
 
 		query.get().then((querySnapshot) => {
-			const products = querySnapshot.docs.map((product) => product.data());
+			const products = querySnapshot.docs.map((product) => {
+				const myData = product.data();
+				const id = product.id;
+				const obj = { ...myData, id };
+				return obj;
+			});
 			setAvailableProducts(products);
 		});
 	}, [onlyShowCategory]);
