@@ -9,7 +9,7 @@ export const ItemDetailContainer = (props) => {
 	const classes = useStyles();
 	const { id: onlyShowProduct } = useParams();
 	const [quantity, setQuantity] = useState(1);
-	const [showCheckOutButton, setShowCheckOutButton] = useState(false);
+	const [showCheckOut, setShowCheckOut] = useState(false);
 	const [selectedProduct, setSelectedProduct] = useState({});
 
 	useEffect(() => {
@@ -22,7 +22,13 @@ export const ItemDetailContainer = (props) => {
 
 	return (
 		<section className={classes.container}>
-			<ItemDetail product={selectedProduct} />
+			<ItemDetail
+				quantity={quantity}
+				setQuantity={setQuantity}
+				selectedProduct={selectedProduct}
+				showCheckOut={showCheckOut}
+				setShowCheckOut={setShowCheckOut}
+			/>
 		</section>
 	);
 };

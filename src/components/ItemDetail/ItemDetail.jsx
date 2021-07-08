@@ -3,52 +3,43 @@ import { useHistory } from "react-router-dom";
 import { Button, Paper, Typography, makeStyles } from "@material-ui/core";
 import { ItemCount } from "../ItemCount/ItemCount.jsx";
 
-export const ItemDetail = ({
-	product,
-	qty,
-	setQty,
-	showCheckOut,
-	setShowCheckOut,
-	addToOrder,
-	newOrderRow,
-	//resetNewOrderRow,
-}) => {
+export const ItemDetail = (props) => {
 	const classes = useStyles();
 	const history = useHistory();
+
+	const { image, name, price, description, stock } = props.selectedProduct;
+	const quantity = props.quantity;
+	const setQuantity = props.setQuantity;
+	const showCheckOut = props.showCheckOut;
+	const setShowCheckOut = props.setShowCheckOut;
 
 	return (
 		<div className={classes.container}>
 			<Paper elevation={0}>
-				<img src={product.image} alt={product.name}></img>
+				<img src={image} alt={name}></img>
 			</Paper>
 			<div>
 				<div className={classes.detailContent}>
 					<Typography variant='h1' component='p'>
-						{product.name}
+						{name}
 					</Typography>
 					<Typography variant='h3' component='p'>
-						{product.price}
+						{price}
 					</Typography>
 					<Typography variant='h5' component='p'>
-						{product.description}
+						{description}
 					</Typography>
 				</div>
-				<div className={classes.detailButton}>
+				<div className={classes.detailCallToAction}>
 					{!showCheckOut ? (
 						<>
 							<ItemCount
 								minQty={1}
-								maxQty={product.stock}
-								qty={qty}
-								setQty={setQty}
+								maxQty={stock}
+								qty={quantity}
+								setQty={setQuantity}
 							/>
-							<Button
-								onClick={(e) => {
-									addToOrder(newOrderRow);
-									setShowCheckOut(true);
-									//resetNewOrderRow();
-								}}
-								variant='outlined'>
+							<Button onClick={(e) => {}} variant='outlined'>
 								Agregar al carrito
 							</Button>
 						</>
@@ -81,7 +72,7 @@ const useStyles = makeStyles((theme) => ({
 		justifyContent: "space-around",
 	},
 	detailContent: {},
-	detailButton: {
+	detailCallToAction: {
 		display: "flex",
 		flexDirection: "column",
 		justifyContent: "center",

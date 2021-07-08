@@ -38,7 +38,7 @@ export const NavBar = (props) => {
 			{!matchesMobile && (
 				<nav className={classes.container}>
 					{availableCategories.map((category, i) => (
-						<Link to={`${route}${category.ctgid}`}>
+						<Link key={i} to={`${route}${category.id}`}>
 							<Typography variant='h4'>{category.name}</Typography>
 						</Link>
 					))}
