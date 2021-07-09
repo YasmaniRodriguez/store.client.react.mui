@@ -2,7 +2,7 @@ import React from "react";
 import { makeStyles, Typography, Avatar, IconButton } from "@material-ui/core";
 import { Add, Remove } from "@material-ui/icons";
 
-export const ItemCount = ({ minQty, maxQty, qty: curQty, setQty }) => {
+export const CounterWidget = ({ minQty, maxQty, qty: curQty, setQty }) => {
 	const classes = useStyles();
 	const incrementQuantity = () => {
 		curQty === maxQty ? setQty(maxQty) : setQty(curQty + 1);

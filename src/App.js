@@ -1,11 +1,11 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import { BusinessContextProvider } from "./contexts/BusinessContext.js";
-import { CartContextProvider } from "./contexts/CartContext.js";
-import { NavBar } from "./components/NavBar/NavBar.jsx";
-import { ItemListContainer } from "./screens/ItemListContainer/ItemListContainer.jsx";
-import { ItemDetailContainer } from "./screens/ItemDetailContainer/ItemDetailContainer.jsx";
-import { Cart } from "./screens/Cart/Cart.jsx";
+import { BusinessContextProvider } from "./contexts/BusinessContext";
+import { CartContextProvider } from "./contexts/CartContext";
+import { NavBar } from "./components/NavBar/NavBar";
+import { ItemListContainer } from "./screens/ItemListContainer/ItemListContainer";
+import { ItemDetailContainer } from "./screens/ItemDetailContainer/ItemDetailContainer";
+import { OrderViewContainer } from "./screens/OrderViewContainer/OrderViewContainer";
 
 const App = (props) => {
 	return (
@@ -25,7 +25,7 @@ const App = (props) => {
 								<ItemDetailContainer />
 							</Route>
 							<Route excat path='/cart'>
-								<Cart />
+								<OrderViewContainer />
 							</Route>
 						</Switch>
 					</BrowserRouter>

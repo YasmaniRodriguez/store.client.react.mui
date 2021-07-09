@@ -14,7 +14,7 @@ export const BusinessContextProvider = ({ children }) => {
 	const findCategory = (categoryId) =>
 		availableCategories.find((category) => category.id === categoryId);
 
-	const getCategoryIcon = (categoryId) => {
+	const whereIsMyIcon = (categoryId) => {
 		const category = findCategory(categoryId);
 		return category.icon;
 	};
@@ -28,7 +28,7 @@ export const BusinessContextProvider = ({ children }) => {
 				setAvailableProducts,
 				findProduct,
 				findCategory,
-				getCategoryIcon,
+				whereIsMyIcon,
 			}}>
 			{children}
 		</BusinessContext.Provider>

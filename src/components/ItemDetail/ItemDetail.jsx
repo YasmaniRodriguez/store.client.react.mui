@@ -1,17 +1,20 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { Button, Paper, Typography, makeStyles } from "@material-ui/core";
-import { ItemCount } from "../ItemCount/ItemCount.jsx";
+import { CounterWidget } from "../CounterWidget/CounterWidget";
 
-export const ItemDetail = (props) => {
+export const ItemDetail = ({
+	selectedProduct,
+	quantity,
+	calcAmount,
+	addProductToOrder,
+	setQuantity,
+	showCheckOut,
+	setShowCheckOut,
+}) => {
 	const classes = useStyles();
 	const history = useHistory();
-
-	const { image, name, price, description, stock } = props.selectedProduct;
-	const quantity = props.quantity;
-	const setQuantity = props.setQuantity;
-	const showCheckOut = props.showCheckOut;
-	const setShowCheckOut = props.setShowCheckOut;
+	const { image, name, price, description, stock } = selectedProduct;
 
 	return (
 		<div className={classes.container}>
@@ -33,13 +36,19 @@ export const ItemDetail = (props) => {
 				<div className={classes.detailCallToAction}>
 					{!showCheckOut ? (
 						<>
-							<ItemCount
+							<CounterWidget
 								minQty={1}
 								maxQty={stock}
 								qty={quantity}
 								setQty={setQuantity}
 							/>
-							<Button onClick={(e) => {}} variant='outlined'>
+							<Button
+								onClick={(e) => {
+									setShowCheckOut(true);
+									const price = selectedProduct.price;
+									console.log(selectedProduct, quantity, calcAmount());
+								}}
+								variant='outlined'>
 								Agregar al carrito
 							</Button>
 						</>

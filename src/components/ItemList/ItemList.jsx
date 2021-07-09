@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Typography, makeStyles } from "@material-ui/core";
 import { Grid } from "@material-ui/core";
 import { Item } from "../Item/Item.jsx";
@@ -21,9 +21,9 @@ export const ItemList = ({ products }) => {
 			) : (
 				<Grid container spacing={20} justify='center'>
 					{products.map((product, i) => (
-						<React.Fragment key={i}>
+						<Fragment key={i}>
 							<Item index={i} {...product} />
-						</React.Fragment>
+						</Fragment>
 					))}
 				</Grid>
 			)}
