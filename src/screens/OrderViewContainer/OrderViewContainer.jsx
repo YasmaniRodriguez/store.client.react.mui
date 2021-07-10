@@ -11,17 +11,11 @@ export const OrderViewContainer = (props) => {
 	const { whereIsMyIcon } = useContext(BusinessContext);
 	const {
 		order,
-		addProductToOrder,
-		removeProductToOrder,
 		totalAmount,
 		totalQuantity,
+		addProductToOrder,
+		removeProductToOrder,
 	} = useContext(CartContext);
-
-	// useEffect(() => {
-	// 	console.log(totalAmount);
-	// 	console.log(totalQuantity);
-	// 	console.log(order);
-	// }, [order]);
 
 	return (
 		<section>
@@ -40,10 +34,10 @@ export const OrderViewContainer = (props) => {
 			) : (
 				<OrderDetail
 					order={order}
-					addProductToOrder={addProductToOrder}
-					removeProductToOrder={removeProductToOrder}
 					totalAmount={totalAmount}
 					totalQuantity={totalQuantity}
+					addProductToOrder={addProductToOrder}
+					removeProductToOrder={removeProductToOrder}
 					whereIsMyIcon={whereIsMyIcon}
 				/>
 			)}
@@ -52,5 +46,9 @@ export const OrderViewContainer = (props) => {
 };
 
 const useStyles = makeStyles((theme) => ({
-	container: {},
+	container: {
+		height: "70vh",
+		width: "100vw",
+		display: "flex",
+	},
 }));

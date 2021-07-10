@@ -1,18 +1,20 @@
 import React, { useState, Fragment } from "react";
-import { Typography, makeStyles, Grid } from "@material-ui/core";
-import { List } from "@material-ui/icons";
+import { Typography, makeStyles, Grid, List } from "@material-ui/core";
 import { OrderRow } from "../OrderRow/OrderRow";
 
-export const OrderDetail = ({
-	order,
-	whereIsMyIcon,
-	totalAmount,
-	totalQuantity,
-}) => {
+export const OrderDetail = ({ order, totalAmount, whereIsMyIcon }) => {
 	const classes = useStyles();
 
 	return (
 		<article className={classes.container}>
+			<div className={classes.header}>
+				<Typography variant='h5' component='p'>
+					Order Nro:
+				</Typography>
+				<Typography variant='h5' component='p'>
+					1042561
+				</Typography>
+			</div>
 			<Grid container spacing={2}>
 				<Grid item xs={12} md={6}>
 					<List className={classes.orderBody}>
@@ -28,6 +30,14 @@ export const OrderDetail = ({
 					</List>
 				</Grid>
 			</Grid>
+			<div className={classes.footer}>
+				<Typography variant='h5' component='p'>
+					Monto:
+				</Typography>
+				<Typography variant='h5' component='p'>
+					{totalAmount}
+				</Typography>
+			</div>
 		</article>
 	);
 };
@@ -37,40 +47,10 @@ const useStyles = makeStyles((theme) => ({
 		display: "flex",
 		flexDirection: "column",
 	},
-	orderHeader: {
+	header: {
 		display: "flex",
-		flexDirection: "column",
 	},
-	orderBody: {
+	footer: {
 		display: "flex",
-		flexDirection: "column",
 	},
 }));
-
-// const OrderHeader = (props) => {
-// 	const orderId = props.orderId;
-// 	const currentDateTime = props.currentDateTime;
-// 	const customerId = props.customerId;
-// 	const totalAmount = props.totalAmount;
-// 	const totalQuantity = props.totalQuantity;
-
-// 	return (
-// 		<div>
-// 			<Typography variant='h4' component='p'>
-// 				{`Orden Nro.: ${orderId}`}
-// 			</Typography>
-// 			<Typography variant='h4' component='p'>
-// 				{`Fecha y Hora.: ${currentDateTime}`}
-// 			</Typography>
-// 			<Typography variant='h4' component='p'>
-// 				{`Cliente Nro.: ${customerId}`}
-// 			</Typography>
-// 			<Typography variant='h4' component='p'>
-// 				{`Monto Total: ${totalAmount}`}
-// 			</Typography>
-// 			<Typography variant='h4' component='p'>
-// 				{`Cantidad Total: ${totalQuantity}`}
-// 			</Typography>
-// 		</div>
-// 	);
-// };
