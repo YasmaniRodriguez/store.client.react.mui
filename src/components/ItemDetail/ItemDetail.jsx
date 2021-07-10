@@ -16,6 +16,12 @@ export const ItemDetail = ({
 	const history = useHistory();
 	const { image, name, price, description, stock } = selectedProduct;
 
+	const productToAdd = {
+		product: selectedProduct,
+		quantity: quantity,
+		amount: calcAmount(),
+	};
+
 	return (
 		<div className={classes.container}>
 			<Paper elevation={0}>
@@ -45,8 +51,7 @@ export const ItemDetail = ({
 							<Button
 								onClick={(e) => {
 									setShowCheckOut(true);
-									const price = selectedProduct.price;
-									console.log(selectedProduct, quantity, calcAmount());
+									addProductToOrder(productToAdd);
 								}}
 								variant='outlined'>
 								Agregar al carrito

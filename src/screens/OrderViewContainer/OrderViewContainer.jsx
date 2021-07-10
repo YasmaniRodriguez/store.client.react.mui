@@ -17,11 +17,11 @@ export const OrderViewContainer = (props) => {
 		totalQuantity,
 	} = useContext(CartContext);
 
-	useEffect(() => {
-		console.log(totalAmount);
-		console.log(totalQuantity);
-		console.log(order);
-	}, [order]);
+	// useEffect(() => {
+	// 	console.log(totalAmount);
+	// 	console.log(totalQuantity);
+	// 	console.log(order);
+	// }, [order]);
 
 	return (
 		<section>
