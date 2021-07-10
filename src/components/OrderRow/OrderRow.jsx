@@ -11,27 +11,28 @@ import {
 	makeStyles,
 } from "@material-ui/core";
 import { Delete } from "@material-ui/icons";
+import { CartContext } from "../../contexts/CartContext";
+import { BusinessContext } from "../../contexts/BusinessContext";
 
 export const OrderRow = (props) => {
-	const pdt = props.product.id;
-	const name = props.product.name;
-	const price = props.product.price;
-	const qty = props.quantity;
-	const myIcon = props.icon;
-	const amount = props.amount;
-	const remove = props.remove;
-
 	const classes = useStyles();
+	const { addProductToOrder, removeProductToOrder } = useContext(CartContext);
+	const { whereIsMyIcon } = useContext(BusinessContext);
+
+	const [quantity, setQuantity] = useState(props.quantity);
+	const [amount, setAmount] = useState(props.amount);
+
+	const { product } = props;
 
 	return (
 		<>
 			<ListItem>
 				<ListItemAvatar>
-					<Avatar src={myIcon} />
+					<Avatar src={whereIsMyIcon(product.category)} />
 				</ListItemAvatar>
-				<ListItemText primary={name} secondary={"$" + price} />
+				<ListItemText primary={product.name} secondary={"$" + product.price} />
 				<Typography variant='h6' component='p'>
-					{qty}
+					{quantity}
 				</Typography>
 				<Typography variant='h6' component='p'>
 					{"$" + amount}
@@ -41,7 +42,7 @@ export const OrderRow = (props) => {
 						edge='end'
 						aria-label='delete'
 						onClick={(e) => {
-							remove(pdt);
+							removeProductToOrder(product.id);
 						}}>
 						<Delete />
 					</IconButton>

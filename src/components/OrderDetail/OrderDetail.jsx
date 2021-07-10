@@ -1,9 +1,13 @@
-import React, { useState, Fragment } from "react";
+import React, { useContext, Fragment } from "react";
 import { Typography, makeStyles, Grid, List } from "@material-ui/core";
 import { OrderRow } from "../OrderRow/OrderRow";
+import { BusinessContext } from "../../contexts/BusinessContext";
+import { CartContext } from "../../contexts/CartContext";
 
-export const OrderDetail = ({ order, totalAmount, whereIsMyIcon }) => {
+export const OrderDetail = () => {
 	const classes = useStyles();
+	const { whereIsMyIcon } = useContext(BusinessContext);
+	const { order, totalAmount } = useContext(CartContext);
 
 	return (
 		<article className={classes.container}>
@@ -18,13 +22,9 @@ export const OrderDetail = ({ order, totalAmount, whereIsMyIcon }) => {
 			<Grid container spacing={2}>
 				<Grid item xs={12} md={6}>
 					<List className={classes.orderBody}>
-						{order.map((obj, i) => (
+						{order.map((row, i) => (
 							<Fragment key={i}>
-								<OrderRow
-									index={i}
-									{...obj}
-									icon={whereIsMyIcon(obj.product.category)}
-								/>
+								<OrderRow index={i} {...row} />
 							</Fragment>
 						))}
 					</List>

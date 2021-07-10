@@ -37,19 +37,19 @@ export const CartContextProvider = ({ children }) => {
 	};
 
 	useEffect(() => {
-		async function gettingMyTotalAmount() {
+		async function getTotalAmount() {
 			const amount = await calcTotalAmount();
 			setTotalAmount(amount);
 		}
-		gettingMyTotalAmount();
+		getTotalAmount();
 	}, [order]);
 
 	useEffect(() => {
-		async function gettingMyTotalQuantity() {
+		async function getTotalQuantity() {
 			const quantity = await calcTotalQuantity();
 			setTotalQuantity(quantity);
 		}
-		gettingMyTotalQuantity();
+		getTotalQuantity();
 	}, [order]);
 
 	return (
@@ -59,7 +59,9 @@ export const CartContextProvider = ({ children }) => {
 				addProductToOrder,
 				removeProductToOrder,
 				totalAmount,
+				setTotalAmount,
 				totalQuantity,
+				setTotalQuantity,
 			}}>
 			{children}
 		</CartContext.Provider>
