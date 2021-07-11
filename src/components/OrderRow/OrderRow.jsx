@@ -9,6 +9,7 @@ import {
 	Button,
 	Typography,
 	makeStyles,
+	TextField,
 } from "@material-ui/core";
 import { Delete } from "@material-ui/icons";
 import { CartContext } from "../../contexts/CartContext";
@@ -16,13 +17,23 @@ import { BusinessContext } from "../../contexts/BusinessContext";
 
 export const OrderRow = (props) => {
 	const classes = useStyles();
-	const { addProductToOrder, removeProductToOrder } = useContext(CartContext);
+	const { addProductToOrder, removeProductToOrder, calcRowAmount } =
+		useContext(CartContext);
 	const { whereIsMyIcon } = useContext(BusinessContext);
-
+	const { product } = props;
 	const [quantity, setQuantity] = useState(props.quantity);
 	const [amount, setAmount] = useState(props.amount);
 
-	const { product } = props;
+	const productToAdd = {
+		product: product,
+		quantity: quantity,
+		amount: amount,
+	};
+
+	useEffect(() => {
+		const myPrice = product.price;
+		setAmount(calcRowAmount(quantity, myPrice));
+	}, [quantity]);
 
 	return (
 		<>
@@ -31,9 +42,14 @@ export const OrderRow = (props) => {
 					<Avatar src={whereIsMyIcon(product.category)} />
 				</ListItemAvatar>
 				<ListItemText primary={product.name} secondary={"$" + product.price} />
-				<Typography variant='h6' component='p'>
-					{quantity}
-				</Typography>
+				<TextField
+					id='row-qty'
+					type='number'
+					value={quantity}
+					onChange={(e) => {
+						setQuantity(e.target.value);
+						addProductToOrder(productToAdd);
+					}}></TextField>
 				<Typography variant='h6' component='p'>
 					{"$" + amount}
 				</Typography>

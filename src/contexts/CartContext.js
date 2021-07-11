@@ -17,7 +17,7 @@ export const CartContextProvider = ({ children }) => {
 
 	const removeProductToOrder = (productToRemove) => {
 		const filteredOrder = order.filter(
-			(obj) => obj.product.id !== productToRemove.product.id
+			(obj) => obj.product.id !== productToRemove
 		);
 		return setOrder(filteredOrder);
 	};
@@ -27,6 +27,10 @@ export const CartContextProvider = ({ children }) => {
 			return accumulator + currentValue.amount;
 		}, 0);
 		return myAmount;
+	};
+
+	const calcRowAmount = (quantity, price) => {
+		return quantity * price;
 	};
 
 	const calcTotalQuantity = () => {
@@ -52,6 +56,10 @@ export const CartContextProvider = ({ children }) => {
 		getTotalQuantity();
 	}, [order]);
 
+	useEffect(() => {
+		console.log(order);
+	}, [order]);
+
 	return (
 		<CartContext.Provider
 			value={{
@@ -62,6 +70,7 @@ export const CartContextProvider = ({ children }) => {
 				setTotalAmount,
 				totalQuantity,
 				setTotalQuantity,
+				calcRowAmount,
 			}}>
 			{children}
 		</CartContext.Provider>
