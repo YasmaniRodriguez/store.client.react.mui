@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
+import { CartContext } from "../../contexts/CartContext.js";
 import { Button, Paper, Typography, makeStyles } from "@material-ui/core";
 import { CounterWidget } from "../CounterWidget/CounterWidget";
 
 export const ItemDetail = ({
 	selectedProduct,
 	quantity,
-	calcAmount,
 	addProductToOrder,
 	setQuantity,
 	showCheckOut,
@@ -15,11 +15,12 @@ export const ItemDetail = ({
 	const classes = useStyles();
 	const history = useHistory();
 	const { image, name, price, description, stock } = selectedProduct;
+	const { calcRowAmount } = useContext(CartContext);
 
 	const productToAdd = {
 		product: selectedProduct,
 		quantity: quantity,
-		amount: calcAmount(),
+		amount: calcRowAmount(quantity, price),
 	};
 
 	return (

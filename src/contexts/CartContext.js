@@ -56,14 +56,11 @@ export const CartContextProvider = ({ children }) => {
 		getTotalQuantity();
 	}, [order]);
 
-	useEffect(() => {
-		console.log(order);
-	}, [order]);
-
 	return (
 		<CartContext.Provider
 			value={{
 				order,
+				setOrder,
 				addProductToOrder,
 				removeProductToOrder,
 				totalAmount,

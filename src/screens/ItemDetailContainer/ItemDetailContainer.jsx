@@ -11,7 +11,7 @@ export const ItemDetailContainer = (props) => {
 	const [quantity, setQuantity] = useState(1);
 	const [showCheckOut, setShowCheckOut] = useState(false);
 	const [selectedProduct, setSelectedProduct] = useState({});
-	const { addProductToOrder, removeProductToOrder } = useContext(CartContext);
+	const { addProductToOrder } = useContext(CartContext);
 
 	useEffect(() => {
 		const query = db.collection("products").doc(onlyShowProduct);
@@ -21,17 +21,11 @@ export const ItemDetailContainer = (props) => {
 		});
 	}, [onlyShowProduct]);
 
-	const calcAmount = () => {
-		const price = selectedProduct.price;
-		return quantity * price;
-	};
-
 	return (
 		<section className={classes.container}>
 			<ItemDetail
 				selectedProduct={selectedProduct}
 				quantity={quantity}
-				calcAmount={calcAmount}
 				addProductToOrder={addProductToOrder}
 				setQuantity={setQuantity}
 				showCheckOut={showCheckOut}

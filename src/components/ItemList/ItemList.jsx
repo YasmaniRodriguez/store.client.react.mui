@@ -2,11 +2,7 @@ import React, { Fragment } from "react";
 import { Typography, makeStyles } from "@material-ui/core";
 import { Grid } from "@material-ui/core";
 import { Item } from "../Item/Item.jsx";
-/*
-Este es un componente contenedor de segundo nivel y su responsabilidad es 
-mapear los productos que recibio de su padre y pasarle cada uno por props 
-al componente dummy encargado de la visualizacion.
-*/
+
 export const ItemList = ({ products }) => {
 	const classes = useStyles();
 
