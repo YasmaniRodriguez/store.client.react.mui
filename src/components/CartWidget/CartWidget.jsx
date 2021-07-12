@@ -24,7 +24,9 @@ export const CartWidget = (props) => {
 				history.push(`/cart`);
 			}}>
 			<StyledBadge badgeContent={totalQuantity} color='secondary'>
-				<ShoppingBasket style={{ fontSize: 40, cursor: "pointer" }} />
+				<ShoppingBasket
+					style={{ fontSize: "clamp(3.25rem,100%,5rem)", cursor: "pointer" }}
+				/>
 			</StyledBadge>
 		</IconButton>
 	);

@@ -30,42 +30,41 @@ const buttonCommonStyles = {
 
 const useStyles = makeStyles((theme) => ({
 	container: {
-		//backgroundColor: "black",
 		display: "flex",
 		justifyContent: "space-around",
 		alignItems: "center",
 		"& > button": {
 			...buttonCommonStyles,
-			"&:hover": {
-				background: "none",
-			},
-			"& h2": {
-				fonSize: "clamp(2rem,100%,3.75rem)",
-				color: "white",
-				fontFamily: "Ranchers",
-			},
+		},
+		"& h2": {
+			fonSize: "clamp(2rem,100%,3.75rem)",
+			color: "white",
+			fontFamily: "Ranchers",
 		},
 	},
-	categories: {
+	filter: {
 		display: "flex",
-		flexWrap: "wrap",
-		justifyContent: "center",
+		justifyContent: "space-around",
 		alignItems: "center",
-		"& > button": {
-			...buttonCommonStyles,
-			"&:hover": {
-				background: "none",
-				textTransform: "uppercase",
-			},
-			"& h4": {
-				fonSize: "clamp(2rem,100%,3.75rem)",
-				color: "white",
-				fontFamily: "Ranchers",
-			},
+	},
+	category: {
+		display: "flex",
+
+		"& > *": {
+			margin: theme.spacing(1),
+		},
+		"& .MuiIconButton-label": {
+			display: "flex",
+			flexDirection: "column",
+		},
+		"& p": {
+			textTransform: "uppercase",
 		},
 	},
-	cart: {
-		...buttonCommonStyles,
+	avatar: {
+		width: theme.spacing(8),
+		height: theme.spacing(8),
+		boxShadow: "0 3px 10px rgb(0 0 0 / 0.2);",
 	},
 }));
 
@@ -73,7 +72,7 @@ export const NavBar = (props) => {
 	const { availableCategories } = useContext(BusinessContext);
 	const classes = useStyles();
 
-	const matchesMobile = useMediaQuery("(max-width: 800px)");
+	//const matchesMobile = useMediaQuery("(max-width: 800px)");
 
 	return (
 		<>
@@ -83,11 +82,9 @@ export const NavBar = (props) => {
 				</Link>
 				<CartWidget />
 			</header>
-			{!matchesMobile && (
-				<nav className={classes.container}>
-					<ButtonsOfCategoryFilters availableCategories={availableCategories} />
-				</nav>
-			)}
+			<nav className={classes.filter}>
+				<ButtonsOfCategoryFilters availableCategories={availableCategories} />
+			</nav>
 		</>
 	);
 };
@@ -98,7 +95,7 @@ const ButtonsOfCategoryFilters = ({ availableCategories }) => {
 		<>
 			{availableCategories.map((category, i) => {
 				return (
-					<CategoryButton
+					<CategoryAvatarButton
 						key={i}
 						id={category.id}
 						icon={whereIsMyIcon(category.id)}
@@ -110,15 +107,19 @@ const ButtonsOfCategoryFilters = ({ availableCategories }) => {
 	);
 };
 
-const CategoryButton = ({ id, icon, name }) => {
+const CategoryAvatarButton = ({ id, icon, name }) => {
 	const history = useHistory();
+	const classes = useStyles();
 
 	return (
-		<Chip
-			avatar={<Avatar src={icon} />}
-			label={name}
-			variant='outlined'
-			onClick={() => history.push(`/category/${id}`)}
-		/>
+		<IconButton
+			className={classes.category}
+			aria-label={name}
+			onClick={() => history.push(`/category/${id}`)}>
+			<Avatar src={icon} className={classes.avatar} />
+			<Typography variant='h3' component='p'>
+				{name}
+			</Typography>
+		</IconButton>
 	);
 };
