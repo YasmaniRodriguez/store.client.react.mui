@@ -7,7 +7,6 @@ import {
 	Typography,
 	makeStyles,
 	IconButton,
-	Chip,
 	Avatar,
 	useMediaQuery,
 } from "@material-ui/core";
@@ -42,6 +41,15 @@ const useStyles = makeStyles((theme) => ({
 			fontFamily: "Ranchers",
 		},
 	},
+	root: {
+		flexGrow: 1,
+	},
+	menuButton: {
+		marginRight: theme.spacing(2),
+	},
+	title: {
+		flexGrow: 1,
+	},
 	filter: {
 		display: "flex",
 		justifyContent: "space-around",
@@ -56,6 +64,12 @@ const useStyles = makeStyles((theme) => ({
 		"& .MuiIconButton-label": {
 			display: "flex",
 			flexDirection: "column",
+		},
+		"& .MuiButtonBase-root": {
+			borderRadius: "0 !important",
+		},
+		"& .MuiAvatar-root": {
+			backgroundColor: theme.palette.background.paper,
 		},
 		"& p": {
 			textTransform: "uppercase",
@@ -77,10 +91,23 @@ export const NavBar = (props) => {
 	return (
 		<>
 			<header className={classes.container}>
-				<Link to={"/"}>
-					<Typography variant='h2'>Yeah!</Typography>
-				</Link>
-				<CartWidget />
+				<div className={classes.root}>
+					<AppBar position='fixed'>
+						<Toolbar>
+							<IconButton
+								edge='start'
+								className={classes.menuButton}
+								color='inherit'
+								aria-label='menu'>
+								<Menu />
+							</IconButton>
+							<Link to={"/"} style={{ textDecoration: "none" }}>
+								<Typography variant='h2'>Yeah!</Typography>
+							</Link>
+							<CartWidget />
+						</Toolbar>
+					</AppBar>
+				</div>
 			</header>
 			<nav className={classes.filter}>
 				<ButtonsOfCategoryFilters availableCategories={availableCategories} />
@@ -116,7 +143,7 @@ const CategoryAvatarButton = ({ id, icon, name }) => {
 			className={classes.category}
 			aria-label={name}
 			onClick={() => history.push(`/category/${id}`)}>
-			<Avatar src={icon} className={classes.avatar} />
+			<Avatar src={icon} className={classes.avatar} color='white' />
 			<Typography variant='h3' component='p'>
 				{name}
 			</Typography>

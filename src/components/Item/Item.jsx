@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
 		display: "flex",
 		flexDirection: "column",
 		justifyContent: "space-around",
-		fontFamily: theme.typography.fontFamily.Ranchers,
+		//fontFamily: theme.typography.fontFamily.Ranchers,
 	},
 	media: {
 		height: "10em",
@@ -31,18 +31,18 @@ const useStyles = makeStyles((theme) => ({
 	},
 	product: {
 		textTransform: "uppercase",
-		fontFamily: "Ranchers",
+		//fontFamily: "Ranchers",
 	},
 	price: {
 		padding: "10px 0px",
-		fontFamily: "Ranchers",
+		//fontFamily: "Ranchers",
 	},
 	button: {
 		borderColor: theme.palette.success.light,
 		color: theme.palette.success.light,
 		textTransform: "none",
 		borderRadius: 50,
-		fontFamily: "Ranchers",
+		//fontFamily: "Ranchers",
 	},
 }));
 
@@ -62,7 +62,7 @@ export const Item = ({ id, name, price, image }) => {
 				<Typography className={classes.product} variant='h6'>
 					{name}
 				</Typography>
-				<Typography className={classes.price}>{price}</Typography>
+				<Typography className={classes.price}>{`$ ${price}`}</Typography>
 				<Button onClick={(e) => {}} variant='outlined'>
 					Agregar al carrito
 				</Button>
