@@ -5,6 +5,13 @@ import { CartContext } from "../../contexts/CartContext.js";
 import { ItemDetail } from "../../components/ItemDetail/ItemDetail.jsx";
 import { db } from "../../firebase/firebase.js";
 
+const useStyles = makeStyles((theme) => ({
+	container: {
+		width: "100vw",
+		display: "flex",
+	},
+}));
+
 export const ItemDetailContainer = (props) => {
 	const classes = useStyles();
 	const { id: onlyShowProduct } = useParams();
@@ -34,10 +41,3 @@ export const ItemDetailContainer = (props) => {
 		</section>
 	);
 };
-
-const useStyles = makeStyles((theme) => ({
-	container: {
-		width: "100vw",
-		display: "flex",
-	},
-}));

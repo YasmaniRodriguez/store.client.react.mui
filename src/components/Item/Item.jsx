@@ -9,35 +9,6 @@ import {
 	makeStyles,
 } from "@material-ui/core";
 
-export const Item = ({ id, name, price, image }) => {
-	const classes = useStyles();
-	const history = useHistory();
-
-	return (
-		<Card className={classes.container}>
-			<CardMedia
-				className={classes.media}
-				image={image}
-				style={{ backgroundSize: "contain" }}
-				onClick={() => history.push(`/product/${id}`)}
-			/>
-			<CardContent className={classes.content}>
-				<Typography className={classes.product} variant='h6'>
-					{name}
-				</Typography>
-				<Typography className={classes.price}>{price}</Typography>
-				<Button
-					className={classes.button}
-					size='medium'
-					variant='outlined'
-					fontFamily='Ranchers'>
-					Agregar al carrito
-				</Button>
-			</CardContent>
-		</Card>
-	);
-};
-
 const useStyles = makeStyles((theme) => ({
 	container: {
 		width: "25em",
@@ -74,3 +45,28 @@ const useStyles = makeStyles((theme) => ({
 		fontFamily: "Ranchers",
 	},
 }));
+
+export const Item = ({ id, name, price, image }) => {
+	const classes = useStyles();
+	const history = useHistory();
+
+	return (
+		<Card className={classes.container}>
+			<CardMedia
+				className={classes.media}
+				image={image}
+				style={{ backgroundSize: "contain" }}
+				onClick={() => history.push(`/product/${id}`)}
+			/>
+			<CardContent className={classes.content}>
+				<Typography className={classes.product} variant='h6'>
+					{name}
+				</Typography>
+				<Typography className={classes.price}>{price}</Typography>
+				<Button onClick={(e) => {}} variant='outlined'>
+					Agregar al carrito
+				</Button>
+			</CardContent>
+		</Card>
+	);
+};

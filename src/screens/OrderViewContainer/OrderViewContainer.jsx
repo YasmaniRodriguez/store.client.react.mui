@@ -4,6 +4,13 @@ import { Button, Typography, makeStyles } from "@material-ui/core";
 import { CartContext } from "../../contexts/CartContext";
 import { OrderDetail } from "../../components/OrderDetail/OrderDetail";
 
+const useStyles = makeStyles((theme) => ({
+	container: {
+		height: "70vh",
+		width: "100vw",
+	},
+}));
+
 export const OrderViewContainer = (props) => {
 	const classes = useStyles();
 	const history = useHistory();
@@ -29,10 +36,3 @@ export const OrderViewContainer = (props) => {
 		</section>
 	);
 };
-
-const useStyles = makeStyles((theme) => ({
-	container: {
-		height: "70vh",
-		width: "100vw",
-	},
-}));

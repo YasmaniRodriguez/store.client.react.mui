@@ -5,6 +5,14 @@ import { BusinessContext } from "../../contexts/BusinessContext.js";
 import { ItemList } from "../../components/ItemList/ItemList.jsx";
 import { db } from "../../firebase/firebase";
 
+const useStyles = makeStyles((theme) => ({
+	container: {
+		height: "70vh",
+		width: "100vw",
+		display: "flex",
+	},
+}));
+
 export const ItemListContainer = () => {
 	const classes = useStyles();
 	const { id: onlyShowCategory } = useParams();
@@ -47,11 +55,3 @@ export const ItemListContainer = () => {
 		</section>
 	);
 };
-
-const useStyles = makeStyles((theme) => ({
-	container: {
-		height: "70vh",
-		width: "100vw",
-		display: "flex",
-	},
-}));

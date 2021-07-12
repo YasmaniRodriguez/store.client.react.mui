@@ -3,6 +3,19 @@ import { Typography, makeStyles } from "@material-ui/core";
 import { Grid } from "@material-ui/core";
 import { Item } from "../Item/Item.jsx";
 
+const useStyles = makeStyles((theme) => ({
+	loadingContainer: {
+		width: "100%",
+		height: "100%",
+		display: "flex",
+		justifyContent: "center",
+		alignItems: "center",
+	},
+	loadingText: {
+		fontFamily: "Ranchers",
+	},
+}));
+
 export const ItemList = ({ products }) => {
 	const classes = useStyles();
 
@@ -26,16 +39,3 @@ export const ItemList = ({ products }) => {
 		</>
 	);
 };
-
-const useStyles = makeStyles((theme) => ({
-	loadingContainer: {
-		width: "100%",
-		height: "100%",
-		display: "flex",
-		justifyContent: "center",
-		alignItems: "center",
-	},
-	loadingText: {
-		fontFamily: "Ranchers",
-	},
-}));

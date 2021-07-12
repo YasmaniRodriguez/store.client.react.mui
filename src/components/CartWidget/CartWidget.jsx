@@ -4,25 +4,6 @@ import { IconButton, Badge, withStyles } from "@material-ui/core";
 import { ShoppingBasket } from "@material-ui/icons";
 import { CartContext } from "../../contexts/CartContext";
 
-export const CartWidget = (props) => {
-	const { totalQuantity } = useContext(CartContext);
-	const history = useHistory();
-
-	return (
-		<>
-			<IconButton
-				aria-label='cart'
-				onClick={(e) => {
-					history.push(`/cart`);
-				}}>
-				<StyledBadge badgeContent={totalQuantity} color='secondary'>
-					<ShoppingBasket style={{ fontSize: 40, cursor: "pointer" }} />
-				</StyledBadge>
-			</IconButton>
-		</>
-	);
-};
-
 const StyledBadge = withStyles((theme) => ({
 	badge: {
 		right: -3,
@@ -31,3 +12,20 @@ const StyledBadge = withStyles((theme) => ({
 		padding: "0 4px",
 	},
 }))(Badge);
+
+export const CartWidget = (props) => {
+	const { totalQuantity } = useContext(CartContext);
+	const history = useHistory();
+
+	return (
+		<IconButton
+			aria-label='cart'
+			onClick={(e) => {
+				history.push(`/cart`);
+			}}>
+			<StyledBadge badgeContent={totalQuantity} color='secondary'>
+				<ShoppingBasket style={{ fontSize: 40, cursor: "pointer" }} />
+			</StyledBadge>
+		</IconButton>
+	);
+};

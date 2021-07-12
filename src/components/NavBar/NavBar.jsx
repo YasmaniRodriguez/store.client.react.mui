@@ -1,12 +1,11 @@
 import React, { useContext } from "react";
+import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import {
 	Toolbar,
 	AppBar,
 	Typography,
 	makeStyles,
-	withStyles,
-	Badge,
 	IconButton,
 	Chip,
 	Avatar,
@@ -15,38 +14,6 @@ import {
 import { CartWidget } from "../CartWidget/CartWidget";
 import { Menu } from "@material-ui/icons";
 import { BusinessContext } from "../../contexts/BusinessContext";
-/*
-implementar componente chip para las categorias
-implementar hamburg menu para las dimensiones mobile
-*/
-export const NavBar = (props) => {
-	const { availableCategories } = useContext(BusinessContext);
-	const route = "/category/";
-
-	const classes = useStyles();
-
-	const matchesMobile = useMediaQuery("(max-width: 800px)");
-
-	return (
-		<>
-			<header className={classes.container}>
-				<Link to={"/"}>
-					<Typography variant='h2'>Yeah!</Typography>
-				</Link>
-				<CartWidget />
-			</header>
-			{!matchesMobile && (
-				<nav className={classes.container}>
-					{availableCategories.map((category, i) => (
-						<Link key={i} to={`${route}${category.id}`}>
-							<Typography variant='h4'>{category.name}</Typography>
-						</Link>
-					))}
-				</nav>
-			)}
-		</>
-	);
-};
 
 const buttonCommonStyles = {
 	alignSelf: "center",
@@ -63,7 +30,7 @@ const buttonCommonStyles = {
 
 const useStyles = makeStyles((theme) => ({
 	container: {
-		backgroundColor: "black",
+		//backgroundColor: "black",
 		display: "flex",
 		justifyContent: "space-around",
 		alignItems: "center",
@@ -101,3 +68,57 @@ const useStyles = makeStyles((theme) => ({
 		...buttonCommonStyles,
 	},
 }));
+
+export const NavBar = (props) => {
+	const { availableCategories } = useContext(BusinessContext);
+	const classes = useStyles();
+
+	const matchesMobile = useMediaQuery("(max-width: 800px)");
+
+	return (
+		<>
+			<header className={classes.container}>
+				<Link to={"/"}>
+					<Typography variant='h2'>Yeah!</Typography>
+				</Link>
+				<CartWidget />
+			</header>
+			{!matchesMobile && (
+				<nav className={classes.container}>
+					<ButtonsOfCategoryFilters availableCategories={availableCategories} />
+				</nav>
+			)}
+		</>
+	);
+};
+
+const ButtonsOfCategoryFilters = ({ availableCategories }) => {
+	const { whereIsMyIcon } = useContext(BusinessContext);
+	return (
+		<>
+			{availableCategories.map((category, i) => {
+				return (
+					<CategoryButton
+						key={i}
+						id={category.id}
+						icon={whereIsMyIcon(category.id)}
+						name={category.name}
+					/>
+				);
+			})}
+		</>
+	);
+};
+
+const CategoryButton = ({ id, icon, name }) => {
+	const history = useHistory();
+
+	return (
+		<Chip
+			avatar={<Avatar src={icon} />}
+			label={name}
+			variant='outlined'
+			onClick={() => history.push(`/category/${id}`)}
+		/>
+	);
+};

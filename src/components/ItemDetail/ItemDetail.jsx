@@ -4,6 +4,23 @@ import { CartContext } from "../../contexts/CartContext.js";
 import { Button, Paper, Typography, makeStyles } from "@material-ui/core";
 import { CounterWidget } from "../CounterWidget/CounterWidget";
 
+const useStyles = makeStyles((theme) => ({
+	container: {
+		height: "90vh",
+		width: "100%",
+		display: "flex",
+		alignItems: "center",
+		justifyContent: "space-around",
+	},
+	detailContent: {},
+	detailCallToAction: {
+		display: "flex",
+		flexDirection: "column",
+		justifyContent: "center",
+		alignItems: "center",
+	},
+}));
+
 export const ItemDetail = ({
 	selectedProduct,
 	quantity,
@@ -77,20 +94,3 @@ export const ItemDetail = ({
 		</div>
 	);
 };
-
-const useStyles = makeStyles((theme) => ({
-	container: {
-		height: "90vh",
-		width: "100%",
-		display: "flex",
-		alignItems: "center",
-		justifyContent: "space-around",
-	},
-	detailContent: {},
-	detailCallToAction: {
-		display: "flex",
-		flexDirection: "column",
-		justifyContent: "center",
-		alignItems: "center",
-	},
-}));
