@@ -6,7 +6,6 @@ import {
 	ListItemText,
 	Avatar,
 	IconButton,
-	Button,
 	Typography,
 	makeStyles,
 	TextField,
@@ -17,23 +16,41 @@ import { BusinessContext } from "../../contexts/BusinessContext";
 
 export const OrderRow = (props) => {
 	const classes = useStyles();
-	const { addProductToOrder, removeProductToOrder, calcRowAmount } =
+	const { order, addProductToOrder, removeProductToOrder, calcRowAmount } =
 		useContext(CartContext);
 	const { whereIsMyIcon } = useContext(BusinessContext);
-	const { product } = props;
-	const [quantity, setQuantity] = useState(props.quantity);
-	const [amount, setAmount] = useState(props.amount);
+	const { product, quantity, amount } = props;
+	const myPrice = product.price;
 
-	const productToAdd = {
-		product: product,
-		quantity: quantity,
-		amount: amount,
+	const [myQuantity, setMyQuantity] = useState(quantity);
+	const [myAmount, setMyAmount] = useState(amount);
+
+	// const productToAdd = {
+	// 	product: product,
+	// 	quantity: myQuantity,
+	// 	amount: myAmount,
+	// };
+
+	useEffect(() => {
+		setMyAmount(calcRowAmount(myQuantity, myPrice));
+	}, [myQuantity]);
+
+	const quantityChange = (e) => {
+		setMyQuantity(parseInt(e.target.value));
 	};
 
 	useEffect(() => {
-		const myPrice = product.price;
-		setAmount(calcRowAmount(quantity, myPrice));
-	}, [quantity]);
+		async function getProductToAdd() {
+			const newAmount = await calcRowAmount(myQuantity, myPrice);
+			const productToAdd = {
+				product: product,
+				quantity: myQuantity,
+				amount: newAmount,
+			};
+			addProductToOrder(productToAdd);
+		}
+		getProductToAdd();
+	}, [myQuantity]);
 
 	return (
 		<>
@@ -45,13 +62,10 @@ export const OrderRow = (props) => {
 				<TextField
 					id='row-qty'
 					type='number'
-					value={quantity}
-					onChange={(e) => {
-						setQuantity(e.target.value);
-						addProductToOrder(productToAdd);
-					}}></TextField>
+					value={myQuantity}
+					onChange={quantityChange}></TextField>
 				<Typography variant='h6' component='p'>
-					{"$" + amount}
+					{"$" + myAmount}
 				</Typography>
 				<ListItemSecondaryAction>
 					<IconButton
