@@ -33,11 +33,22 @@ const containerStyle = {
 
 export const OrderDetail = () => {
 	const classes = useStyles();
-	const { order, totalAmount, totalQuantity } = useContext(CartContext);
+	const { order, totalAmount, totalQuantity, setBuyerOrder } =
+		useContext(CartContext);
+	const [buyer, setBuyer] = useState({});
 	const [openDialog, setOpenDialog] = useState(false);
 	const [buyerName, setBuyerName] = useState("");
 	const [buyerPhone, setBuyerPhone] = useState("");
 	const [buyerEmail, setBuyerEmail] = useState("");
+
+	const buildBuyerOrder = () => {
+		return {
+			buyer: buyer,
+			products: order,
+			totalAmount: totalAmount,
+			totalQuantity: totalQuantity,
+		};
+	};
 
 	const buyerNameChange = (e) => {
 		setBuyerName(e.target.value);
@@ -51,20 +62,13 @@ export const OrderDetail = () => {
 		setBuyerEmail(e.target.value);
 	};
 
-	const myOrder = {
-		buyer: {
-			name: buyerName,
-			phone: buyerPhone,
-			email: buyerEmail,
-		},
-		products: order,
-		totalAmount: totalAmount,
-		totalQuantity: totalQuantity,
+	const getBuyerData = () => {
+		setBuyer({ name: buyerName, phone: buyerPhone, email: buyerEmail });
 	};
 
 	useEffect(() => {
-		console.log(myOrder);
-	}, [order]);
+		setBuyerOrder(buildBuyerOrder());
+	}, [buyer]);
 
 	return (
 		<article className={classes.container}>
@@ -83,7 +87,10 @@ export const OrderDetail = () => {
 					open={openDialog}
 					disabled={buyerName === "" || buyerPhone === ""}
 					openDialog={setOpenDialog}
-					handleConfirm={() => setOpenDialog(false)}
+					handleConfirm={() => {
+						setOpenDialog(false);
+						getBuyerData();
+					}}
 					closeDialog={() => setOpenDialog(false)}
 					title='Datos del comprador'
 					labelSecondaryButton='Cancelar'

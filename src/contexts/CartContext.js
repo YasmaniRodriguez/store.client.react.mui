@@ -7,6 +7,7 @@ export const CartContextProvider = ({ children }) => {
 	const [order, setOrder] = useState([]);
 	const [totalAmount, setTotalAmount] = useState(0);
 	const [totalQuantity, setTotalQuantity] = useState(0);
+	const [buyerOrder, setBuyerOrder] = useState({});
 
 	const addProductToOrder = (productToAdd) => {
 		const filteredOrder = order.filter(
@@ -56,6 +57,10 @@ export const CartContextProvider = ({ children }) => {
 		getTotalQuantity();
 	}, [order]);
 
+	useEffect(() => {
+		console.log(buyerOrder);
+	}, [buyerOrder]);
+
 	return (
 		<CartContext.Provider
 			value={{
@@ -68,6 +73,8 @@ export const CartContextProvider = ({ children }) => {
 				totalQuantity,
 				setTotalQuantity,
 				calcRowAmount,
+				buyerOrder,
+				setBuyerOrder,
 			}}>
 			{children}
 		</CartContext.Provider>
