@@ -37,9 +37,6 @@ export const OrderDetail = () => {
 		useContext(CartContext);
 	const [buyer, setBuyer] = useState({ name: "", phone: "", email: "" });
 	const [openDialog, setOpenDialog] = useState(false);
-	const [buyerName, setBuyerName] = useState("");
-	const [buyerPhone, setBuyerPhone] = useState("");
-	const [buyerEmail, setBuyerEmail] = useState("");
 
 	const buildBuyerOrder = () => {
 		return {
@@ -53,8 +50,8 @@ export const OrderDetail = () => {
 	const buyerNameChange = (e) => {
 		setBuyer({
 			name: e.target.value,
-			phone: { ...buyer.phone },
-			email: { ...buyer.email },
+			phone: buyer.phone,
+			email: buyer.email,
 		});
 	};
 
