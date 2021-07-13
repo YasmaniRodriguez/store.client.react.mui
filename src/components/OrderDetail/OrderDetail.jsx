@@ -1,4 +1,4 @@
-import React, { useContext, Fragment } from "react";
+import React, { useState, useContext, useEffect, Fragment } from "react";
 import {
 	Typography,
 	TextField,
@@ -9,6 +9,7 @@ import {
 } from "@material-ui/core";
 import { OrderRow } from "../OrderRow/OrderRow";
 import { CartContext } from "../../contexts/CartContext";
+import { DialogComponent } from "../Dialog/Dialog";
 
 const useStyles = makeStyles((theme) => ({
 	container: {
@@ -23,17 +24,51 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
+const containerStyle = {
+	width: "100%",
+	height: "100%",
+	display: "flex",
+	justifyContent: "center",
+};
+
 export const OrderDetail = () => {
 	const classes = useStyles();
-	const { order, totalAmount } = useContext(CartContext);
+	const { order, totalAmount, totalQuantity } = useContext(CartContext);
+	const [openDialog, setOpenDialog] = useState(false);
+	const [buyerName, setBuyerName] = useState("");
+	const [buyerPhone, setBuyerPhone] = useState("");
+	const [buyerEmail, setBuyerEmail] = useState("");
+
+	const buyerNameChange = (e) => {
+		setBuyerName(e.target.value);
+	};
+
+	const buyerPhoneChange = (e) => {
+		setBuyerPhone(e.target.value);
+	};
+
+	const buyerEmailChange = (e) => {
+		setBuyerEmail(e.target.value);
+	};
+
+	const myOrder = {
+		buyer: {
+			name: buyerName,
+			phone: buyerPhone,
+			email: buyerEmail,
+		},
+		products: order,
+		totalAmount: totalAmount,
+		totalQuantity: totalQuantity,
+	};
+
+	useEffect(() => {
+		console.log(myOrder);
+	}, [order]);
 
 	return (
 		<article className={classes.container}>
-			<div className={classes.header}>
-				<TextField id='buyer-name' label='Nombre' variant='outlined' />
-				<TextField id='buyer-phone' label='Teléfono' variant='outlined' />
-				<TextField id='buyer-email' label='E-mail' variant='outlined' />
-			</div>
+			<div className={classes.header}></div>
 			<OrderBody order={order} />
 			<div className={classes.footer}>
 				<Typography variant='h5' component='p'>
@@ -43,7 +78,49 @@ export const OrderDetail = () => {
 					{totalAmount}
 				</Typography>
 			</div>
-			<Button variant='outlined'>Enviar orden</Button>
+			<div style={containerStyle}>
+				<DialogComponent
+					open={openDialog}
+					disabled={buyerName === "" || buyerPhone === ""}
+					openDialog={setOpenDialog}
+					handleConfirm={() => setOpenDialog(false)}
+					closeDialog={() => setOpenDialog(false)}
+					title='Datos del comprador'
+					labelSecondaryButton='Cancelar'
+					labelPrimaryButton='Aceptar'>
+					<div>
+						<TextField
+							required
+							id='buyerName'
+							label='Nombre'
+							variant='outlined'
+							type='text'
+							value={buyerName}
+							onChange={buyerNameChange}
+						/>
+						<TextField
+							required
+							id='buyerPhone'
+							label='Teléfono'
+							variant='outlined'
+							type='text'
+							value={buyerPhone}
+							onChange={buyerPhoneChange}
+						/>
+						<TextField
+							id='buyerEmail'
+							label='E-mail'
+							variant='outlined'
+							type='text'
+							value={buyerEmail}
+							onChange={buyerEmailChange}
+						/>
+					</div>
+				</DialogComponent>
+			</div>
+			<Button variant='outlined' onClick={(e) => setOpenDialog(true)}>
+				Enviar orden
+			</Button>
 		</article>
 	);
 };
