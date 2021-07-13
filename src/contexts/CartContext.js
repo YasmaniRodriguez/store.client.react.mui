@@ -81,8 +81,6 @@ export const CartContextProvider = ({ children }) => {
 				buyer,
 				setBuyer,
 				buildBuyerOrder,
-				//buyerOrder,
-				//setBuyerOrder,
 			}}>
 			{children}
 		</CartContext.Provider>
