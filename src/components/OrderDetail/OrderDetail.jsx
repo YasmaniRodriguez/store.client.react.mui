@@ -35,7 +35,7 @@ export const OrderDetail = () => {
 	const classes = useStyles();
 	const { order, totalAmount, totalQuantity, setBuyerOrder } =
 		useContext(CartContext);
-	const [buyer, setBuyer] = useState({});
+	const [buyer, setBuyer] = useState({ name: "", phone: "", email: "" });
 	const [openDialog, setOpenDialog] = useState(false);
 	const [buyerName, setBuyerName] = useState("");
 	const [buyerPhone, setBuyerPhone] = useState("");
@@ -51,24 +51,28 @@ export const OrderDetail = () => {
 	};
 
 	const buyerNameChange = (e) => {
-		setBuyerName(e.target.value);
+		setBuyer({
+			name: e.target.value,
+			phone: { ...buyer.phone },
+			email: { ...buyer.email },
+		});
 	};
 
 	const buyerPhoneChange = (e) => {
-		setBuyerPhone(e.target.value);
+		setBuyer({
+			name: buyer.name,
+			phone: e.target.value,
+			email: buyer.email,
+		});
 	};
 
 	const buyerEmailChange = (e) => {
-		setBuyerEmail(e.target.value);
+		setBuyer({
+			name: buyer.name,
+			phone: buyer.phone,
+			email: e.target.value,
+		});
 	};
-
-	const getBuyerData = () => {
-		setBuyer({ name: buyerName, phone: buyerPhone, email: buyerEmail });
-	};
-
-	useEffect(() => {
-		setBuyerOrder(buildBuyerOrder());
-	}, [buyer]);
 
 	return (
 		<article className={classes.container}>
@@ -85,11 +89,11 @@ export const OrderDetail = () => {
 			<div style={containerStyle}>
 				<DialogComponent
 					open={openDialog}
-					disabled={buyerName === "" || buyerPhone === ""}
+					disabled={buyer.name === "" || buyer.phone === ""}
 					openDialog={setOpenDialog}
 					handleConfirm={() => {
+						setBuyerOrder(buildBuyerOrder());
 						setOpenDialog(false);
-						getBuyerData();
 					}}
 					closeDialog={() => setOpenDialog(false)}
 					title='Datos del comprador'
@@ -102,7 +106,7 @@ export const OrderDetail = () => {
 							label='Nombre'
 							variant='outlined'
 							type='text'
-							value={buyerName}
+							value={buyer.name}
 							onChange={buyerNameChange}
 						/>
 						<TextField
@@ -111,7 +115,7 @@ export const OrderDetail = () => {
 							label='Teléfono'
 							variant='outlined'
 							type='text'
-							value={buyerPhone}
+							value={buyer.phone}
 							onChange={buyerPhoneChange}
 						/>
 						<TextField
@@ -119,7 +123,7 @@ export const OrderDetail = () => {
 							label='E-mail'
 							variant='outlined'
 							type='text'
-							value={buyerEmail}
+							value={buyer.email}
 							onChange={buyerEmailChange}
 						/>
 					</div>
