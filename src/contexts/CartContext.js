@@ -7,7 +7,7 @@ export const CartContextProvider = ({ children }) => {
 	const [order, setOrder] = useState([]);
 	const [totalAmount, setTotalAmount] = useState(0);
 	const [totalQuantity, setTotalQuantity] = useState(0);
-	const [buyerOrder, setBuyerOrder] = useState({});
+	const [buyer, setBuyer] = useState({ name: "", phone: "", email: "" });
 
 	const addProductToOrder = (productToAdd) => {
 		const filteredOrder = order.filter(
@@ -41,6 +41,15 @@ export const CartContextProvider = ({ children }) => {
 		return myQuantity;
 	};
 
+	const buildBuyerOrder = () => {
+		return {
+			buyer: buyer,
+			products: order,
+			totalAmount: totalAmount,
+			totalQuantity: totalQuantity,
+		};
+	};
+
 	useEffect(() => {
 		async function getTotalAmount() {
 			const amount = await calcTotalAmount();
@@ -57,10 +66,6 @@ export const CartContextProvider = ({ children }) => {
 		getTotalQuantity();
 	}, [order]);
 
-	useEffect(() => {
-		console.log(buyerOrder);
-	}, [buyerOrder]);
-
 	return (
 		<CartContext.Provider
 			value={{
@@ -73,8 +78,11 @@ export const CartContextProvider = ({ children }) => {
 				totalQuantity,
 				setTotalQuantity,
 				calcRowAmount,
-				buyerOrder,
-				setBuyerOrder,
+				buyer,
+				setBuyer,
+				buildBuyerOrder,
+				//buyerOrder,
+				//setBuyerOrder,
 			}}>
 			{children}
 		</CartContext.Provider>

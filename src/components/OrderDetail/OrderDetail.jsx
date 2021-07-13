@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, Fragment } from "react";
+import React, { useState, useContext, Fragment } from "react";
 import {
 	Typography,
 	TextField,
@@ -33,19 +33,9 @@ const containerStyle = {
 
 export const OrderDetail = () => {
 	const classes = useStyles();
-	const { order, totalAmount, totalQuantity, setBuyerOrder } =
+	const { order, totalAmount, buyer, setBuyer, buildBuyerOrder } =
 		useContext(CartContext);
-	const [buyer, setBuyer] = useState({ name: "", phone: "", email: "" });
 	const [openDialog, setOpenDialog] = useState(false);
-
-	const buildBuyerOrder = () => {
-		return {
-			buyer: buyer,
-			products: order,
-			totalAmount: totalAmount,
-			totalQuantity: totalQuantity,
-		};
-	};
 
 	const buyerNameChange = (e) => {
 		setBuyer({
@@ -89,7 +79,7 @@ export const OrderDetail = () => {
 					disabled={buyer.name === "" || buyer.phone === ""}
 					openDialog={setOpenDialog}
 					handleConfirm={() => {
-						setBuyerOrder(buildBuyerOrder());
+						console.log(buildBuyerOrder());
 						setOpenDialog(false);
 					}}
 					closeDialog={() => setOpenDialog(false)}
