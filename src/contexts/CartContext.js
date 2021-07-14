@@ -5,6 +5,7 @@ export const CartContext = createContext();
 
 export const CartContextProvider = ({ children }) => {
 	const [cart, setCart] = useState([]);
+	const [order, setOrder] = useState("");
 	const [totalAmount, setTotalAmount] = useState(0);
 	const [totalQuantity, setTotalQuantity] = useState(0);
 	const [buyer, setBuyer] = useState({ name: "", phone: "", email: "" });
@@ -64,6 +65,10 @@ export const CartContextProvider = ({ children }) => {
 		getTotalQuantity();
 	}, [cart]);
 
+	useEffect(() => {
+		console.log(order);
+	}, [order]);
+
 	return (
 		<CartContext.Provider
 			value={{
@@ -79,6 +84,8 @@ export const CartContextProvider = ({ children }) => {
 				buyer,
 				setBuyer,
 				buildNewOrder,
+				order,
+				setOrder,
 			}}>
 			{children}
 		</CartContext.Provider>

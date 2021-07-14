@@ -16,33 +16,35 @@ import {
 import { Delete } from "@material-ui/icons";
 import { BusinessContext } from "../../contexts/BusinessContext";
 import { CartContext } from "../../contexts/CartContext";
-import { DialogComponent } from "../Dialog/Dialog";
+import { db } from "../../firebase/firebase";
 
 const useStyles = makeStyles((theme) => ({
 	container: {
 		display: "flex",
+	},
+	list: {
+		display: "flex",
+		width: "50%",
+	},
+	summary: {
+		display: "flex",
 		flexDirection: "column",
-	},
-	header: {
-		display: "flex",
-	},
-	footer: {
-		display: "flex",
+		width: "50%",
 	},
 }));
 
-const containerStyle = {
-	width: "100%",
-	height: "100%",
-	display: "flex",
-	justifyContent: "center",
-};
-
 export const Cart = () => {
 	const classes = useStyles();
-	const { cart, totalAmount, buyer, setBuyer, buildNewOrder } =
-		useContext(CartContext);
-	const [openDialog, setOpenDialog] = useState(false);
+	const {
+		cart,
+		setCart,
+		totalAmount,
+		totalQuantity,
+		buyer,
+		setBuyer,
+		buildNewOrder,
+		setOrder,
+	} = useContext(CartContext);
 
 	const buyerNameChange = (e) => {
 		setBuyer({
@@ -68,69 +70,43 @@ export const Cart = () => {
 		});
 	};
 
+	const sendOrder = () => {
+		const query = db.collection("orders");
+
+		query
+			.add(buildNewOrder())
+			.then(({ id }) => {
+				setOrder(id);
+			})
+			.finally(setCart([]));
+	};
+
 	return (
 		<article className={classes.container}>
-			<div className={classes.header}></div>
-			<OrderBody cart={cart} />
-			<div className={classes.footer}>
-				<Typography variant='h5' component='p'>
-					Monto:
-				</Typography>
-				<Typography variant='h5' component='p'>
-					{totalAmount}
-				</Typography>
+			<div className={classes.list}>
+				<CartList cart={cart} />
 			</div>
-			<div style={containerStyle}>
-				<DialogComponent
-					open={openDialog}
+			<div className={classes.summary}>
+				<CartSummary
+					amount={totalAmount}
+					quantity={totalQuantity}
+					buyer={buyer}
+					setBuyerName={buyerNameChange}
+					setBuyerPhone={buyerPhoneChange}
+					setBuyerEmail={buyerEmailChange}
+				/>
+				<Button
 					disabled={buyer.name === "" || buyer.phone === ""}
-					openDialog={setOpenDialog}
-					handleConfirm={() => {
-						console.log(buildNewOrder());
-						setOpenDialog(false);
-					}}
-					closeDialog={() => setOpenDialog(false)}
-					title='Datos del comprador'
-					labelSecondaryButton='Cancelar'
-					labelPrimaryButton='Aceptar'>
-					<div>
-						<TextField
-							required
-							id='buyerName'
-							label='Nombre'
-							variant='outlined'
-							type='text'
-							value={buyer.name}
-							onChange={buyerNameChange}
-						/>
-						<TextField
-							required
-							id='buyerPhone'
-							label='Teléfono'
-							variant='outlined'
-							type='text'
-							value={buyer.phone}
-							onChange={buyerPhoneChange}
-						/>
-						<TextField
-							id='buyerEmail'
-							label='E-mail'
-							variant='outlined'
-							type='text'
-							value={buyer.email}
-							onChange={buyerEmailChange}
-						/>
-					</div>
-				</DialogComponent>
+					variant='outlined'
+					onClick={(e) => sendOrder()}>
+					Enviar orden
+				</Button>
 			</div>
-			<Button variant='outlined' onClick={(e) => setOpenDialog(true)}>
-				Enviar orden
-			</Button>
 		</article>
 	);
 };
 
-const OrderBody = ({ cart }) => {
+const CartList = ({ cart }) => {
 	return (
 		<Grid container spacing={2}>
 			<Grid item xs={12} md={6}>
@@ -213,5 +189,69 @@ const CartItem = (props) => {
 				</IconButton>
 			</ListItemSecondaryAction>
 		</ListItem>
+	);
+};
+
+const CartSummary = ({
+	amount,
+	quantity,
+	buyer,
+	setBuyerName,
+	setBuyerPhone,
+	setBuyerEmail,
+}) => {
+	return (
+		<div>
+			<div>
+				<Typography variant='h5' component='p'>
+					Resumen:
+				</Typography>
+				<div>
+					<Typography variant='h6' component='p'>
+						Cantidad de Productos: {quantity} Uni.
+					</Typography>
+					<Typography variant='h6' component='p'>
+						Monto Total: ${amount}
+					</Typography>
+				</div>
+			</div>
+			<div>
+				<Typography variant='h5' component='p'>
+					Datos del comprador:
+				</Typography>
+				<div>
+					<TextField
+						required
+						id='buyerName'
+						label='Nombre'
+						variant='outlined'
+						type='text'
+						placeholder='Juan Pérez'
+						value={buyer.name}
+						onChange={setBuyerName}
+					/>
+					<TextField
+						required
+						id='buyerPhone'
+						label='Teléfono'
+						variant='outlined'
+						type='tel'
+						placeholder='+54 911 1234-5678'
+						//pattern='[0-9]{3}-[0-9]{2}-[0-9]{3}'
+						value={buyer.phone}
+						onChange={setBuyerPhone}
+					/>
+					<TextField
+						id='buyerEmail'
+						label='E-mail'
+						variant='outlined'
+						type='email'
+						placeholder='juanperez@gmail.com'
+						value={buyer.email}
+						onChange={setBuyerEmail}
+					/>
+				</div>
+			</div>
+		</div>
 	);
 };

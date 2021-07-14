@@ -5,7 +5,9 @@ import { CartContextProvider } from "./contexts/CartContext";
 import { NavBar } from "./components/NavBar/NavBar";
 import { ItemListContainer } from "./screens/ItemListContainer/ItemListContainer";
 import { ItemDetailContainer } from "./screens/ItemDetailContainer/ItemDetailContainer";
-import { CartView } from "./screens/CartView/CartView";
+import { CartContainer } from "./screens/CartContainer/CartContainer";
+
+//definir condicion para que el NavBar no aparezca en el /cart
 
 const App = (props) => {
 	return (
@@ -25,7 +27,7 @@ const App = (props) => {
 								<ItemDetailContainer />
 							</Route>
 							<Route excat path='/cart'>
-								<CartView />
+								<CartContainer />
 							</Route>
 						</Switch>
 					</BrowserRouter>
