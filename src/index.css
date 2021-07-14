@@ -8,23 +8,16 @@ body {
   min-height: 100vh; */
 	overflow-x: hidden;
 	box-sizing: border-box;
-	/*font-family: 'Ranchers', cursive;*/
 	background-color: #ebebeb;
 }
 
-/* 
-code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-} 
-*/
 header {
 	height: 10vh;
 }
 
-footer {
+/* footer {
 	height: 10vh;
-}
+} */
 
 p {
 	margin: 0;
