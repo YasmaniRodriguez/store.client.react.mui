@@ -18,7 +18,7 @@ export const ItemDetailContainer = (props) => {
 	const [quantity, setQuantity] = useState(1);
 	const [showCheckOut, setShowCheckOut] = useState(false);
 	const [selectedProduct, setSelectedProduct] = useState({});
-	const { addProductToOrder } = useContext(CartContext);
+	const { addItemToCart } = useContext(CartContext);
 
 	useEffect(() => {
 		const query = db.collection("products").doc(onlyShowProduct);
@@ -33,7 +33,7 @@ export const ItemDetailContainer = (props) => {
 			<ItemDetail
 				selectedProduct={selectedProduct}
 				quantity={quantity}
-				addProductToOrder={addProductToOrder}
+				addItemToCart={addItemToCart}
 				setQuantity={setQuantity}
 				showCheckOut={showCheckOut}
 				setShowCheckOut={setShowCheckOut}

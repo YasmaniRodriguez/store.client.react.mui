@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { Button, Typography, makeStyles } from "@material-ui/core";
 import { CartContext } from "../../contexts/CartContext";
-import { OrderDetail } from "../../components/OrderDetail/OrderDetail";
+import { Cart } from "../../components/Cart/Cart";
 
 const useStyles = makeStyles((theme) => ({
 	container: {
@@ -11,14 +11,14 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export const OrderViewContainer = (props) => {
+export const CartView = (props) => {
 	const classes = useStyles();
 	const history = useHistory();
-	const { order, totalAmount } = useContext(CartContext);
+	const { cart, totalAmount } = useContext(CartContext);
 
 	return (
 		<section className={classes.container}>
-			{order.length === 0 ? (
+			{cart.length === 0 ? (
 				<article>
 					<Typography variant='h3' component='p'>
 						Ups! aún no hay productos en la orden.
@@ -31,7 +31,7 @@ export const OrderViewContainer = (props) => {
 					</Button>
 				</article>
 			) : (
-				<OrderDetail order={order} totalAmount={totalAmount} />
+				<Cart cart={cart} totalAmount={totalAmount} />
 			)}
 		</section>
 	);

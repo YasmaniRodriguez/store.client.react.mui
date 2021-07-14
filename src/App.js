@@ -5,7 +5,7 @@ import { CartContextProvider } from "./contexts/CartContext";
 import { NavBar } from "./components/NavBar/NavBar";
 import { ItemListContainer } from "./screens/ItemListContainer/ItemListContainer";
 import { ItemDetailContainer } from "./screens/ItemDetailContainer/ItemDetailContainer";
-import { OrderViewContainer } from "./screens/OrderViewContainer/OrderViewContainer";
+import { CartView } from "./screens/CartView/CartView";
 
 const App = (props) => {
 	return (
@@ -25,7 +25,7 @@ const App = (props) => {
 								<ItemDetailContainer />
 							</Route>
 							<Route excat path='/cart'>
-								<OrderViewContainer />
+								<CartView />
 							</Route>
 						</Switch>
 					</BrowserRouter>

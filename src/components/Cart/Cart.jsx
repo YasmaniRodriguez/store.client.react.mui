@@ -1,13 +1,20 @@
-import React, { useState, useContext, Fragment } from "react";
+import React, { useState, useContext, useEffect, Fragment } from "react";
 import {
+	makeStyles,
 	Typography,
 	TextField,
-	makeStyles,
-	Grid,
+	ListItem,
+	ListItemAvatar,
+	ListItemSecondaryAction,
+	ListItemText,
 	List,
+	Grid,
+	Avatar,
+	IconButton,
 	Button,
 } from "@material-ui/core";
-import { OrderRow } from "../OrderRow/OrderRow";
+import { Delete } from "@material-ui/icons";
+import { BusinessContext } from "../../contexts/BusinessContext";
 import { CartContext } from "../../contexts/CartContext";
 import { DialogComponent } from "../Dialog/Dialog";
 
@@ -31,9 +38,9 @@ const containerStyle = {
 	justifyContent: "center",
 };
 
-export const OrderDetail = () => {
+export const Cart = () => {
 	const classes = useStyles();
-	const { order, totalAmount, buyer, setBuyer, buildBuyerOrder } =
+	const { cart, totalAmount, buyer, setBuyer, buildNewOrder } =
 		useContext(CartContext);
 	const [openDialog, setOpenDialog] = useState(false);
 
@@ -64,7 +71,7 @@ export const OrderDetail = () => {
 	return (
 		<article className={classes.container}>
 			<div className={classes.header}></div>
-			<OrderBody order={order} />
+			<OrderBody cart={cart} />
 			<div className={classes.footer}>
 				<Typography variant='h5' component='p'>
 					Monto:
@@ -79,7 +86,7 @@ export const OrderDetail = () => {
 					disabled={buyer.name === "" || buyer.phone === ""}
 					openDialog={setOpenDialog}
 					handleConfirm={() => {
-						console.log(buildBuyerOrder());
+						console.log(buildNewOrder());
 						setOpenDialog(false);
 					}}
 					closeDialog={() => setOpenDialog(false)}
@@ -123,12 +130,12 @@ export const OrderDetail = () => {
 	);
 };
 
-const OrderBody = ({ order }) => {
+const OrderBody = ({ cart }) => {
 	return (
 		<Grid container spacing={2}>
 			<Grid item xs={12} md={6}>
 				<List>
-					{order
+					{cart
 						.sort((a, b) => {
 							if (a.product.name > b.product.name) {
 								return 1;
@@ -140,11 +147,71 @@ const OrderBody = ({ order }) => {
 						})
 						.map((row, i) => (
 							<Fragment key={i}>
-								<OrderRow index={i} {...row} />
+								<CartItem index={i} {...row} />
 							</Fragment>
 						))}
 				</List>
 			</Grid>
 		</Grid>
+	);
+};
+
+const CartItem = (props) => {
+	const classes = useStyles();
+	const { addItemToCart, removeItemToCart, calcRowAmount } =
+		useContext(CartContext);
+	const { whereIsMyIcon } = useContext(BusinessContext);
+	const { product, quantity, amount } = props;
+	const myPrice = product.price;
+
+	const [myQuantity, setMyQuantity] = useState(quantity);
+	const [myAmount, setMyAmount] = useState(amount);
+
+	const quantityChange = (e) => {
+		setMyQuantity(parseInt(e.target.value));
+	};
+
+	useEffect(() => {
+		setMyAmount(calcRowAmount(myQuantity, myPrice));
+	}, [myQuantity]);
+
+	useEffect(() => {
+		async function getItemToAdd() {
+			const newAmount = await calcRowAmount(myQuantity, myPrice);
+			const itemToAdd = {
+				product: product,
+				quantity: myQuantity,
+				amount: newAmount,
+			};
+			addItemToCart(itemToAdd);
+		}
+		getItemToAdd();
+	}, [myQuantity]);
+
+	return (
+		<ListItem>
+			<ListItemAvatar>
+				<Avatar src={whereIsMyIcon(product.category)} />
+			</ListItemAvatar>
+			<ListItemText primary={product.name} secondary={"$" + product.price} />
+			<TextField
+				id='row-qty'
+				type='number'
+				value={myQuantity}
+				onChange={quantityChange}></TextField>
+			<Typography variant='h6' component='p'>
+				{"$" + myAmount}
+			</Typography>
+			<ListItemSecondaryAction>
+				<IconButton
+					edge='end'
+					aria-label='delete'
+					onClick={(e) => {
+						removeItemToCart(product.id);
+					}}>
+					<Delete />
+				</IconButton>
+			</ListItemSecondaryAction>
+		</ListItem>
 	);
 };

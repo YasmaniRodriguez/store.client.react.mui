@@ -4,27 +4,25 @@ import React, { createContext, useState, useEffect } from "react";
 export const CartContext = createContext();
 
 export const CartContextProvider = ({ children }) => {
-	const [order, setOrder] = useState([]);
+	const [cart, setCart] = useState([]);
 	const [totalAmount, setTotalAmount] = useState(0);
 	const [totalQuantity, setTotalQuantity] = useState(0);
 	const [buyer, setBuyer] = useState({ name: "", phone: "", email: "" });
 
-	const addProductToOrder = (productToAdd) => {
-		const filteredOrder = order.filter(
-			(obj) => obj.product.id !== productToAdd.product.id
+	const addItemToCart = (itemToAdd) => {
+		const filteredCart = cart.filter(
+			(obj) => obj.product.id !== itemToAdd.product.id
 		);
-		return setOrder([...filteredOrder, productToAdd]);
+		return setCart([...filteredCart, itemToAdd]);
 	};
 
-	const removeProductToOrder = (productToRemove) => {
-		const filteredOrder = order.filter(
-			(obj) => obj.product.id !== productToRemove
-		);
-		return setOrder(filteredOrder);
+	const removeItemToCart = (itemToRemove) => {
+		const filteredCart = cart.filter((obj) => obj.product.id !== itemToRemove);
+		return setCart(filteredCart);
 	};
 
 	const calcTotalAmount = () => {
-		const myAmount = order.reduce((accumulator, currentValue) => {
+		const myAmount = cart.reduce((accumulator, currentValue) => {
 			return accumulator + currentValue.amount;
 		}, 0);
 		return myAmount;
@@ -35,16 +33,16 @@ export const CartContextProvider = ({ children }) => {
 	};
 
 	const calcTotalQuantity = () => {
-		const myQuantity = order.reduce((accumulator, currentValue) => {
+		const myQuantity = cart.reduce((accumulator, currentValue) => {
 			return accumulator + currentValue.quantity;
 		}, 0);
 		return myQuantity;
 	};
 
-	const buildBuyerOrder = () => {
+	const buildNewOrder = () => {
 		return {
 			buyer: buyer,
-			products: order,
+			products: cart,
 			totalAmount: totalAmount,
 			totalQuantity: totalQuantity,
 		};
@@ -56,7 +54,7 @@ export const CartContextProvider = ({ children }) => {
 			setTotalAmount(amount);
 		}
 		getTotalAmount();
-	}, [order]);
+	}, [cart]);
 
 	useEffect(() => {
 		async function getTotalQuantity() {
@@ -64,15 +62,15 @@ export const CartContextProvider = ({ children }) => {
 			setTotalQuantity(quantity);
 		}
 		getTotalQuantity();
-	}, [order]);
+	}, [cart]);
 
 	return (
 		<CartContext.Provider
 			value={{
-				order,
-				setOrder,
-				addProductToOrder,
-				removeProductToOrder,
+				cart,
+				setCart,
+				addItemToCart,
+				removeItemToCart,
 				totalAmount,
 				setTotalAmount,
 				totalQuantity,
@@ -80,7 +78,7 @@ export const CartContextProvider = ({ children }) => {
 				calcRowAmount,
 				buyer,
 				setBuyer,
-				buildBuyerOrder,
+				buildNewOrder,
 			}}>
 			{children}
 		</CartContext.Provider>

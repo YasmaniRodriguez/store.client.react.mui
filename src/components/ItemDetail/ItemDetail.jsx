@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 export const ItemDetail = ({
 	selectedProduct,
 	quantity,
-	addProductToOrder,
+	addItemToCart,
 	setQuantity,
 	showCheckOut,
 	setShowCheckOut,
@@ -34,7 +34,7 @@ export const ItemDetail = ({
 	const { image, name, price, description, stock } = selectedProduct;
 	const { calcRowAmount } = useContext(CartContext);
 
-	const productToAdd = {
+	const itemToAdd = {
 		product: selectedProduct,
 		quantity: quantity,
 		amount: calcRowAmount(quantity, price),
@@ -69,7 +69,7 @@ export const ItemDetail = ({
 							<Button
 								onClick={(e) => {
 									setShowCheckOut(true);
-									addProductToOrder(productToAdd);
+									addItemToCart(itemToAdd);
 								}}
 								variant='outlined'>
 								Agregar al carrito
