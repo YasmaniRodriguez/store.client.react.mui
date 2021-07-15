@@ -34,14 +34,14 @@ export const CartContainer = (props) => {
 				) : (
 					<article>
 						<Typography variant='h3' component='p'>
-							Tu numero de orden es {order}
+							Tu numero de orden es: {order}
 						</Typography>
 						<Button
 							onClick={(e) => {
 								history.push(`/`);
 								setOrder("");
 							}}>
-							Seguir comprando
+							Hacer otro pedido
 						</Button>
 					</article>
 				)

@@ -17,6 +17,8 @@ import { Delete } from "@material-ui/icons";
 import { BusinessContext } from "../../contexts/BusinessContext";
 import { CartContext } from "../../contexts/CartContext";
 import { db } from "../../firebase/firebase";
+import firebase from "firebase/app";
+import "@firebase/firestore";
 
 const useStyles = makeStyles((theme) => ({
 	container: {
@@ -76,10 +78,28 @@ export const Cart = () => {
 		query
 			.add(buildNewOrder())
 			.then(({ id }) => {
+				updateStock();
 				setOrder(id);
 			})
 			.finally(setCart([]));
 	};
+
+	async function updateStock() {
+		const itemsToUpdate = db.collection("products").where(
+			firebase.firestore.FieldPath.documentId(),
+			"in",
+			cart.map((i) => i.product.id)
+		);
+
+		const query = await itemsToUpdate.get();
+		const batch = db.batch();
+		query.docs.forEach((docSnapshot, idx) => {
+			batch.update(docSnapshot.ref, {
+				stock: docSnapshot.data().stock - cart[idx].quantity,
+			});
+		});
+		batch.commit();
+	}
 
 	return (
 		<article className={classes.container}>
