@@ -13,6 +13,8 @@ import {
 import { CartWidget } from "../CartWidget/CartWidget";
 import { Menu } from "@material-ui/icons";
 import { BusinessContext } from "../../contexts/BusinessContext";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 const buttonCommonStyles = {
 	alignSelf: "center",
@@ -89,30 +91,31 @@ export const NavBar = (props) => {
 	//const matchesMobile = useMediaQuery("(max-width: 800px)");
 
 	return (
-		<>
-			<header className={classes.container}>
-				<div className={classes.root}>
-					<AppBar position='fixed'>
-						<Toolbar>
-							<IconButton
-								edge='start'
-								className={classes.menuButton}
-								color='inherit'
-								aria-label='menu'>
-								<Menu />
-							</IconButton>
-							<Link to={"/"} style={{ textDecoration: "none" }}>
-								<Typography variant='h2'>Yeah!</Typography>
-							</Link>
-							<CartWidget />
-						</Toolbar>
-					</AppBar>
-				</div>
-			</header>
-			<nav className={classes.filter}>
-				<ButtonsOfCategoryFilters availableCategories={availableCategories} />
-			</nav>
-		</>
+		<CustomNavBar />
+		// <>
+		// 	<header className={classes.container}>
+		// 		<div className={classes.root}>
+		// 			<AppBar position='fixed'>
+		// 				<Toolbar>
+		// 					<IconButton
+		// 						edge='start'
+		// 						className={classes.menuButton}
+		// 						color='inherit'
+		// 						aria-label='menu'>
+		// 						<Menu />
+		// 					</IconButton>
+		// 					<Link to={"/"} style={{ textDecoration: "none" }}>
+		// 						<Typography variant='h2'>Yeah!</Typography>
+		// 					</Link>
+		// 					<CartWidget />
+		// 				</Toolbar>
+		// 			</AppBar>
+		// 		</div>
+		// 	</header>
+		// 	<nav className={classes.filter}>
+		// 		<ButtonsOfCategoryFilters availableCategories={availableCategories} />
+		// 	</nav>
+		// </>
 	);
 };
 
@@ -148,5 +151,42 @@ const CategoryAvatarButton = ({ id, icon, name }) => {
 				{name}
 			</Typography>
 		</IconButton>
+	);
+};
+
+const CustomNavBar = (props) => {
+	return (
+		<nav class='navbar fixed-top navbar-expand-lg navbar-light bg-light'>
+			<div class='container-fluid'>
+				<button
+					class='navbar-toggler'
+					type='button'
+					data-bs-toggle='collapse'
+					data-bs-target='#navbarTogglerDemo01'
+					aria-controls='navbarTogglerDemo01'
+					aria-expanded='false'
+					aria-label='Toggle navigation'>
+					<span class='navbar-toggler-icon'></span>
+				</button>
+				<div class='collapse navbar-collapse' id='navbarTogglerDemo01'>
+					<a class='navbar-brand' href='#'>
+						Yeah!
+					</a>
+					<ul class='navbar-nav me-auto mb-2 mb-lg-0'>
+						<li class='nav-item'>
+							<a class='nav-link active' aria-current='page' href='#'>
+								Home
+							</a>
+						</li>
+						<li class='nav-item'>
+							<a class='nav-link' href='#'>
+								Link
+							</a>
+						</li>
+					</ul>
+				</div>
+				<CartWidget />
+			</div>
+		</nav>
 	);
 };
