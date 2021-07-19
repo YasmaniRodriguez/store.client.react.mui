@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
 import { Typography, makeStyles } from "@material-ui/core";
-import { Grid } from "@material-ui/core";
 import { Item } from "../Item/Item.jsx";
 
 const useStyles = makeStyles((theme) => ({
@@ -13,6 +12,12 @@ const useStyles = makeStyles((theme) => ({
 	},
 	loadingText: {
 		fontFamily: "Ranchers",
+	},
+	productsContainer: {
+		display: "grid",
+		gap: "2rem",
+		gridAutoRows: "22rem",
+		gridTemplateColumns: "repeat(auto-fill, minmax(17rem, 1fr))",
 	},
 }));
 
@@ -28,13 +33,13 @@ export const ItemList = ({ products }) => {
 					</Typography>
 				</div>
 			) : (
-				<Grid container spacing={20} justify='center'>
+				<div className={classes.productsContainer}>
 					{products.map((product, i) => (
 						<Fragment key={i}>
 							<Item index={i} {...product} />
 						</Fragment>
 					))}
-				</Grid>
+				</div>
 			)}
 		</>
 	);

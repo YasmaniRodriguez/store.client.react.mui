@@ -7,8 +7,6 @@ import { ItemListContainer } from "./screens/ItemListContainer/ItemListContainer
 import { ItemDetailContainer } from "./screens/ItemDetailContainer/ItemDetailContainer";
 import { CartContainer } from "./screens/CartContainer/CartContainer";
 
-//definir condicion para que el NavBar no aparezca en el /cart
-
 const App = (props) => {
 	return (
 		<>

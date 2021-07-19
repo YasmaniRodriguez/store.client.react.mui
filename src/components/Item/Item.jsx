@@ -11,9 +11,6 @@ import {
 
 const useStyles = makeStyles((theme) => ({
 	container: {
-		width: "25em",
-		height: "30em",
-		margin: "1em",
 		boxSizing: "border-box",
 		display: "flex",
 		flexDirection: "column",
