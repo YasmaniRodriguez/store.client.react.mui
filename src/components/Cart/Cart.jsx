@@ -12,6 +12,7 @@ import {
 	Avatar,
 	IconButton,
 	Button,
+	useMediaQuery,
 } from "@material-ui/core";
 import { Delete } from "@material-ui/icons";
 import { BusinessContext } from "../../contexts/BusinessContext";
@@ -21,9 +22,7 @@ import firebase from "firebase/app";
 import "@firebase/firestore";
 
 const useStyles = makeStyles((theme) => ({
-	container: {
-		display: "flex",
-	},
+	container: {},
 	list: {
 		display: "flex",
 		width: "50%",
@@ -47,6 +46,8 @@ export const Cart = () => {
 		buildNewOrder,
 		setOrder,
 	} = useContext(CartContext);
+
+	const matchesMobile = useMediaQuery("(max-width: 991px)");
 
 	const buyerNameChange = (e) => {
 		setBuyer({
@@ -102,7 +103,12 @@ export const Cart = () => {
 	}
 
 	return (
-		<article className={classes.container}>
+		<article
+			style={
+				matchesMobile
+					? { display: "flex", flexDirection: "column" }
+					: { display: "flex" }
+			}>
 			<div className={classes.list}>
 				<CartList cart={cart} />
 			</div>
@@ -118,6 +124,7 @@ export const Cart = () => {
 				<Button
 					disabled={buyer.name === "" || buyer.phone === ""}
 					variant='outlined'
+					style={{ width: "40%", alignSelf: "center" }}
 					onClick={(e) => sendOrder()}>
 					Enviar orden
 				</Button>
@@ -220,26 +227,42 @@ const CartSummary = ({
 	setBuyerPhone,
 	setBuyerEmail,
 }) => {
+	const inputCommonStyle = {
+		padding: "20px 0px",
+	};
 	return (
 		<div>
 			<div>
-				<Typography variant='h5' component='p'>
-					Resumen:
+				<Typography
+					variant='h6'
+					component='p'
+					style={{ textTransform: "uppercase" }}>
+					resumen
 				</Typography>
 				<div>
-					<Typography variant='h6' component='p'>
+					<Typography
+						variant='h6'
+						component='p'
+						style={{ padding: "0px 10px" }}>
 						Cantidad de Productos: {quantity} Uni.
 					</Typography>
-					<Typography variant='h6' component='p'>
+					<Typography
+						variant='h6'
+						component='p'
+						style={{ padding: "0px 10px" }}>
 						Monto Total: ${amount}
 					</Typography>
 				</div>
 			</div>
-			<div>
-				<Typography variant='h5' component='p'>
-					Datos del comprador:
+			<div style={{ padding: "10px 0px" }}>
+				<Typography
+					variant='h6'
+					component='p'
+					style={{ textTransform: "uppercase" }}>
+					datos del comprador
 				</Typography>
-				<div>
+				<div
+					style={{ display: "flex", flexDirection: "column", padding: "10px" }}>
 					<TextField
 						required
 						id='buyerName'
@@ -248,6 +271,7 @@ const CartSummary = ({
 						type='text'
 						placeholder='Juan Pérez'
 						value={buyer.name}
+						style={inputCommonStyle}
 						onChange={setBuyerName}
 					/>
 					<TextField
@@ -257,8 +281,8 @@ const CartSummary = ({
 						variant='outlined'
 						type='tel'
 						placeholder='+54 911 1234-5678'
-						//pattern='[0-9]{3}-[0-9]{2}-[0-9]{3}'
 						value={buyer.phone}
+						style={inputCommonStyle}
 						onChange={setBuyerPhone}
 					/>
 					<TextField
@@ -268,6 +292,7 @@ const CartSummary = ({
 						type='email'
 						placeholder='juanperez@gmail.com'
 						value={buyer.email}
+						style={inputCommonStyle}
 						onChange={setBuyerEmail}
 					/>
 				</div>

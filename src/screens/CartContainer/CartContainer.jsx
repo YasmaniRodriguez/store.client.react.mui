@@ -8,6 +8,15 @@ const useStyles = makeStyles((theme) => ({
 	container: {
 		height: "70vh",
 		width: "100vw",
+		padding: "10px 20px",
+	},
+	messageContainer: {
+		width: "100%",
+		height: "100%",
+		display: "flex",
+		flexDirection: "column",
+		justifyContent: "center",
+		alignItems: "center",
 	},
 }));
 
@@ -20,7 +29,7 @@ export const CartContainer = (props) => {
 		<section className={classes.container}>
 			{cart.length === 0 ? (
 				order === "" ? (
-					<article>
+					<article className={classes.messageContainer}>
 						<Typography variant='h3' component='p'>
 							Ups! aún no hay productos en la orden.
 						</Typography>
@@ -32,9 +41,12 @@ export const CartContainer = (props) => {
 						</Button>
 					</article>
 				) : (
-					<article>
+					<article className={classes.messageContainer}>
 						<Typography variant='h3' component='p'>
-							Tu numero de orden es: {order}
+							Tu numero de Orden es:
+						</Typography>
+						<Typography variant='h5' component='p'>
+							{order}
 						</Typography>
 						<Button
 							onClick={(e) => {

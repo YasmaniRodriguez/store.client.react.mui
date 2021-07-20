@@ -7,8 +7,10 @@ import { db } from "../../firebase/firebase.js";
 
 const useStyles = makeStyles((theme) => ({
 	container: {
+		height: "70vh",
 		width: "100vw",
 		display: "flex",
+		padding: "10px 20px",
 	},
 }));
 

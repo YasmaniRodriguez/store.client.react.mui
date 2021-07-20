@@ -16,8 +16,6 @@ export const NavBar = (props) => {
 	const { availableCategories } = useContext(BusinessContext);
 	const classes = useStyles();
 
-	//const matchesMobile = useMediaQuery("(max-width: 800px)");
-
 	return (
 		<header className={classes.container}>
 			<nav className='navbar fixed-top navbar-expand-lg navbar-light bg-light'>
@@ -33,8 +31,15 @@ export const NavBar = (props) => {
 						<span className='navbar-toggler-icon'></span>
 					</button>
 					<div className='collapse navbar-collapse' id='navbarToggler'>
+						<img
+							style={{ width: "50px", height: "50px" }}
+							src='../../images/logo.png'
+							alt=''
+						/>
 						<Link className='navbar-brand' aria-current='page' to={"/"}>
-							<Typography variant='h3'>Yeah!</Typography>
+							<Typography variant='h4' style={{ fontFamily: "Ranchers" }}>
+								YaEstamosAlHorno!
+							</Typography>
 						</Link>
 						<ul className='navbar-nav me-auto mb-2 mb-lg-0'>
 							{availableCategories.map((category, i) => {
@@ -45,8 +50,11 @@ export const NavBar = (props) => {
 											aria-current='page'
 											to={`/category/${category.id}`}>
 											<Typography
-												style={{ textTransform: "capitalize" }}
-												variant='h4'>
+												style={{
+													fontFamily: "Ranchers",
+													textTransform: "capitalize",
+												}}
+												variant='h5'>
 												{category.name}
 											</Typography>
 										</Link>

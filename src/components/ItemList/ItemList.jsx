@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Typography, makeStyles } from "@material-ui/core";
+import { Typography, makeStyles, CircularProgress } from "@material-ui/core";
 import { Item } from "../Item/Item.jsx";
 
 const useStyles = makeStyles((theme) => ({
@@ -7,6 +7,7 @@ const useStyles = makeStyles((theme) => ({
 		width: "100%",
 		height: "100%",
 		display: "flex",
+		flexDirection: "column",
 		justifyContent: "center",
 		alignItems: "center",
 	},
@@ -28,6 +29,7 @@ export const ItemList = ({ availableProducts }) => {
 		<>
 			{availableProducts.length === 0 ? (
 				<div className={classes.loadingContainer}>
+					<CircularProgress />
 					<Typography className={classes.loadingText} variant='h3'>
 						Cargando...
 					</Typography>
