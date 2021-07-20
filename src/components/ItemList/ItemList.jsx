@@ -21,12 +21,12 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export const ItemList = ({ products }) => {
+export const ItemList = ({ availableProducts }) => {
 	const classes = useStyles();
 
 	return (
 		<>
-			{products.length === 0 ? (
+			{availableProducts.length === 0 ? (
 				<div className={classes.loadingContainer}>
 					<Typography className={classes.loadingText} variant='h3'>
 						Cargando...
@@ -34,7 +34,7 @@ export const ItemList = ({ products }) => {
 				</div>
 			) : (
 				<div className={classes.productsContainer}>
-					{products.map((product, i) => (
+					{availableProducts.map((product, i) => (
 						<Fragment key={i}>
 							<Item index={i} {...product} />
 						</Fragment>

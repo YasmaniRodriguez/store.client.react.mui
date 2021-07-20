@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import {
 	Button,
@@ -8,6 +8,7 @@ import {
 	Typography,
 	makeStyles,
 } from "@material-ui/core";
+import { CartContext } from "../../contexts/CartContext.js";
 
 const useStyles = makeStyles((theme) => ({
 	container: {
@@ -43,24 +44,32 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export const Item = ({ id, name, price, image }) => {
+export const Item = ({ ...product }) => {
 	const classes = useStyles();
 	const history = useHistory();
+	const { addItemToCart, calcRowAmount } = useContext(CartContext);
+
+	const itemToAdd = {
+		product: product,
+		quantity: 1,
+		amount: calcRowAmount(1, product.price),
+	};
 
 	return (
 		<Card className={classes.container}>
 			<CardMedia
 				className={classes.media}
-				image={image}
+				image={product.image}
 				style={{ backgroundSize: "contain" }}
-				onClick={() => history.push(`/product/${id}`)}
+				onClick={() => history.push(`/product/${product.id}`)}
 			/>
 			<CardContent className={classes.content}>
 				<Typography className={classes.product} variant='h6'>
-					{name}
+					{product.name}
 				</Typography>
-				<Typography className={classes.price}>{`$ ${price}`}</Typography>
-				<Button onClick={(e) => {}} variant='outlined'>
+				<Typography
+					className={classes.price}>{`$ ${product.price}`}</Typography>
+				<Button onClick={(e) => addItemToCart(itemToAdd)} variant='outlined'>
 					Agregar al carrito
 				</Button>
 			</CardContent>

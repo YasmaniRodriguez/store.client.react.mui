@@ -50,7 +50,7 @@ export const ItemListContainer = () => {
 
 	return (
 		<section className={classes.container}>
-			<ItemList products={availableProducts} />
+			<ItemList availableProducts={availableProducts} />
 		</section>
 	);
 };
