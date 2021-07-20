@@ -161,7 +161,6 @@ const CartList = ({ cart }) => {
 };
 
 const CartItem = (props) => {
-	const classes = useStyles();
 	const { addItemToCart, removeItemToCart, calcRowAmount } =
 		useContext(CartContext);
 	const { whereIsMyIcon } = useContext(BusinessContext);

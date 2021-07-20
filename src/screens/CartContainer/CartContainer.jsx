@@ -37,12 +37,16 @@ export const CartContainer = (props) => {
 					<div
 						style={{
 							display: "flex",
+							flexDirection: "column",
 							justifyContent: "center",
 							alignItems: "center",
 							height: "100%",
 							width: "100%",
 						}}>
 						<CircularProgress />
+						<Typography variant='h3' component='p'>
+							Enviando Orden al Proveedor...
+						</Typography>
 					</div>
 				) : order === "" ? (
 					<article className={classes.messageContainer}>
