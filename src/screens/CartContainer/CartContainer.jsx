@@ -1,6 +1,11 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
-import { Button, Typography, makeStyles } from "@material-ui/core";
+import {
+	Button,
+	Typography,
+	makeStyles,
+	CircularProgress,
+} from "@material-ui/core";
 import { CartContext } from "../../contexts/CartContext";
 import { Cart } from "../../components/Cart/Cart";
 
@@ -28,7 +33,18 @@ export const CartContainer = (props) => {
 	return (
 		<section className={classes.container}>
 			{cart.length === 0 ? (
-				order === "" ? (
+				order === "awaiting" ? (
+					<div
+						style={{
+							display: "flex",
+							justifyContent: "center",
+							alignItems: "center",
+							height: "100%",
+							width: "100%",
+						}}>
+						<CircularProgress />
+					</div>
+				) : order === "" ? (
 					<article className={classes.messageContainer}>
 						<Typography variant='h3' component='p'>
 							Ups! aún no hay productos en la orden.
@@ -43,7 +59,10 @@ export const CartContainer = (props) => {
 				) : (
 					<article className={classes.messageContainer}>
 						<Typography variant='h3' component='p'>
-							Tu numero de Orden es:
+							Orden Aprobada!
+						</Typography>
+						<Typography variant='h4' component='p'>
+							Podés darle seguimiento con el código:
 						</Typography>
 						<Typography variant='h5' component='p'>
 							{order}

@@ -74,6 +74,7 @@ export const Cart = () => {
 	};
 
 	const sendOrder = () => {
+		setOrder("awaiting");
 		const query = db.collection("orders");
 
 		query

@@ -11,7 +11,23 @@ const useStyles = makeStyles((theme) => ({
 		alignItems: "center",
 		justifyContent: "space-around",
 	},
-	detailContent: {},
+	detailImage: {
+		height: "100%",
+		width: "100%",
+		display: "flex",
+		alignItems: "center",
+
+		"& img": {
+			height: "400px",
+			width: "400px",
+		},
+	},
+	detailContent: {
+		width: "100%",
+		display: "flex",
+		flexDirection: "column",
+		justifyContent: "center",
+	},
 	detailCallToAction: {
 		display: "flex",
 		flexDirection: "column",
@@ -41,16 +57,19 @@ export const ItemDetail = ({
 
 	return (
 		<div className={classes.container}>
-			<Paper elevation={0}>
+			<Paper className={classes.detailImage} elevation={0}>
 				<img src={image} alt={name}></img>
 			</Paper>
-			<div>
+			<div className={classes.detailContent}>
 				<div className={classes.detailContent}>
-					<Typography variant='h1' component='p'>
+					<Typography
+						variant='h1'
+						component='p'
+						style={{ textTransform: "capitalize" }}>
 						{name}
 					</Typography>
 					<Typography variant='h3' component='p'>
-						{price}
+						$ {price}
 					</Typography>
 					<Typography variant='h5' component='p'>
 						{description}
