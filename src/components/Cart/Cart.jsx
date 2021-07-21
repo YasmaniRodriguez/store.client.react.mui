@@ -49,7 +49,7 @@ export const Cart = () => {
 
 	const matchesMobile = useMediaQuery("(max-width: 991px)");
 
-	const buyerNameChange = (e) => {
+	const changeBuyerName = (e) => {
 		setBuyer({
 			name: e.target.value,
 			phone: buyer.phone,
@@ -57,7 +57,7 @@ export const Cart = () => {
 		});
 	};
 
-	const buyerPhoneChange = (e) => {
+	const changeBuyerPhone = (e) => {
 		setBuyer({
 			name: buyer.name,
 			phone: e.target.value,
@@ -65,7 +65,7 @@ export const Cart = () => {
 		});
 	};
 
-	const buyerEmailChange = (e) => {
+	const changeBuyerEmail = (e) => {
 		setBuyer({
 			name: buyer.name,
 			phone: buyer.phone,
@@ -73,7 +73,7 @@ export const Cart = () => {
 		});
 	};
 
-	const sendOrder = () => {
+	const sendOrderToProvider = () => {
 		setOrder("awaiting");
 		const query = db.collection("orders");
 
@@ -118,15 +118,15 @@ export const Cart = () => {
 					amount={totalAmount}
 					quantity={totalQuantity}
 					buyer={buyer}
-					setBuyerName={buyerNameChange}
-					setBuyerPhone={buyerPhoneChange}
-					setBuyerEmail={buyerEmailChange}
+					changeBuyerName={changeBuyerName}
+					changeBuyerPhone={changeBuyerPhone}
+					changeBuyerEmail={changeBuyerEmail}
 				/>
 				<Button
 					disabled={buyer.name === "" || buyer.phone === ""}
 					variant='outlined'
 					style={{ width: "40%", alignSelf: "center" }}
-					onClick={(e) => sendOrder()}>
+					onClick={(e) => sendOrderToProvider()}>
 					Enviar orden
 				</Button>
 			</div>
@@ -223,13 +223,10 @@ const CartSummary = ({
 	amount,
 	quantity,
 	buyer,
-	setBuyerName,
-	setBuyerPhone,
-	setBuyerEmail,
+	changeBuyerName,
+	changeBuyerPhone,
+	changeBuyerEmail,
 }) => {
-	const inputCommonStyle = {
-		padding: "20px 0px",
-	};
 	return (
 		<div>
 			<div>
@@ -240,16 +237,10 @@ const CartSummary = ({
 					resumen
 				</Typography>
 				<div>
-					<Typography
-						variant='h6'
-						component='p'
-						style={{ padding: "0px 10px" }}>
+					<Typography variant='h6' component='p'>
 						Cantidad de Productos: {quantity} Uni.
 					</Typography>
-					<Typography
-						variant='h6'
-						component='p'
-						style={{ padding: "0px 10px" }}>
+					<Typography variant='h6' component='p'>
 						Monto Total: ${amount}
 					</Typography>
 				</div>
@@ -262,7 +253,12 @@ const CartSummary = ({
 					datos del comprador
 				</Typography>
 				<div
-					style={{ display: "flex", flexDirection: "column", padding: "10px" }}>
+					style={{
+						display: "flex",
+						flexDirection: "column",
+						height: "14em",
+						justifyContent: "space-around",
+					}}>
 					<TextField
 						required
 						id='buyerName'
@@ -271,8 +267,7 @@ const CartSummary = ({
 						type='text'
 						placeholder='Juan Pérez'
 						value={buyer.name}
-						style={inputCommonStyle}
-						onChange={setBuyerName}
+						onChange={changeBuyerName}
 					/>
 					<TextField
 						required
@@ -282,8 +277,7 @@ const CartSummary = ({
 						type='tel'
 						placeholder='+54 911 1234-5678'
 						value={buyer.phone}
-						style={inputCommonStyle}
-						onChange={setBuyerPhone}
+						onChange={changeBuyerPhone}
 					/>
 					<TextField
 						id='buyerEmail'
@@ -292,8 +286,7 @@ const CartSummary = ({
 						type='email'
 						placeholder='juanperez@gmail.com'
 						value={buyer.email}
-						style={inputCommonStyle}
-						onChange={setBuyerEmail}
+						onChange={changeBuyerEmail}
 					/>
 				</div>
 			</div>

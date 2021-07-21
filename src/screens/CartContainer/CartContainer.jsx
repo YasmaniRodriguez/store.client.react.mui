@@ -1,13 +1,16 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import {
 	Button,
 	Typography,
 	makeStyles,
 	CircularProgress,
+	TextField,
 } from "@material-ui/core";
 import { CartContext } from "../../contexts/CartContext";
 import { Cart } from "../../components/Cart/Cart";
+import { DialogComponent } from "../../components/Dialog/Dialog";
+import { db } from "../../firebase/firebase";
 
 const useStyles = makeStyles((theme) => ({
 	container: {
@@ -25,10 +28,31 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
+const containerStyle = {
+	width: "100%",
+	height: "100%",
+	display: "flex",
+	justifyContent: "center",
+};
+
 export const CartContainer = (props) => {
 	const classes = useStyles();
 	const history = useHistory();
 	const { cart, order, setOrder, totalAmount } = useContext(CartContext);
+	const [orderToCheck, setOrderToCheck] = useState("");
+	const [checkOrder, setCheckOrder] = useState({});
+	const [openDialog, setOpenDialog] = useState(false);
+
+	const changeOrderToCheck = (e) => {
+		setOrderToCheck(e.target.value);
+	};
+
+	const getOrder = () => {
+		const query = db.collection("orders").doc(orderToCheck);
+		query.get().then((doc) => {
+			setCheckOrder({ id: doc.id, ...doc.data() });
+		});
+	};
 
 	return (
 		<section className={classes.container}>
@@ -51,14 +75,34 @@ export const CartContainer = (props) => {
 				) : order === "" ? (
 					<article className={classes.messageContainer}>
 						<Typography variant='h3' component='p'>
-							Ups! aún no hay productos en la orden.
+							Ups! aún no hay productos en la Orden.
 						</Typography>
-						<Button
-							onClick={(e) => {
-								history.push(`/`);
-							}}>
-							Seguir comprando
-						</Button>
+						<Typography variant='h5' component='p'>
+							Si ya tenés una, acá podés verificar su estado:
+						</Typography>
+						<TextField
+							required
+							id='searchOrder'
+							variant='outlined'
+							value={orderToCheck}
+							onChange={changeOrderToCheck}
+						/>
+						{orderToCheck ? (
+							<Button
+								onClick={(e) => {
+									getOrder();
+									setOpenDialog(true);
+								}}>
+								Buscar Orden
+							</Button>
+						) : (
+							<Button
+								onClick={(e) => {
+									history.push(`/`);
+								}}>
+								Seguir comprando
+							</Button>
+						)}
 					</article>
 				) : (
 					<article className={classes.messageContainer}>
@@ -83,6 +127,19 @@ export const CartContainer = (props) => {
 			) : (
 				<Cart cart={cart} totalAmount={totalAmount} />
 			)}
+			<div style={containerStyle}>
+				<DialogComponent
+					open={openDialog}
+					openDialog={setOpenDialog}
+					handleConfirm={() => setOpenDialog(false)}
+					closeDialog={() => setOpenDialog(false)}
+					title={`Orden: ${orderToCheck}`}
+					labelSecondaryButton='Cancelar'
+					labelPrimaryButton='Aceptar'>
+					<Typography>Estado: En Preparación</Typography>
+					<Typography>Monto: {checkOrder.totalAmount}</Typography>
+				</DialogComponent>
+			</div>
 		</section>
 	);
 };
