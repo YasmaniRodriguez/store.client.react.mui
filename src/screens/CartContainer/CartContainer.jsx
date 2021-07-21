@@ -6,7 +6,9 @@ import {
 	makeStyles,
 	CircularProgress,
 	TextField,
+	Snackbar,
 } from "@material-ui/core";
+import Alert from "@material-ui/lab/Alert";
 import { CartContext } from "../../contexts/CartContext";
 import { Cart } from "../../components/Cart/Cart";
 import { DialogComponent } from "../../components/Dialog/Dialog";
@@ -49,9 +51,17 @@ export const CartContainer = (props) => {
 
 	const getOrder = () => {
 		const query = db.collection("orders").doc(orderToCheck);
-		query.get().then((doc) => {
-			setCheckOrder({ id: doc.id, ...doc.data() });
-		});
+		query
+			.get()
+			.then((doc) => {
+				if (!doc.exists) {
+					console.log("La órden no existe");
+				} else {
+					setCheckOrder({ id: doc.id, ...doc.data() });
+					setOpenDialog(true);
+				}
+			})
+			.catch((error) => console.log(error));
 	};
 
 	return (
@@ -91,7 +101,6 @@ export const CartContainer = (props) => {
 							<Button
 								onClick={(e) => {
 									getOrder();
-									setOpenDialog(true);
 								}}>
 								Buscar Orden
 							</Button>
