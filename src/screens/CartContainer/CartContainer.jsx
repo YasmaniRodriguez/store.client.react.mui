@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import {
 	Button,
@@ -134,7 +134,6 @@ export const CartContainer = (props) => {
 					handleConfirm={() => setOpenDialog(false)}
 					closeDialog={() => setOpenDialog(false)}
 					title={`Orden: ${orderToCheck}`}
-					labelSecondaryButton='Cancelar'
 					labelPrimaryButton='Aceptar'>
 					<Typography>Estado: En Preparación</Typography>
 					<Typography>Monto: {checkOrder.totalAmount}</Typography>

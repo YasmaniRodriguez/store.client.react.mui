@@ -32,11 +32,6 @@ const useStyles = makeStyles((theme) => ({
 			textTransform: "capitalize",
 		},
 		"& button:nth-child(1)": {
-			backgroundColor: "#fff!important",
-			border: ".1em solid #0d47a1!important",
-			color: "#0d47a1!important",
-		},
-		"& button:nth-child(2)": {
 			color: "#fff",
 			backgroundColor: "#0d47a1",
 			"&:disabled": {
@@ -54,7 +49,6 @@ export const DialogComponent = (props) => {
 		title,
 		children,
 		labelPrimaryButton,
-		labelSecondaryButton,
 		handleConfirm,
 		closeDialog,
 		disabled,
@@ -74,18 +68,13 @@ export const DialogComponent = (props) => {
 			className={classes.container}
 			open={open}
 			onClose={(event, reason) => {
-				if (reason !== "backdropClick") {
+				if (reason !== "backdropClick" && reason !== "escapeKeyDown") {
 					handleClose(event, reason);
 				}
-			}}
-			//onClose={handleClose}
-			//disableEscapeKeyDown={true}
-			//disableBackdropClick={true}
-		>
+			}}>
 			<DialogTitle className={classes.title}>{title}</DialogTitle>
 			<DialogContent>{children}</DialogContent>
 			<DialogActions className={classes.actions}>
-				<Button onClick={handleClose}>{labelSecondaryButton}</Button>
 				<Button onClick={handleConfirm} disabled={disabled}>
 					{labelPrimaryButton}
 				</Button>
