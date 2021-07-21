@@ -70,7 +70,18 @@ export const DialogComponent = (props) => {
 	};
 
 	return (
-		<Dialog className={classes.container} open={open} onClose={handleClose}>
+		<Dialog
+			className={classes.container}
+			open={open}
+			onClose={(event, reason) => {
+				if (reason !== "backdropClick") {
+					handleClose(event, reason);
+				}
+			}}
+			//onClose={handleClose}
+			//disableEscapeKeyDown={true}
+			//disableBackdropClick={true}
+		>
 			<DialogTitle className={classes.title}>{title}</DialogTitle>
 			<DialogContent>{children}</DialogContent>
 			<DialogActions className={classes.actions}>
