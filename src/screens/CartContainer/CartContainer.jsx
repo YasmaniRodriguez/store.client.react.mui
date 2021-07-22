@@ -44,9 +44,18 @@ export const CartContainer = (props) => {
 	const [orderToCheck, setOrderToCheck] = useState("");
 	const [checkOrder, setCheckOrder] = useState({});
 	const [openDialog, setOpenDialog] = useState(false);
+	const [openSnackbar, setOpenSnackbar] = useState(false);
 
 	const changeOrderToCheck = (e) => {
 		setOrderToCheck(e.target.value);
+	};
+
+	const handleClose = (event, reason) => {
+		if (reason === "clickaway") {
+			return;
+		}
+
+		setOpenSnackbar(false);
 	};
 
 	const getOrder = () => {
@@ -55,7 +64,7 @@ export const CartContainer = (props) => {
 			.get()
 			.then((doc) => {
 				if (!doc.exists) {
-					console.log("La órden no existe");
+					setOpenSnackbar(true);
 				} else {
 					setCheckOrder({ id: doc.id, ...doc.data() });
 					setOpenDialog(true);
@@ -147,6 +156,16 @@ export const CartContainer = (props) => {
 					<Typography>Estado: En Preparación</Typography>
 					<Typography>Monto: {checkOrder.totalAmount}</Typography>
 				</DialogComponent>
+			</div>
+			<div>
+				<Snackbar
+					open={openSnackbar}
+					autoHideDuration={6000}
+					onClose={handleClose}>
+					<Alert onClose={handleClose} severity='error'>
+						La Orden {orderToCheck} no existe!
+					</Alert>
+				</Snackbar>
 			</div>
 		</section>
 	);
