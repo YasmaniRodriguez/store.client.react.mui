@@ -7,7 +7,6 @@ import { db } from "../../firebase/firebase";
 
 const useStyles = makeStyles((theme) => ({
 	container: {
-		height: "70vh",
 		padding: "10px 20px",
 	},
 }));
@@ -30,6 +29,7 @@ export const ItemListContainer = () => {
 			});
 			setAvailableCategories(categories);
 		});
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	useEffect(() => {
@@ -46,6 +46,7 @@ export const ItemListContainer = () => {
 			});
 			setAvailableProducts(products);
 		});
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [onlyShowCategory]);
 
 	return (

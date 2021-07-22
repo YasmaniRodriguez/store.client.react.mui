@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Typography, makeStyles } from "@material-ui/core";
 import { CartWidget } from "../CartWidget/CartWidget";
+import { DeliveryWidget } from "../DeliveryWidget/DeliveryWidget";
 import { BusinessContext } from "../../contexts/BusinessContext";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
@@ -63,6 +64,7 @@ export const NavBar = (props) => {
 							})}
 						</ul>
 					</div>
+					<DeliveryWidget />
 					<CartWidget />
 				</div>
 			</nav>

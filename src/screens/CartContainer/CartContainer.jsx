@@ -16,8 +16,6 @@ import { db } from "../../firebase/firebase";
 
 const useStyles = makeStyles((theme) => ({
 	container: {
-		height: "70vh",
-		width: "100vw",
 		padding: "10px 20px",
 	},
 	messageContainer: {

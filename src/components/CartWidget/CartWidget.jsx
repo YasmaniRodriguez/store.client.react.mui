@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { IconButton, Badge, withStyles } from "@material-ui/core";
-import { ShoppingBasket } from "@material-ui/icons";
+import { ShoppingCart } from "@material-ui/icons";
 import { CartContext } from "../../contexts/CartContext";
 
 const StyledBadge = withStyles((theme) => ({
@@ -24,8 +24,8 @@ export const CartWidget = (props) => {
 				history.push(`/cart`);
 			}}>
 			<StyledBadge badgeContent={totalQuantity} color='secondary'>
-				<ShoppingBasket
-					style={{ fontSize: "clamp(3.25rem,100%,5rem)", cursor: "pointer" }}
+				<ShoppingCart
+					style={{ fontSize: "clamp(2.25rem,100%,5rem)", cursor: "pointer" }}
 				/>
 			</StyledBadge>
 		</IconButton>

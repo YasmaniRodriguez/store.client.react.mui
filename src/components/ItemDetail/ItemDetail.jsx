@@ -1,6 +1,12 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { Button, Paper, Typography, makeStyles } from "@material-ui/core";
+import {
+	Button,
+	Paper,
+	Typography,
+	makeStyles,
+	useMediaQuery,
+} from "@material-ui/core";
 import { CounterWidget } from "../CounterWidget/CounterWidget";
 
 const useStyles = makeStyles((theme) => ({
@@ -45,6 +51,7 @@ export const ItemDetail = ({
 	setShowCheckOut,
 	calcRowAmount,
 }) => {
+	const matchesMobile = useMediaQuery("(max-width: 991px)");
 	const classes = useStyles();
 	const history = useHistory();
 	const { image, name, price, description, stock } = selectedProduct;
@@ -56,11 +63,15 @@ export const ItemDetail = ({
 	};
 
 	return (
-		<div className={classes.container}>
-			<Paper className={classes.detailImage} elevation={0}>
+		<article
+			style={
+				matchesMobile ? { flexDirection: "column" } : { flexDirection: "row" }
+			}
+			className={classes.container}>
+			<Paper elevation={0} className={classes.detailImage}>
 				<img src={image} alt={name}></img>
 			</Paper>
-			<div className={classes.detailContent}>
+			<Paper elevation={0} className={classes.detailContent}>
 				<div className={classes.detailContent}>
 					<Typography
 						variant='h1'
@@ -108,7 +119,7 @@ export const ItemDetail = ({
 						</>
 					)}
 				</div>
-			</div>
-		</div>
+			</Paper>
+		</article>
 	);
 };

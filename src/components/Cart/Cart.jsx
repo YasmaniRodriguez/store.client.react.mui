@@ -13,6 +13,7 @@ import {
 	IconButton,
 	Button,
 	useMediaQuery,
+	Paper,
 } from "@material-ui/core";
 import { Delete } from "@material-ui/icons";
 import { BusinessContext } from "../../contexts/BusinessContext";
@@ -110,10 +111,10 @@ export const Cart = () => {
 					? { display: "flex", flexDirection: "column" }
 					: { display: "flex" }
 			}>
-			<div className={classes.list}>
+			<Paper elevation={0} className={classes.list}>
 				<CartList cart={cart} />
-			</div>
-			<div className={classes.summary}>
+			</Paper>
+			<Paper elevation={0} className={classes.summary}>
 				<CartSummary
 					amount={totalAmount}
 					quantity={totalQuantity}
@@ -129,7 +130,7 @@ export const Cart = () => {
 					onClick={(e) => sendOrderToProvider()}>
 					Enviar orden
 				</Button>
-			</div>
+			</Paper>
 		</article>
 	);
 };
@@ -176,6 +177,7 @@ const CartItem = (props) => {
 
 	useEffect(() => {
 		setMyAmount(calcRowAmount(myQuantity, myPrice));
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [myQuantity]);
 
 	useEffect(() => {
@@ -189,6 +191,7 @@ const CartItem = (props) => {
 			addItemToCart(itemToAdd);
 		}
 		getItemToAdd();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [myQuantity]);
 
 	return (
