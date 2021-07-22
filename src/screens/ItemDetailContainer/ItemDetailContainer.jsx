@@ -23,9 +23,12 @@ export const ItemDetailContainer = (props) => {
 	useEffect(() => {
 		const query = db.collection("products").doc(onlyShowProduct);
 
-		query.get().then((doc) => {
-			setSelectedProduct({ id: doc.id, ...doc.data() });
-		});
+		query
+			.get()
+			.then((doc) => {
+				setSelectedProduct({ id: doc.id, ...doc.data() });
+			})
+			.catch((error) => console.log(error));
 	}, [onlyShowProduct]);
 
 	return (

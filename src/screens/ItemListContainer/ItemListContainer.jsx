@@ -7,7 +7,8 @@ import { db } from "../../firebase/firebase";
 
 const useStyles = makeStyles((theme) => ({
 	container: {
-		padding: "10px 20px",
+		height: "100vh",
+		padding: "20px 40px",
 	},
 }));
 
@@ -20,15 +21,18 @@ export const ItemListContainer = () => {
 	useEffect(() => {
 		const query = db.collection("categories");
 
-		query.get().then((querySnapshot) => {
-			const categories = querySnapshot.docs.map((category) => {
-				const myData = category.data();
-				const id = category.id;
-				const obj = { ...myData, id };
-				return obj;
-			});
-			setAvailableCategories(categories);
-		});
+		query
+			.get()
+			.then((querySnapshot) => {
+				const categories = querySnapshot.docs.map((category) => {
+					const myData = category.data();
+					const id = category.id;
+					const obj = { ...myData, id };
+					return obj;
+				});
+				setAvailableCategories(categories);
+			})
+			.catch((error) => console.log(error));
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
@@ -37,15 +41,18 @@ export const ItemListContainer = () => {
 			? db.collection("products").where("category", "==", onlyShowCategory)
 			: db.collection("products");
 
-		query.get().then((querySnapshot) => {
-			const products = querySnapshot.docs.map((product) => {
-				const myData = product.data();
-				const id = product.id;
-				const obj = { ...myData, id };
-				return obj;
-			});
-			setAvailableProducts(products);
-		});
+		query
+			.get()
+			.then((querySnapshot) => {
+				const products = querySnapshot.docs.map((product) => {
+					const myData = product.data();
+					const id = product.id;
+					const obj = { ...myData, id };
+					return obj;
+				});
+				setAvailableProducts(products);
+			})
+			.catch((error) => console.log(error));
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [onlyShowCategory]);
 

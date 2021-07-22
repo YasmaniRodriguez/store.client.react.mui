@@ -1,9 +1,9 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { BusinessContextProvider } from "./contexts/BusinessContext";
 import { CartContextProvider } from "./contexts/CartContext";
 import { NavBar } from "./components/NavBar/NavBar";
-import { Footer } from "./components/Footer/Footer";
+import { PageFooter } from "./components/PageFooter/PageFooter";
 import { ItemListContainer } from "./screens/ItemListContainer/ItemListContainer";
 import { ItemDetailContainer } from "./screens/ItemDetailContainer/ItemDetailContainer";
 import { CartContainer } from "./screens/CartContainer/CartContainer";
@@ -15,6 +15,7 @@ const App = (props) => {
 				<CartContextProvider>
 					<BrowserRouter>
 						<NavBar />
+						{/* <NavBar /> */}
 						<Switch>
 							<Route exact path='/'>
 								<ItemListContainer />
@@ -29,7 +30,7 @@ const App = (props) => {
 								<CartContainer />
 							</Route>
 						</Switch>
-						<Footer />
+						<PageFooter />
 					</BrowserRouter>
 				</CartContextProvider>
 			</BusinessContextProvider>
