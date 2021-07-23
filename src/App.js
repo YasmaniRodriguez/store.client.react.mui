@@ -3,10 +3,11 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { BusinessContextProvider } from "./contexts/BusinessContext";
 import { CartContextProvider } from "./contexts/CartContext";
 import { NavBar } from "./components/NavBar/NavBar";
-import { PageFooter } from "./components/PageFooter/PageFooter";
+import { Footer } from "./components/Footer/Footer";
 import { ItemListContainer } from "./screens/ItemListContainer/ItemListContainer";
 import { ItemDetailContainer } from "./screens/ItemDetailContainer/ItemDetailContainer";
 import { CartContainer } from "./screens/CartContainer/CartContainer";
+import { TrackingContainer } from "./screens/TrackingContainer/TrackingContainer";
 
 const App = (props) => {
 	return (
@@ -15,7 +16,6 @@ const App = (props) => {
 				<CartContextProvider>
 					<BrowserRouter>
 						<NavBar />
-						{/* <NavBar /> */}
 						<Switch>
 							<Route exact path='/'>
 								<ItemListContainer />
@@ -26,11 +26,14 @@ const App = (props) => {
 							<Route excat path='/product/:id'>
 								<ItemDetailContainer />
 							</Route>
+							<Route excat path='/tracking'>
+								<TrackingContainer />
+							</Route>
 							<Route excat path='/cart'>
 								<CartContainer />
 							</Route>
 						</Switch>
-						<PageFooter />
+						<Footer />
 					</BrowserRouter>
 				</CartContextProvider>
 			</BusinessContextProvider>

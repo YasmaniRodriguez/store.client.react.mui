@@ -1,18 +1,13 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import {
 	Button,
 	Typography,
 	makeStyles,
 	CircularProgress,
-	TextField,
-	Snackbar,
 } from "@material-ui/core";
-import Alert from "@material-ui/lab/Alert";
 import { CartContext } from "../../contexts/CartContext";
 import { Cart } from "../../components/Cart/Cart";
-import { DialogComponent } from "../../components/Dialog/Dialog";
-import { db } from "../../firebase/firebase";
 
 const useStyles = makeStyles((theme) => ({
 	container: {
@@ -28,48 +23,10 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const containerStyle = {
-	width: "100%",
-	height: "100%",
-	display: "flex",
-	justifyContent: "center",
-};
-
 export const CartContainer = (props) => {
 	const classes = useStyles();
 	const history = useHistory();
 	const { cart, order, setOrder, totalAmount } = useContext(CartContext);
-	const [orderToCheck, setOrderToCheck] = useState("");
-	const [checkOrder, setCheckOrder] = useState({});
-	const [openDialog, setOpenDialog] = useState(false);
-	const [openSnackbar, setOpenSnackbar] = useState(false);
-
-	const changeOrderToCheck = (e) => {
-		setOrderToCheck(e.target.value);
-	};
-
-	const handleClose = (event, reason) => {
-		if (reason === "clickaway") {
-			return;
-		}
-
-		setOpenSnackbar(false);
-	};
-
-	const getOrder = () => {
-		const query = db.collection("orders").doc(orderToCheck);
-		query
-			.get()
-			.then((doc) => {
-				if (!doc.exists) {
-					setOpenSnackbar(true);
-				} else {
-					setCheckOrder({ id: doc.id, ...doc.data() });
-					setOpenDialog(true);
-				}
-			})
-			.catch((error) => console.log(error));
-	};
 
 	return (
 		<section className={classes.container}>
@@ -94,31 +51,12 @@ export const CartContainer = (props) => {
 						<Typography variant='h3' component='p'>
 							Ups! aún no hay productos en la Orden.
 						</Typography>
-						<Typography variant='h5' component='p'>
-							Si ya tenés una, acá podés verificar su estado:
-						</Typography>
-						<TextField
-							required
-							id='searchOrder'
-							variant='outlined'
-							value={orderToCheck}
-							onChange={changeOrderToCheck}
-						/>
-						{orderToCheck ? (
-							<Button
-								onClick={(e) => {
-									getOrder();
-								}}>
-								Buscar Orden
-							</Button>
-						) : (
-							<Button
-								onClick={(e) => {
-									history.push(`/`);
-								}}>
-								Seguir comprando
-							</Button>
-						)}
+						<Button
+							onClick={(e) => {
+								history.push(`/`);
+							}}>
+							Seguir comprando
+						</Button>
 					</article>
 				) : (
 					<article className={classes.messageContainer}>
@@ -143,28 +81,6 @@ export const CartContainer = (props) => {
 			) : (
 				<Cart cart={cart} totalAmount={totalAmount} />
 			)}
-			<div style={containerStyle}>
-				<DialogComponent
-					open={openDialog}
-					openDialog={setOpenDialog}
-					handleConfirm={() => setOpenDialog(false)}
-					closeDialog={() => setOpenDialog(false)}
-					title={`Orden: ${orderToCheck}`}
-					labelPrimaryButton='Aceptar'>
-					<Typography>Estado: En Preparación</Typography>
-					<Typography>Monto: {checkOrder.totalAmount}</Typography>
-				</DialogComponent>
-			</div>
-			<div>
-				<Snackbar
-					open={openSnackbar}
-					autoHideDuration={6000}
-					onClose={handleClose}>
-					<Alert onClose={handleClose} severity='error'>
-						La Orden {orderToCheck} no existe!
-					</Alert>
-				</Snackbar>
-			</div>
 		</section>
 	);
 };

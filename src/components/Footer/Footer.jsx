@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export const PageFooter = () => {
+export const Footer = () => {
 	const classes = useStyles();
 	return (
 		<footer className={classes.container}>
