@@ -26,7 +26,7 @@ export const Footer = () => {
 					variant='h3'
 					component='p'
 					style={{ fontSize: "clamp(2.75rem,100%,3rem)", padding: "5px" }}>
-					Seginos en nuestras redes
+					Seguinos en nuestras redes
 				</Typography>
 			</div>
 			<div style={{ padding: "10px" }}>

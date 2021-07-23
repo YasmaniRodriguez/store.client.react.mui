@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button, Typography, makeStyles, TextField } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -15,31 +15,31 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export const Tracking = ({ setOrderToCheck }) => {
+export const Tracking = ({
+	orderToCheck,
+	changeOrderToCheck,
+	getOrderTracking,
+}) => {
 	const classes = useStyles();
-	const [myOrder, setMyOrder] = useState();
-	const changeOrderToCheck = (e) => {
-		setMyOrder(e.target.value);
-	};
 
 	return (
 		<section className={classes.container}>
 			<article className={classes.messageContainer}>
 				<Typography variant='h5' component='p'>
-					Si ya tenés una, acá podés verificar su estado:
+					Si tenés una Órden, acá podés verificar su estado:
 				</Typography>
 				<TextField
 					required
-					id='searchOrder'
+					id='searchMyOrder'
 					variant='outlined'
-					value={myOrder}
+					value={orderToCheck}
 					onChange={changeOrderToCheck}
 				/>
 				<Button
 					onClick={(e) => {
-						setOrderToCheck(myOrder);
+						getOrderTracking();
 					}}>
-					Buscar Orden
+					Buscar
 				</Button>
 			</article>
 		</section>

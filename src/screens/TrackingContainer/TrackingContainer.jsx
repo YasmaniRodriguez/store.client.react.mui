@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Typography, makeStyles, CircularProgress } from "@material-ui/core";
 import { DialogComponent } from "../../components/Dialog/Dialog";
 import { SnackBarComponent } from "../../components/SnackBar/SnackBar";
@@ -33,7 +33,11 @@ export const TrackingContainer = (props) => {
 	const [openSnackBar, setOpenSnackBar] = useState(false);
 	const [orderToCheck, setOrderToCheck] = useState();
 
-	useEffect(() => {
+	const changeOrderToCheck = (e) => {
+		setOrderToCheck(e.target.value);
+	};
+
+	const getOrderTracking = () => {
 		const query = db.collection("orders").doc(orderToCheck);
 		if (orderToCheck) {
 			query
@@ -47,19 +51,25 @@ export const TrackingContainer = (props) => {
 					}
 				})
 				.catch((error) => console.log(error));
+		} else {
+			setOpenSnackBar(true);
 		}
-	}, [orderToCheck]);
+	};
 
 	return (
 		<section className={classes.container}>
 			<article className={classes.tracking}>
-				<Tracking setOrderToCheck={setOrderToCheck} />
+				<Tracking
+					orderToCheck={orderToCheck}
+					changeOrderToCheck={changeOrderToCheck}
+					getOrderTracking={getOrderTracking}
+				/>
 				<div className={classes.dialogContainer}>
 					<DialogComponent
 						open={openDialog}
 						openDialog={setOpenDialog}
 						handleConfirm={() => setOpenDialog(false)}
-						//closeDialog={() => setOpenDialog(false)}
+						closeDialog={() => setOpenDialog(false)}
 						title={`Orden: ${orderToCheck}`}
 						labelPrimaryButton='Aceptar'>
 						{checkedOrder ? (
