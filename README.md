@@ -23,12 +23,12 @@ Es canal oficial para la toma de pedidos online de la Casa de Pizzas, Tartas y E
 
 ## Herramientas utilizadas en el proyecto:
 
-* React JS
-* Create React App
-* React Router DOM
-* Firebase's Firestore
-* Bootstrap
-* Material UI
+* React JS.
+* Create React App.
+* React Router DOM.
+* Firebase's Firestore.
+* Bootstrap.
+* Material UI.
 
 ## Cómo utilizar este proyecto:
 
