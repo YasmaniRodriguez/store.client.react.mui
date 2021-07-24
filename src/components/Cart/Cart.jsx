@@ -172,11 +172,21 @@ const CartItem = (props) => {
 	const [myAmount, setMyAmount] = useState(amount);
 
 	const quantityChange = (e) => {
-		setMyQuantity(parseInt(e.target.value));
+		const minQty = 1;
+		const maxQty = product.stock;
+		const curQty = parseInt(e.target.value);
+		if (curQty <= minQty) {
+			setMyQuantity(minQty);
+		} else if (curQty >= maxQty) {
+			setMyQuantity(maxQty);
+		} else {
+			setMyQuantity(curQty);
+		}
 	};
 
 	useEffect(() => {
 		setMyAmount(calcRowAmount(myQuantity, myPrice));
+
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [myQuantity]);
 

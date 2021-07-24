@@ -36,6 +36,7 @@ export const Tracking = ({
 					onChange={changeOrderToCheck}
 				/>
 				<Button
+					disabled={orderToCheck === undefined || orderToCheck === ""}
 					onClick={(e) => {
 						getOrderTracking();
 					}}>
