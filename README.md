@@ -1,70 +1,44 @@
-# Getting Started with Create React App
+# YEAH! CASA DE PIZZAS, TARTAS Y EMPANADAS
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+* Agregar GIF aca
 
-## Available Scripts
+Es canal oficial para la toma de pedidos online de la Casa de Pizzas, Tartas y Empanadas denominada YaEstamosAlHorno! 
 
-In the project directory, you can run:
+## Funcionalidades:
 
-### `npm start`
+* Filtrar productos por categorías.
+* Ver información del producto.
+* Agregar productos al carrito de compras.
+* Eliminar productos seleccionados del carrito de compras.
+* Modificar las cantidades de cada producto agregado al carrito de compras.
+* Calcular el monto de cada producto agregado al carrito de compras según la cantidad y el precio.
+* Calcular el monto total de la orden.
+* Calcular la cantidad total de productos de la orden.
+* Agregar/Modificar los datos del comprador.
+* Enviar la orden al proveedor.
+* Consultar el estado de la orden.
+* Control de stock:
+  * Las cantidades agregadas al carrito de compras se ajustan a la disponibilidad.
+  * Al enviar y aprobar la Orden, se actualiza el stock de todos los productos enviados.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Herramientas utilizadas en el proyecto:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+* React JS
+* Create React App
+* React Router DOM
+* Firebase's Firestore
+* Bootstrap
+* Material UI
 
-### `npm test`
+## Cómo utilizar este proyecto:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Si querés ver el proyecto en acción, visitá [Yeah! Casa de Pizzas, Tartas y Empanadas](https://yaestamosalhorno.000webhostapp.com/)
 
-### `npm run build`
+Y si querés usarlo localmente, ejecutá los siguienets pasos:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* Cloná este repositorio en tu computadora.
+* Usando la Terminal navega hasta el directorio en el que descargaste el repositorio.
+* Ejecuta el comando npm i.
+* Cuando termine la instalación, ejecuta el comando npm start.
+* Y listo!, pasado unos segundos el proyectoe stará corriendo en tu Navegador. 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
