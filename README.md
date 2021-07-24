@@ -18,8 +18,8 @@ Es canal oficial para la toma de pedidos online de YaEstamosAlHorno! Casa de Piz
 * Enviar la orden al proveedor.
 * Consultar el estado de la orden.
 * Control de stock:
-  * Las cantidades agregadas al carrito de compras se ajustan a la disponibilidad.
-  * Al enviar y aprobar la Orden, se actualiza el stock de todos los productos enviados.
+  > Las cantidades agregadas al carrito de compras se ajustan a la disponibilidad.
+  > Al enviar y aprobar la Orden, se actualiza el stock de todos los productos enviados.
 
 ## Herramientas utilizadas en el proyecto:
 
@@ -37,8 +37,8 @@ Si querés ver el proyecto en acción, visitá [Yeah! Casa de Pizzas, Tartas y E
 Y si querés usarlo localmente, ejecutá los siguienets pasos:
 
 * Cloná este repositorio en tu computadora.
-* Usando la Terminal navega hasta el directorio en el que descargaste el repositorio.
-* Ejecuta el comando npm i.
-* Cuando termine la instalación, ejecuta el comando npm start.
+* Usando la **Terminal** navega hasta el directorio en el que descargaste el repositorio.
+* Ejecuta el comando **npm i**.
+* Cuando termine la instalación, ejecuta el comando **npm start**.
 * Y listo!, pasado unos segundos el proyectoe stará corriendo en tu Navegador. 
 
