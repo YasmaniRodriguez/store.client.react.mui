@@ -5,6 +5,8 @@ export const BusinessContext = createContext();
 export const BusinessContextProvider = ({ children }) => {
 	const [availableCategories, setAvailableCategories] = useState([]);
 	const [availableProducts, setAvailableProducts] = useState([]);
+	const [availableProductsCombinations, setAvailableProductsCombinations] =
+		useState([]);
 
 	const findProduct = (productId) =>
 		availableProducts.find((product) => product.id === productId);
@@ -27,6 +29,8 @@ export const BusinessContextProvider = ({ children }) => {
 				findProduct,
 				findCategory,
 				whereIsMyIcon,
+				availableProductsCombinations,
+				setAvailableProductsCombinations,
 			}}>
 			{children}
 		</BusinessContext.Provider>

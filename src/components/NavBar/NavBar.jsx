@@ -72,7 +72,7 @@ export const NavBar = () => {
 								? { display: "flex", flexDirection: "column" }
 								: { display: "flex", flexDirection: "row" }
 						}>
-						<li className='nav-item'>
+						{/* <li className='nav-item'>
 							<Link
 								className='nav-link'
 								to={`/category/lFsX5wIkyiZ7PEiDUjeE`}
@@ -88,7 +88,7 @@ export const NavBar = () => {
 									Combos
 								</Typography>
 							</Link>
-						</li>
+						</li> */}
 
 						<li className='nav-item'>
 							<Link

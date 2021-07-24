@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { makeStyles } from "@material-ui/core";
 import { BusinessContext } from "../../contexts/BusinessContext.js";
 import { ItemList } from "../../components/ItemList/ItemList.jsx";
+import { CarouselComponent } from "../../components/Carousel/Carousel.jsx";
 import { db } from "../../firebase/firebase";
 
 const useStyles = makeStyles((theme) => ({
@@ -15,8 +16,13 @@ const useStyles = makeStyles((theme) => ({
 export const ItemListContainer = () => {
 	const classes = useStyles();
 	const { id: onlyShowCategory } = useParams();
-	const { setAvailableCategories, availableProducts, setAvailableProducts } =
-		useContext(BusinessContext);
+	const {
+		setAvailableCategories,
+		availableProducts,
+		setAvailableProducts,
+		availableProductsCombinations,
+		setAvailableProductsCombinations,
+	} = useContext(BusinessContext);
 
 	useEffect(() => {
 		const query = db.collection("categories");
@@ -37,9 +43,31 @@ export const ItemListContainer = () => {
 	}, []);
 
 	useEffect(() => {
+		const query = db
+			.collection("products")
+			.where("category", "==", "lFsX5wIkyiZ7PEiDUjeE");
+
+		query
+			.get()
+			.then((querySnapshot) => {
+				const products = querySnapshot.docs.map((product) => {
+					const myData = product.data();
+					const id = product.id;
+					const obj = { ...myData, id };
+					return obj;
+				});
+				setAvailableProductsCombinations(products);
+			})
+			.catch((error) => console.log(error));
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
+	useEffect(() => {
 		const query = onlyShowCategory
 			? db.collection("products").where("category", "==", onlyShowCategory)
-			: db.collection("products");
+			: db
+					.collection("products")
+					.where("category", "!=", "lFsX5wIkyiZ7PEiDUjeE");
 
 		query
 			.get()
@@ -58,7 +86,16 @@ export const ItemListContainer = () => {
 
 	return (
 		<section className={classes.container}>
-			<ItemList availableProducts={availableProducts} />
+			{onlyShowCategory ? (
+				<ItemList availableProducts={availableProducts} />
+			) : (
+				<>
+					<CarouselComponent
+						availableProductsCombinations={availableProductsCombinations}
+					/>
+					{<ItemList availableProducts={availableProducts} />}
+				</>
+			)}
 		</section>
 	);
 };
