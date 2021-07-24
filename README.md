@@ -2,7 +2,7 @@
 
 * Agregar GIF aca
 
-Es canal oficial para la toma de pedidos online de la Casa de Pizzas, Tartas y Empanadas denominada YaEstamosAlHorno! 
+Es canal oficial para la toma de pedidos online de YaEstamosAlHorno! Casa de Pizzas, Tartas y Empanadas. 
 
 ## Funcionalidades:
 
