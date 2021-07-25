@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-import { makeStyles } from "@material-ui/core";
+import { Typography, makeStyles, CircularProgress } from "@material-ui/core";
 import { BusinessContext } from "../../contexts/BusinessContext.js";
 import { ItemList } from "../../components/ItemList/ItemList.jsx";
 import { CarouselComponent } from "../../components/Carousel/Carousel.jsx";
@@ -8,8 +8,27 @@ import { db } from "../../firebase/firebase";
 
 const useStyles = makeStyles((theme) => ({
 	container: {
+		minHeight: "100vh",
+		display: "flex",
+		flexDirection: "column",
+		"& h5": {
+			alignSelf: "center",
+			backgroundColor: "rgb(249 248 248)",
+			width: "100%",
+			textAlign: "center",
+			textTransform: "uppercase",
+		},
+	},
+	loading: {
+		width: "100vw",
 		height: "100vh",
-		padding: "20px 40px",
+		display: "flex",
+		flexDirection: "column",
+		justifyContent: "center",
+		alignItems: "center",
+		"& h3": {
+			fontFamily: "Ranchers",
+		},
 	},
 }));
 
@@ -90,10 +109,21 @@ export const ItemListContainer = () => {
 				<ItemList availableProducts={availableProducts} />
 			) : (
 				<>
-					<CarouselComponent
-						availableProductsCombinations={availableProductsCombinations}
-					/>
-					{<ItemList availableProducts={availableProducts} />}
+					{availableProducts.length === 0 ? (
+						<div className={classes.loading}>
+							<CircularProgress />
+							<Typography variant='h3'>Cargando...</Typography>
+						</div>
+					) : (
+						<>
+							<Typography variant='h5'>productos destacados</Typography>
+							<CarouselComponent
+								availableProductsCombinations={availableProductsCombinations}
+							/>
+							<Typography variant='h5'>todos nuestros productos</Typography>
+							<ItemList availableProducts={availableProducts} />
+						</>
+					)}
 				</>
 			)}
 		</section>

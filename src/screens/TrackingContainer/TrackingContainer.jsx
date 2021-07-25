@@ -8,6 +8,7 @@ import { db } from "../../firebase/firebase";
 const useStyles = makeStyles((theme) => ({
 	container: {
 		padding: "10px 20px",
+		minHeight: "100vh",
 	},
 	tracking: {
 		width: "100%",

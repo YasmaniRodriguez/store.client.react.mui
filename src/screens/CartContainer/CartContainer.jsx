@@ -12,6 +12,7 @@ import { Cart } from "../../components/Cart/Cart";
 const useStyles = makeStyles((theme) => ({
 	container: {
 		padding: "10px 20px",
+		minHeight: "100vh",
 	},
 	messageContainer: {
 		width: "100%",

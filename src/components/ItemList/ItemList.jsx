@@ -1,20 +1,12 @@
 import React, { Fragment } from "react";
-import { Typography, makeStyles, CircularProgress } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core";
 import { Item } from "../Item/Item.jsx";
 
 const useStyles = makeStyles((theme) => ({
-	loadingContainer: {
-		width: "100%",
-		height: "100%",
-		display: "flex",
-		flexDirection: "column",
-		justifyContent: "center",
-		alignItems: "center",
-	},
-	loadingText: {
-		fontFamily: "Ranchers",
-	},
-	productsContainer: {
+	container: {
+		//backgroundColor: "rgb(249 248 248)",
+		padding: "20px 40px",
+		//border: "solid 5px yellow",
 		display: "grid",
 		gap: "2rem",
 		gridAutoRows: "22rem",
@@ -26,23 +18,12 @@ export const ItemList = ({ availableProducts }) => {
 	const classes = useStyles();
 
 	return (
-		<>
-			{availableProducts.length === 0 ? (
-				<div className={classes.loadingContainer}>
-					<CircularProgress />
-					<Typography className={classes.loadingText} variant='h3'>
-						Cargando...
-					</Typography>
-				</div>
-			) : (
-				<div className={classes.productsContainer}>
-					{availableProducts.map((product, i) => (
-						<Fragment key={i}>
-							<Item index={i} {...product} />
-						</Fragment>
-					))}
-				</div>
-			)}
-		</>
+		<div className={classes.container}>
+			{availableProducts.map((product, i) => (
+				<Fragment key={i}>
+					<Item index={i} {...product} />
+				</Fragment>
+			))}
+		</div>
 	);
 };

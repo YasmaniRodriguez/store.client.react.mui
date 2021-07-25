@@ -5,8 +5,6 @@ import { Facebook, Instagram, YouTube } from "@material-ui/icons";
 const useStyles = makeStyles((theme) => ({
 	container: {
 		backgroundColor: "rgb(63 63 63)",
-		position: "fixed",
-		bottom: 0,
 		textAlign: "center",
 		width: "100%",
 

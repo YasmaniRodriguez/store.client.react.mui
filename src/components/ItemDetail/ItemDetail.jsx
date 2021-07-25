@@ -11,8 +11,6 @@ import { CounterWidget } from "../CounterWidget/CounterWidget";
 
 const useStyles = makeStyles((theme) => ({
 	container: {
-		height: "90vh",
-		width: "100%",
 		display: "flex",
 		alignItems: "center",
 		justifyContent: "space-around",
