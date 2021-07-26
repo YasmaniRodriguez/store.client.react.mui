@@ -9,7 +9,6 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 const useStyles = makeStyles((theme) => ({
 	container: {
 		backgroundColor: "rgb(63 63 63)",
-		width: "100vw",
 		padding: "0px",
 		"& img": {
 			heigth: "40px",
