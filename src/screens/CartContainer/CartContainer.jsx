@@ -13,10 +13,11 @@ const useStyles = makeStyles((theme) => ({
 	container: {
 		padding: "10px 20px",
 		minHeight: "100vh",
+		border: "solid 5px red",
 	},
 	messageContainer: {
 		width: "100%",
-		height: "100%",
+		height: "100vh",
 		display: "flex",
 		flexDirection: "column",
 		justifyContent: "center",
@@ -50,13 +51,13 @@ export const CartContainer = (props) => {
 				) : order === "" ? (
 					<article className={classes.messageContainer}>
 						<Typography variant='h3' component='p'>
-							Ups! aún no hay productos en la Orden.
+							No hay productos en la Órden aún.
 						</Typography>
 						<Button
 							onClick={(e) => {
 								history.push(`/`);
 							}}>
-							Seguir comprando
+							Ir a comprar
 						</Button>
 					</article>
 				) : (
@@ -65,7 +66,7 @@ export const CartContainer = (props) => {
 							Orden Aprobada!
 						</Typography>
 						<Typography variant='h4' component='p'>
-							Podés darle seguimiento con el código:
+							Tu Nro. de Órden es:
 						</Typography>
 						<Typography variant='h5' component='p'>
 							{order}

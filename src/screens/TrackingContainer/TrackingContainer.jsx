@@ -11,10 +11,11 @@ const useStyles = makeStyles((theme) => ({
 		minHeight: "100vh",
 	},
 	tracking: {
-		width: "100%",
-		height: "100%",
+		//width: "100%",
+		height: "100vh",
+		//border: "solid 5px red",
 		display: "flex",
-		flexDirection: "column",
+		//flexDirection: "column",
 		justifyContent: "center",
 		alignItems: "center",
 	},
@@ -65,28 +66,28 @@ export const TrackingContainer = (props) => {
 					changeOrderToCheck={changeOrderToCheck}
 					getOrderTracking={getOrderTracking}
 				/>
-				<div className={classes.dialogContainer}>
-					<DialogComponent
-						open={openDialog}
-						openDialog={setOpenDialog}
-						handleConfirm={() => setOpenDialog(false)}
-						closeDialog={() => setOpenDialog(false)}
-						title={`Orden: ${orderToCheck}`}
-						labelPrimaryButton='Aceptar'>
-						{checkedOrder ? (
-							<Typography>Estado: En Preparación</Typography>
-						) : (
-							<CircularProgress />
-						)}
-					</DialogComponent>
-				</div>
-				<div>
-					<SnackBarComponent
-						open={openSnackBar}
-						message={`La Orden ${orderToCheck} no existe!`}
-						openSnackBar={setOpenSnackBar}></SnackBarComponent>
-				</div>
 			</article>
+			<div className={classes.dialogContainer}>
+				<DialogComponent
+					open={openDialog}
+					openDialog={setOpenDialog}
+					handleConfirm={() => setOpenDialog(false)}
+					closeDialog={() => setOpenDialog(false)}
+					title={`Orden: ${orderToCheck}`}
+					labelPrimaryButton='Aceptar'>
+					{checkedOrder ? (
+						<Typography>Estado: En Preparación</Typography>
+					) : (
+						<CircularProgress />
+					)}
+				</DialogComponent>
+			</div>
+			<div>
+				<SnackBarComponent
+					open={openSnackBar}
+					message={`La Orden ${orderToCheck} no existe!`}
+					openSnackBar={setOpenSnackBar}></SnackBarComponent>
+			</div>
 		</section>
 	);
 };

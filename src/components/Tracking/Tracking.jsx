@@ -4,10 +4,6 @@ import { Button, Typography, makeStyles, TextField } from "@material-ui/core";
 const useStyles = makeStyles((theme) => ({
 	container: {
 		padding: "10px 20px",
-	},
-	messageContainer: {
-		width: "100%",
-		height: "100%",
 		display: "flex",
 		flexDirection: "column",
 		justifyContent: "center",
@@ -23,26 +19,26 @@ export const Tracking = ({
 	const classes = useStyles();
 
 	return (
-		<section className={classes.container}>
-			<article className={classes.messageContainer}>
-				<Typography variant='h5' component='p'>
-					Si tenés una Órden, acá podés verificar su estado:
-				</Typography>
-				<TextField
-					required
-					id='searchMyOrder'
-					variant='outlined'
-					value={orderToCheck}
-					onChange={changeOrderToCheck}
-				/>
-				<Button
-					disabled={orderToCheck === undefined || orderToCheck === ""}
-					onClick={(e) => {
-						getOrderTracking();
-					}}>
-					Buscar
-				</Button>
-			</article>
-		</section>
+		<div className={classes.container}>
+			<Typography variant='h5' component='p'>
+				Ya tenés una Órden y querés verificar su estado?
+			</Typography>
+			<TextField
+				required
+				id='searchMyOrder'
+				variant='outlined'
+				value={orderToCheck}
+				onChange={changeOrderToCheck}
+				style={{ padding: "20px 0px" }}
+				placeholder='Nro. de Orden'
+			/>
+			<Button
+				disabled={orderToCheck === undefined || orderToCheck === ""}
+				onClick={(e) => {
+					getOrderTracking();
+				}}>
+				Consultar estado
+			</Button>
+		</div>
 	);
 };
