@@ -7,9 +7,11 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 const useStyles = makeStyles((theme) => ({
 	container: {
 		display: "flex",
+		//backgroundColor: "rgb(154 151 151)",
 		justifyContent: "space-around",
 		alignItems: "center",
 		padding: "10px 10px",
+		height: "100%",
 		"& .carousel-inner": {
 			width: "100%",
 		},
@@ -23,14 +25,7 @@ export const CarouselComponent = ({ availableProductsCombinations }) => {
 	return (
 		<>
 			{!matchesMobile ? (
-				<div
-					style={{
-						display: "grid",
-						gap: "2rem",
-						//gridAutoRows: "35rem",
-						gridTemplateColumns: "repeat(auto-fill, minmax(25rem, 1fr))",
-					}}
-					className={classes.container}>
+				<div className={classes.container}>
 					{availableProductsCombinations.map((combo, i) => (
 						<div key={i}>
 							<Item index={i} {...combo} />

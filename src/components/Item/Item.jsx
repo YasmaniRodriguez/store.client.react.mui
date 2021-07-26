@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
 		display: "flex",
 		flexDirection: "column",
 		justifyContent: "space-around",
-		//fontFamily: theme.typography.fontFamily.Ranchers,
+		height: "100%",
 	},
 	media: {
 		height: "10em",
@@ -29,18 +29,18 @@ const useStyles = makeStyles((theme) => ({
 	},
 	product: {
 		textTransform: "uppercase",
-		//fontFamily: "Ranchers",
+		fontFamily: "Ranchers",
 	},
 	price: {
 		padding: "10px 0px",
-		//fontFamily: "Ranchers",
+		fontFamily: "Ranchers",
 	},
 	button: {
 		borderColor: theme.palette.success.light,
 		color: theme.palette.success.light,
 		textTransform: "none",
 		borderRadius: 50,
-		//fontFamily: "Ranchers",
+		fontFamily: "Ranchers",
 	},
 }));
 
