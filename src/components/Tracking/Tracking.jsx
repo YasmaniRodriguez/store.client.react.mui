@@ -24,7 +24,7 @@ export const Tracking = ({
 	return (
 		<div className={classes.container}>
 			<Typography variant='h4' component='p'>
-				Querés verificar el estado de tu Órden?
+				Querés verificar el estado de tu Orden?
 			</Typography>
 			<TextField
 				className={classes.helperTextStyles}
@@ -33,7 +33,7 @@ export const Tracking = ({
 				inputProps={{ min: 0, style: { textAlign: "center" } }}
 				value={orderToCheck}
 				fullWidth
-				helperText='Escribí acá el Nro. de tu Órden'
+				helperText='Escribí acá el Nro. de la Orden'
 				onChange={changeOrderToCheck}
 				style={{ padding: "20px 0px", alignSelf: "center" }}
 			/>

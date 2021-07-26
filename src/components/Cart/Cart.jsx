@@ -13,7 +13,6 @@ import {
 	IconButton,
 	Button,
 	useMediaQuery,
-	Paper,
 } from "@material-ui/core";
 import { Delete } from "@material-ui/icons";
 import { BusinessContext } from "../../contexts/BusinessContext";
@@ -23,15 +22,19 @@ import firebase from "firebase/app";
 import "@firebase/firestore";
 
 const useStyles = makeStyles((theme) => ({
-	container: {},
+	container: {
+		height: "100vh",
+	},
 	list: {
 		display: "flex",
 		width: "50%",
+		border: "solid 5px yellow",
 	},
 	summary: {
 		display: "flex",
 		flexDirection: "column",
 		width: "50%",
+		border: "solid 5px green",
 	},
 }));
 
@@ -106,15 +109,16 @@ export const Cart = () => {
 
 	return (
 		<article
+			className={classes.container}
 			style={
 				matchesMobile
 					? { display: "flex", flexDirection: "column" }
 					: { display: "flex" }
 			}>
-			<Paper elevation={0} className={classes.list}>
+			<div className={classes.list}>
 				<CartList cart={cart} />
-			</Paper>
-			<Paper elevation={0} className={classes.summary}>
+			</div>
+			<div className={classes.summary}>
 				<CartSummary
 					amount={totalAmount}
 					quantity={totalQuantity}
@@ -130,7 +134,7 @@ export const Cart = () => {
 					onClick={(e) => sendOrderToProvider()}>
 					Enviar orden
 				</Button>
-			</Paper>
+			</div>
 		</article>
 	);
 };

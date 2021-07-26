@@ -40,43 +40,58 @@ export const CartContainer = (props) => {
 							flexDirection: "column",
 							justifyContent: "center",
 							alignItems: "center",
-							height: "100%",
+							height: "100vh",
 							width: "100%",
 						}}>
 						<CircularProgress />
 						<Typography variant='h3' component='p'>
-							Enviando Orden al Proveedor...
+							Aguarda un momento por favor, ya estamos enviando tu Orden al
+							Proveedor...
 						</Typography>
 					</div>
 				) : order === "" ? (
 					<article className={classes.messageContainer}>
 						<Typography variant='h4' component='p'>
-							No se han agregado productos aún.
+							Lo sentimos, pero no agregaste productos a la carrito aún.
 						</Typography>
 						<Button
+							style={{ margin: "20px 0px" }}
 							onClick={(e) => {
 								history.push(`/`);
 							}}>
-							Ir a comprar
+							Ok, vamos de compras
 						</Button>
 					</article>
 				) : (
 					<article className={classes.messageContainer}>
 						<Typography variant='h3' component='p'>
-							Orden Aprobada!
+							Felicitaciones! tu Orden fue aprobada!
 						</Typography>
-						<Typography variant='h4' component='p'>
-							Tu Nro. de Órden es:
-						</Typography>
-						<Typography variant='h5' component='p'>
-							{order}
-						</Typography>
+						<div
+							style={{
+								display: "flex",
+								flexDirection: "column",
+								justifyContent: "center",
+								alignItems: "center",
+								padding: "20px 0px",
+							}}>
+							<Typography variant='h4' component='p'>
+								Ya podés hacerle seguimiento con el código:
+							</Typography>
+							<Typography
+								variant='h5'
+								component='p'
+								style={{ color: "rgb(252 174 158)", margin: "10px 0px" }}>
+								{order}
+							</Typography>
+						</div>
+
 						<Button
 							onClick={(e) => {
 								history.push(`/`);
 								setOrder("");
 							}}>
-							Hacer otro pedido
+							Quiero hacer otro pedido
 						</Button>
 					</article>
 				)
