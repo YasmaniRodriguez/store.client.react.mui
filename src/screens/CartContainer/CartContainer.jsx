@@ -13,7 +13,6 @@ const useStyles = makeStyles((theme) => ({
 	container: {
 		padding: "10px 20px",
 		minHeight: "100vh",
-		border: "solid 5px red",
 	},
 	messageContainer: {
 		width: "100%",

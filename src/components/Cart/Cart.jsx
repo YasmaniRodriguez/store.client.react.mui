@@ -8,11 +8,9 @@ import {
 	ListItemSecondaryAction,
 	ListItemText,
 	List,
-	Grid,
 	Avatar,
 	IconButton,
 	Button,
-	useMediaQuery,
 } from "@material-ui/core";
 import { Delete } from "@material-ui/icons";
 import { BusinessContext } from "../../contexts/BusinessContext";
@@ -24,17 +22,21 @@ import "@firebase/firestore";
 const useStyles = makeStyles((theme) => ({
 	container: {
 		height: "100vh",
+		display: "grid",
+		gap: "1rem",
+		gridTemplateColumns: "repeat(auto-fit, minmax(30rem, 1fr))",
 	},
 	list: {
 		display: "flex",
-		width: "50%",
-		border: "solid 5px yellow",
+		flexDirection: "column",
+		alignItems: "center",
+		padding: "20px 20px",
+		backgroundColor: "rgb(249 248 248)",
 	},
 	summary: {
 		display: "flex",
 		flexDirection: "column",
-		width: "50%",
-		border: "solid 5px green",
+		justifyContent: "space-between",
 	},
 }));
 
@@ -50,8 +52,6 @@ export const Cart = () => {
 		buildNewOrder,
 		setOrder,
 	} = useContext(CartContext);
-
-	const matchesMobile = useMediaQuery("(max-width: 991px)");
 
 	const changeBuyerName = (e) => {
 		setBuyer({
@@ -108,32 +108,44 @@ export const Cart = () => {
 	}
 
 	return (
-		<article
-			className={classes.container}
-			style={
-				matchesMobile
-					? { display: "flex", flexDirection: "column" }
-					: { display: "flex" }
-			}>
+		<article className={classes.container}>
 			<div className={classes.list}>
+				<Typography variant='h5' style={{ textTransform: "uppercase" }}>
+					lista de pedidos
+				</Typography>
 				<CartList cart={cart} />
 			</div>
 			<div className={classes.summary}>
-				<CartSummary
-					amount={totalAmount}
-					quantity={totalQuantity}
-					buyer={buyer}
-					changeBuyerName={changeBuyerName}
-					changeBuyerPhone={changeBuyerPhone}
-					changeBuyerEmail={changeBuyerEmail}
-				/>
-				<Button
-					disabled={buyer.name === "" || buyer.phone === ""}
-					variant='outlined'
-					style={{ width: "40%", alignSelf: "center" }}
-					onClick={(e) => sendOrderToProvider()}>
-					Enviar orden
-				</Button>
+				<div style={{ height: "65%" }}>
+					<CartSummary
+						amount={totalAmount}
+						quantity={totalQuantity}
+						buyer={buyer}
+						changeBuyerName={changeBuyerName}
+						changeBuyerPhone={changeBuyerPhone}
+						changeBuyerEmail={changeBuyerEmail}
+					/>
+				</div>
+
+				<div
+					style={{
+						display: "flex",
+						justifyContent: "center",
+						alignItems: "center",
+						height: "33%",
+						backgroundColor: "rgb(249 248 248)",
+					}}>
+					<Button
+						disabled={buyer.name === "" || buyer.phone === ""}
+						variant='outlined'
+						style={{
+							width: "30%",
+							alignSelf: "center",
+						}}
+						onClick={(e) => sendOrderToProvider()}>
+						Enviar orden
+					</Button>
+				</div>
 			</div>
 		</article>
 	);
@@ -141,27 +153,23 @@ export const Cart = () => {
 
 const CartList = ({ cart }) => {
 	return (
-		<Grid container spacing={2}>
-			<Grid item xs={12} md={6}>
-				<List>
-					{cart
-						.sort((a, b) => {
-							if (a.product.name > b.product.name) {
-								return 1;
-							}
-							if (a.product.name < b.product.name) {
-								return -1;
-							}
-							return 0;
-						})
-						.map((row, i) => (
-							<Fragment key={i}>
-								<CartItem index={i} {...row} />
-							</Fragment>
-						))}
-				</List>
-			</Grid>
-		</Grid>
+		<List style={{ width: "100%" }}>
+			{cart
+				.sort((a, b) => {
+					if (a.product.name > b.product.name) {
+						return 1;
+					}
+					if (a.product.name < b.product.name) {
+						return -1;
+					}
+					return 0;
+				})
+				.map((row, i) => (
+					<Fragment key={i}>
+						<CartItem index={i} {...row} />
+					</Fragment>
+				))}
+		</List>
 	);
 };
 
@@ -190,7 +198,6 @@ const CartItem = (props) => {
 
 	useEffect(() => {
 		setMyAmount(calcRowAmount(myQuantity, myPrice));
-
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [myQuantity]);
 
@@ -209,29 +216,46 @@ const CartItem = (props) => {
 	}, [myQuantity]);
 
 	return (
-		<ListItem>
-			<ListItemAvatar>
-				<Avatar src={whereIsMyIcon(product.category)} />
-			</ListItemAvatar>
-			<ListItemText primary={product.name} secondary={"$" + product.price} />
-			<TextField
-				id='row-qty'
-				type='number'
-				value={myQuantity}
-				onChange={quantityChange}></TextField>
-			<Typography variant='h6' component='p'>
-				{"$" + myAmount}
-			</Typography>
-			<ListItemSecondaryAction>
-				<IconButton
-					edge='end'
-					aria-label='delete'
-					onClick={(e) => {
-						removeItemToCart(product.id);
-					}}>
-					<Delete />
-				</IconButton>
-			</ListItemSecondaryAction>
+		<ListItem
+			style={{
+				display: "flex",
+				justifyContent: "space-between",
+				margin: "5px 0px",
+			}}>
+			<div style={{ display: "flex", width: "70%" }}>
+				<ListItemAvatar>
+					<Avatar src={whereIsMyIcon(product.category)} />
+				</ListItemAvatar>
+				<ListItemText
+					style={{ textTransform: "capitalize" }}
+					primary={product.name}
+					secondary={"$" + product.price}
+				/>
+			</div>
+
+			<div style={{ display: "block", width: "20%" }}>
+				<TextField
+					id='row-qty'
+					type='number'
+					value={myQuantity}
+					onChange={quantityChange}></TextField>
+
+				<Typography variant='h6' component='p'>
+					{"$" + myAmount}
+				</Typography>
+			</div>
+			<div style={{ display: "block", width: "10%" }}>
+				<ListItemSecondaryAction>
+					<IconButton
+						edge='end'
+						aria-label='delete'
+						onClick={(e) => {
+							removeItemToCart(product.id);
+						}}>
+						<Delete />
+					</IconButton>
+				</ListItemSecondaryAction>
+			</div>
 		</ListItem>
 	);
 };
@@ -245,13 +269,16 @@ const CartSummary = ({
 	changeBuyerEmail,
 }) => {
 	return (
-		<div>
-			<div>
-				<Typography
-					variant='h6'
-					component='p'
-					style={{ textTransform: "uppercase" }}>
-					resumen
+		<div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
+			<div
+				style={{
+					backgroundColor: "rgb(249 248 248)",
+					marginBottom: "20px",
+					height: "33%",
+					padding: "20px",
+				}}>
+				<Typography variant='h5' style={{ textTransform: "uppercase" }}>
+					resumen de la compra
 				</Typography>
 				<div>
 					<Typography variant='h6' component='p'>
@@ -262,11 +289,13 @@ const CartSummary = ({
 					</Typography>
 				</div>
 			</div>
-			<div style={{ padding: "10px 0px" }}>
-				<Typography
-					variant='h6'
-					component='p'
-					style={{ textTransform: "uppercase" }}>
+			<div
+				style={{
+					backgroundColor: "rgb(249 248 248)",
+					height: "65%",
+					padding: "20px",
+				}}>
+				<Typography variant='h5' style={{ textTransform: "uppercase" }}>
 					datos del comprador
 				</Typography>
 				<div
