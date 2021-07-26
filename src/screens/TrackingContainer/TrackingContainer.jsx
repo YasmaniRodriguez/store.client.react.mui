@@ -74,10 +74,15 @@ export const TrackingContainer = (props) => {
 					openDialog={setOpenDialog}
 					handleConfirm={() => setOpenDialog(false)}
 					closeDialog={() => setOpenDialog(false)}
-					title={`Orden: ${orderToCheck}`}
+					title={`${orderToCheck}`}
 					labelPrimaryButton='Aceptar'>
 					{checkedOrder ? (
-						<Typography>Estado: En Preparación</Typography>
+						<Typography
+							variant='h5'
+							component='p'
+							style={{ fontFamily: "Ranchers" }}>
+							En Preparación
+						</Typography>
 					) : (
 						<CircularProgress />
 					)}

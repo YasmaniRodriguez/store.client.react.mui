@@ -48,8 +48,13 @@ export const CartContainer = (props) => {
 							variant='h3'
 							component='p'
 							style={{ fontFamily: "Ranchers" }}>
-							Aguarda un momento por favor, ya estamos enviando tu Orden al
-							Proveedor...
+							Aguarde un momento por favor,
+						</Typography>
+						<Typography
+							variant='h4'
+							component='p'
+							style={{ fontFamily: "Ranchers" }}>
+							Estamos enviando tu Orden al Proveedor...
 						</Typography>
 					</div>
 				) : order === "" ? (
@@ -105,6 +110,7 @@ export const CartContainer = (props) => {
 
 						<Button
 							style={{ fontFamily: "Ranchers" }}
+							variant='outlined'
 							onClick={(e) => {
 								history.push(`/`);
 								setOrder("");
