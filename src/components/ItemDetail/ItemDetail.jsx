@@ -69,7 +69,7 @@ export const ItemDetail = ({
 			<Paper elevation={0} className={classes.detailImage}>
 				<img src={image} alt={name}></img>
 			</Paper>
-			<Paper elevation={0} className={classes.detailContent}>
+			<div elevation={0} className={classes.detailContent}>
 				<div className={classes.detailContent}>
 					<Typography
 						variant='h1'
@@ -128,7 +128,7 @@ export const ItemDetail = ({
 						</>
 					)}
 				</div>
-			</Paper>
+			</div>
 		</article>
 	);
 };
