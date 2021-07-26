@@ -6,12 +6,10 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 const useStyles = makeStyles((theme) => ({
 	container: {
-		height: "40%",
-		//backgroundColor: "rgb(249 248 248)",
-		padding: "10px 10px",
 		display: "flex",
 		justifyContent: "space-around",
 		alignItems: "center",
+		padding: "10px 10px",
 		"& .carousel-inner": {
 			width: "100%",
 		},
@@ -25,7 +23,14 @@ export const CarouselComponent = ({ availableProductsCombinations }) => {
 	return (
 		<>
 			{!matchesMobile ? (
-				<div className={classes.container}>
+				<div
+					style={{
+						display: "grid",
+						gap: "2rem",
+						//gridAutoRows: "35rem",
+						gridTemplateColumns: "repeat(auto-fill, minmax(25rem, 1fr))",
+					}}
+					className={classes.container}>
 					{availableProductsCombinations.map((combo, i) => (
 						<div key={i}>
 							<Item index={i} {...combo} />

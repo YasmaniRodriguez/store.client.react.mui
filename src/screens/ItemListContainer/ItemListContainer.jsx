@@ -11,12 +11,15 @@ const useStyles = makeStyles((theme) => ({
 		minHeight: "100vh",
 		display: "flex",
 		flexDirection: "column",
+		backgroundColor: "rgb(253 247 247)",
 		"& h5": {
 			alignSelf: "center",
-			backgroundColor: "rgb(249 248 248)",
+			backgroundColor: "rgb(154 151 151)",
 			width: "100%",
 			textAlign: "center",
 			textTransform: "uppercase",
+			color: "white",
+			fontFamily: "Ranchers",
 		},
 	},
 	loading: {
@@ -116,10 +119,13 @@ export const ItemListContainer = () => {
 						</div>
 					) : (
 						<>
-							<Typography variant='h5'>productos destacados</Typography>
-							<CarouselComponent
-								availableProductsCombinations={availableProductsCombinations}
-							/>
+							<div style={{ height: "40vh" }}>
+								<Typography variant='h5'>productos destacados</Typography>
+								<CarouselComponent
+									availableProductsCombinations={availableProductsCombinations}
+								/>
+							</div>
+
 							<Typography variant='h5'>todos nuestros productos</Typography>
 							<ItemList availableProducts={availableProducts} />
 						</>

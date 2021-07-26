@@ -4,22 +4,7 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 	margin: 0;
 	padding: 0;
-	/* min-width: 100vw;
-  min-height: 100vh; */
 	overflow-x: hidden;
 	box-sizing: border-box;
 	background-color: #ebebeb;
-}
-
-p {
-	margin: 0;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	margin: 0;
 }

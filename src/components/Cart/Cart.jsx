@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 		flexDirection: "column",
 		alignItems: "center",
 		padding: "20px 20px",
-		backgroundColor: "rgb(249 248 248)",
+		backgroundColor: "white",
 	},
 	summary: {
 		display: "flex",
@@ -133,7 +133,7 @@ export const Cart = () => {
 						justifyContent: "center",
 						alignItems: "center",
 						height: "33%",
-						backgroundColor: "rgb(249 248 248)",
+						backgroundColor: "white",
 					}}>
 					<Button
 						disabled={buyer.name === "" || buyer.phone === ""}
@@ -141,6 +141,7 @@ export const Cart = () => {
 						style={{
 							width: "30%",
 							alignSelf: "center",
+							backgroundColor: "rgb(249 248 248)",
 						}}
 						onClick={(e) => sendOrderToProvider()}>
 						Enviar orden
@@ -272,7 +273,7 @@ const CartSummary = ({
 		<div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
 			<div
 				style={{
-					backgroundColor: "rgb(249 248 248)",
+					backgroundColor: "white",
 					marginBottom: "20px",
 					height: "33%",
 					padding: "20px",
@@ -291,7 +292,7 @@ const CartSummary = ({
 			</div>
 			<div
 				style={{
-					backgroundColor: "rgb(249 248 248)",
+					backgroundColor: "white",
 					height: "65%",
 					padding: "20px",
 				}}>
