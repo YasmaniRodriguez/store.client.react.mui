@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { Typography, makeStyles, CircularProgress } from "@material-ui/core";
 import { BusinessContext } from "../../contexts/BusinessContext.js";
 import { ItemList } from "../../components/ItemList/ItemList.jsx";
-import { CarouselComponent } from "../../components/Carousel/Carousel.jsx";
 import { db } from "../../firebase/firebase";
 
 const useStyles = makeStyles((theme) => ({
@@ -39,13 +38,8 @@ const useStyles = makeStyles((theme) => ({
 export const ItemListContainer = () => {
 	const classes = useStyles();
 	const { id: onlyShowCategory } = useParams();
-	const {
-		setAvailableCategories,
-		availableProducts,
-		setAvailableProducts,
-		availableProductsCombinations,
-		setAvailableProductsCombinations,
-	} = useContext(BusinessContext);
+	const { setAvailableCategories, availableProducts, setAvailableProducts } =
+		useContext(BusinessContext);
 
 	useEffect(() => {
 		const query = db.collection("categories");
@@ -66,31 +60,9 @@ export const ItemListContainer = () => {
 	}, []);
 
 	useEffect(() => {
-		const query = db
-			.collection("products")
-			.where("category", "==", "lFsX5wIkyiZ7PEiDUjeE");
-
-		query
-			.get()
-			.then((querySnapshot) => {
-				const products = querySnapshot.docs.map((product) => {
-					const myData = product.data();
-					const id = product.id;
-					const obj = { ...myData, id };
-					return obj;
-				});
-				setAvailableProductsCombinations(products);
-			})
-			.catch((error) => console.log(error));
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
-
-	useEffect(() => {
 		const query = onlyShowCategory
 			? db.collection("products").where("category", "==", onlyShowCategory)
-			: db
-					.collection("products")
-					.where("category", "!=", "lFsX5wIkyiZ7PEiDUjeE");
+			: db.collection("products");
 
 		query
 			.get()
@@ -119,18 +91,9 @@ export const ItemListContainer = () => {
 							<Typography variant='h3'>Cargando...</Typography>
 						</div>
 					) : (
-						<>
-							<div style={{ height: "40%" }}>
-								<Typography variant='h5'>productos destacados</Typography>
-								<CarouselComponent
-									availableProductsCombinations={availableProductsCombinations}
-								/>
-							</div>
-							<div>
-								<Typography variant='h5'>todos nuestros productos</Typography>
-								<ItemList availableProducts={availableProducts} />
-							</div>
-						</>
+						<div>
+							<ItemList availableProducts={availableProducts} />
+						</div>
 					)}
 				</>
 			)}
