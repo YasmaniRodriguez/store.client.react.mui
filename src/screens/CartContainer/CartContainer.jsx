@@ -50,8 +50,8 @@ export const CartContainer = (props) => {
 					</div>
 				) : order === "" ? (
 					<article className={classes.messageContainer}>
-						<Typography variant='h3' component='p'>
-							No hay productos en la Órden aún.
+						<Typography variant='h4' component='p'>
+							No se han agregado productos aún.
 						</Typography>
 						<Button
 							onClick={(e) => {

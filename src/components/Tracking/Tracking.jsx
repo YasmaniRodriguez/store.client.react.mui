@@ -8,6 +8,9 @@ const useStyles = makeStyles((theme) => ({
 		flexDirection: "column",
 		justifyContent: "center",
 		alignItems: "center",
+		"& .MuiFormHelperText-root": {
+			alignSelf: "center",
+		},
 	},
 }));
 
@@ -20,24 +23,27 @@ export const Tracking = ({
 
 	return (
 		<div className={classes.container}>
-			<Typography variant='h5' component='p'>
-				Ya tenés una Órden y querés verificar su estado?
+			<Typography variant='h4' component='p'>
+				Querés verificar el estado de tu Órden?
 			</Typography>
 			<TextField
+				className={classes.helperTextStyles}
 				required
 				id='searchMyOrder'
-				variant='outlined'
+				inputProps={{ min: 0, style: { textAlign: "center" } }}
 				value={orderToCheck}
+				fullWidth
+				helperText='Escribí acá el Nro. de tu Órden'
 				onChange={changeOrderToCheck}
-				style={{ padding: "20px 0px" }}
-				placeholder='Nro. de Orden'
+				style={{ padding: "20px 0px", alignSelf: "center" }}
 			/>
+
 			<Button
 				disabled={orderToCheck === undefined || orderToCheck === ""}
 				onClick={(e) => {
 					getOrderTracking();
 				}}>
-				Consultar estado
+				consultar estado
 			</Button>
 		</div>
 	);
