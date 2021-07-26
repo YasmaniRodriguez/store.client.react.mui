@@ -1,6 +1,6 @@
 # YEAH! CASA DE PIZZAS, TARTAS Y EMPANADAS
 
-* Agregar GIF aca
+![demo](https://user-images.githubusercontent.com/17584250/127010580-52d7421f-49c4-4a38-a2f3-7357d3413e54.png)
 
 Es canal oficial para la toma de pedidos online de YaEstamosAlHorno! Casa de Pizzas, Tartas y Empanadas. 
 
