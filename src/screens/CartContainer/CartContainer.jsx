@@ -44,18 +44,25 @@ export const CartContainer = (props) => {
 							width: "100%",
 						}}>
 						<CircularProgress />
-						<Typography variant='h3' component='p'>
+						<Typography
+							variant='h3'
+							component='p'
+							style={{ fontFamily: "Ranchers" }}>
 							Aguarda un momento por favor, ya estamos enviando tu Orden al
 							Proveedor...
 						</Typography>
 					</div>
 				) : order === "" ? (
 					<article className={classes.messageContainer}>
-						<Typography variant='h4' component='p'>
+						<Typography
+							variant='h4'
+							component='p'
+							style={{ fontFamily: "Ranchers" }}>
 							Lo sentimos, pero no agregaste productos a la carrito aún.
 						</Typography>
 						<Button
-							style={{ margin: "20px 0px" }}
+							style={{ margin: "20px 0px", fontFamily: "Ranchers" }}
+							variant='outlined'
 							onClick={(e) => {
 								history.push(`/`);
 							}}>
@@ -64,7 +71,10 @@ export const CartContainer = (props) => {
 					</article>
 				) : (
 					<article className={classes.messageContainer}>
-						<Typography variant='h3' component='p'>
+						<Typography
+							variant='h3'
+							component='p'
+							style={{ fontFamily: "Ranchers" }}>
 							Felicitaciones! tu Orden fue aprobada!
 						</Typography>
 						<div
@@ -75,18 +85,26 @@ export const CartContainer = (props) => {
 								alignItems: "center",
 								padding: "20px 0px",
 							}}>
-							<Typography variant='h4' component='p'>
+							<Typography
+								variant='h4'
+								component='p'
+								style={{ fontFamily: "Ranchers" }}>
 								Ya podés hacerle seguimiento con el código:
 							</Typography>
 							<Typography
 								variant='h5'
 								component='p'
-								style={{ color: "rgb(252 174 158)", margin: "10px 0px" }}>
+								style={{
+									color: "rgb(252 174 158)",
+									margin: "10px 0px",
+									fontFamily: "Ranchers",
+								}}>
 								{order}
 							</Typography>
 						</div>
 
 						<Button
+							style={{ fontFamily: "Ranchers" }}
 							onClick={(e) => {
 								history.push(`/`);
 								setOrder("");

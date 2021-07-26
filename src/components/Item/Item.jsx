@@ -40,7 +40,6 @@ const useStyles = makeStyles((theme) => ({
 		color: theme.palette.success.light,
 		textTransform: "none",
 		borderRadius: 50,
-		fontFamily: "Ranchers",
 	},
 }));
 
@@ -69,7 +68,10 @@ export const Item = ({ ...product }) => {
 				</Typography>
 				<Typography
 					className={classes.price}>{`$ ${product.price}`}</Typography>
-				<Button onClick={(e) => addItemToCart(itemToAdd)} variant='outlined'>
+				<Button
+					onClick={(e) => addItemToCart(itemToAdd)}
+					variant='outlined'
+					style={{ fontFamily: "Ranchers" }}>
 					Agregar al carrito
 				</Button>
 			</CardContent>

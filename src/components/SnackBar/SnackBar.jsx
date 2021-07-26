@@ -18,7 +18,10 @@ export const SnackBarComponent = (props) => {
 			open={open}
 			message={message}
 			onClose={handleClose}>
-			<Alert onClose={handleClose} severity='error'>
+			<Alert
+				onClose={handleClose}
+				severity='error'
+				style={{ fontFamily: "Ranchers" }}>
 				{message}
 			</Alert>
 		</Snackbar>

@@ -110,7 +110,9 @@ export const Cart = () => {
 	return (
 		<article className={classes.container}>
 			<div className={classes.list}>
-				<Typography variant='h5' style={{ textTransform: "uppercase" }}>
+				<Typography
+					variant='h5'
+					style={{ textTransform: "uppercase", fontFamily: "Ranchers" }}>
 					lista de pedidos
 				</Typography>
 				<CartList cart={cart} />
@@ -142,6 +144,7 @@ export const Cart = () => {
 							width: "30%",
 							alignSelf: "center",
 							backgroundColor: "rgb(249 248 248)",
+							fontFamily: "Ranchers",
 						}}
 						onClick={(e) => sendOrderToProvider()}>
 						Enviar orden
@@ -228,7 +231,7 @@ const CartItem = (props) => {
 					<Avatar src={whereIsMyIcon(product.category)} />
 				</ListItemAvatar>
 				<ListItemText
-					style={{ textTransform: "capitalize" }}
+					style={{ textTransform: "capitalize", fontFamily: "Ranchers" }}
 					primary={product.name}
 					secondary={"$" + product.price}
 				/>
@@ -239,9 +242,13 @@ const CartItem = (props) => {
 					id='row-qty'
 					type='number'
 					value={myQuantity}
-					onChange={quantityChange}></TextField>
+					onChange={quantityChange}
+					style={{ fontFamily: "Ranchers" }}></TextField>
 
-				<Typography variant='h6' component='p'>
+				<Typography
+					variant='h6'
+					component='p'
+					style={{ fontFamily: "Ranchers" }}>
 					{"$" + myAmount}
 				</Typography>
 			</div>
@@ -278,14 +285,22 @@ const CartSummary = ({
 					height: "33%",
 					padding: "20px",
 				}}>
-				<Typography variant='h5' style={{ textTransform: "uppercase" }}>
+				<Typography
+					variant='h5'
+					style={{ textTransform: "uppercase", fontFamily: "Ranchers" }}>
 					resumen de la compra
 				</Typography>
 				<div>
-					<Typography variant='h6' component='p'>
+					<Typography
+						variant='h6'
+						component='p'
+						style={{ fontFamily: "Ranchers" }}>
 						Cantidad de Productos: {quantity} Uni.
 					</Typography>
-					<Typography variant='h6' component='p'>
+					<Typography
+						variant='h6'
+						component='p'
+						style={{ fontFamily: "Ranchers" }}>
 						Monto Total: ${amount}
 					</Typography>
 				</div>
@@ -296,7 +311,9 @@ const CartSummary = ({
 					height: "65%",
 					padding: "20px",
 				}}>
-				<Typography variant='h5' style={{ textTransform: "uppercase" }}>
+				<Typography
+					variant='h5'
+					style={{ textTransform: "uppercase", fontFamily: "Ranchers" }}>
 					datos del comprador
 				</Typography>
 				<div

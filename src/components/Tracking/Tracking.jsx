@@ -10,6 +10,7 @@ const useStyles = makeStyles((theme) => ({
 		alignItems: "center",
 		"& .MuiFormHelperText-root": {
 			alignSelf: "center",
+			fontFamily: "Ranchers",
 		},
 	},
 }));
@@ -23,14 +24,17 @@ export const Tracking = ({
 
 	return (
 		<div className={classes.container}>
-			<Typography variant='h4' component='p'>
+			<Typography variant='h4' component='p' style={{ fontFamily: "Ranchers" }}>
 				Querés verificar el estado de tu Orden?
 			</Typography>
 			<TextField
 				className={classes.helperTextStyles}
 				required
 				id='searchMyOrder'
-				inputProps={{ min: 0, style: { textAlign: "center" } }}
+				inputProps={{
+					min: 0,
+					style: { textAlign: "center", fontFamily: "Ranchers" },
+				}}
 				value={orderToCheck}
 				fullWidth
 				helperText='Escribí acá el Nro. de la Orden'
@@ -40,6 +44,8 @@ export const Tracking = ({
 
 			<Button
 				disabled={orderToCheck === undefined || orderToCheck === ""}
+				style={{ fontFamily: "Ranchers" }}
+				variant='outlined'
 				onClick={(e) => {
 					getOrderTracking();
 				}}>

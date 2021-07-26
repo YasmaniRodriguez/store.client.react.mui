@@ -74,13 +74,19 @@ export const ItemDetail = ({
 					<Typography
 						variant='h1'
 						component='p'
-						style={{ textTransform: "capitalize" }}>
+						style={{ textTransform: "capitalize", fontFamily: "Ranchers" }}>
 						{name}
 					</Typography>
-					<Typography variant='h3' component='p'>
+					<Typography
+						variant='h3'
+						component='p'
+						style={{ fontFamily: "Ranchers" }}>
 						$ {price}
 					</Typography>
-					<Typography variant='h5' component='p'>
+					<Typography
+						variant='h5'
+						component='p'
+						style={{ fontFamily: "Ranchers" }}>
 						{description}
 					</Typography>
 				</div>
@@ -98,16 +104,21 @@ export const ItemDetail = ({
 									setShowCheckOut(true);
 									addItemToCart(itemToAdd);
 								}}
-								variant='outlined'>
+								variant='outlined'
+								style={{ fontFamily: "Ranchers" }}>
 								Agregar al carrito
 							</Button>
 						</>
 					) : (
 						<>
-							<Button onClick={() => history.push(`/cart`)} variant='outlined'>
+							<Button
+								onClick={() => history.push(`/cart`)}
+								variant='outlined'
+								style={{ fontFamily: "Ranchers" }}>
 								Finalizar mi compra
 							</Button>
 							<Button
+								style={{ fontFamily: "Ranchers" }}
 								onClick={(e) => {
 									setShowCheckOut(false);
 									history.push(`/`);
