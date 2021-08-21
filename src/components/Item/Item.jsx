@@ -9,39 +9,9 @@ import {
 	makeStyles,
 } from "@material-ui/core";
 import { CartContext } from "../../contexts/CartContext.js";
+import { ItemStyles } from "./ItemStyles";
 
-const useStyles = makeStyles((theme) => ({
-	container: {
-		boxSizing: "border-box",
-		display: "flex",
-		flexDirection: "column",
-		justifyContent: "space-around",
-		height: "100%",
-	},
-	media: {
-		height: "10em",
-		cursor: "pointer",
-	},
-	content: {
-		display: "flex",
-		flexDirection: "column",
-		justifyContent: "space-between",
-	},
-	product: {
-		textTransform: "uppercase",
-		fontFamily: "Ranchers",
-	},
-	price: {
-		padding: "10px 0px",
-		fontFamily: "Ranchers",
-	},
-	button: {
-		borderColor: theme.palette.success.light,
-		color: theme.palette.success.light,
-		textTransform: "none",
-		borderRadius: 50,
-	},
-}));
+const useStyles = makeStyles((theme) => ItemStyles(theme));
 
 export const Item = ({ ...product }) => {
 	const classes = useStyles();

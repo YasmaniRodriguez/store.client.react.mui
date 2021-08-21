@@ -8,37 +8,9 @@ import {
 	useMediaQuery,
 } from "@material-ui/core";
 import { CounterWidget } from "../CounterWidget/CounterWidget";
+import { ItemDetailStyles } from "./ItemDetailStyles";
 
-const useStyles = makeStyles((theme) => ({
-	container: {
-		display: "flex",
-		alignItems: "center",
-		justifyContent: "space-around",
-	},
-	detailImage: {
-		height: "100%",
-		width: "100%",
-		display: "flex",
-		alignItems: "center",
-
-		"& img": {
-			height: "400px",
-			width: "400px",
-		},
-	},
-	detailContent: {
-		width: "100%",
-		display: "flex",
-		flexDirection: "column",
-		justifyContent: "center",
-	},
-	detailCallToAction: {
-		display: "flex",
-		flexDirection: "column",
-		justifyContent: "center",
-		alignItems: "center",
-	},
-}));
+const useStyles = makeStyles((theme) => ItemDetailStyles(theme));
 
 export const ItemDetail = ({
 	selectedProduct,

@@ -1,24 +1,9 @@
 import React from "react";
 import { Typography, makeStyles } from "@material-ui/core";
 import { Facebook, Instagram, YouTube } from "@material-ui/icons";
+import { FooterStyles } from "./FooterStyles";
 
-const useStyles = makeStyles((theme) => ({
-	container: {
-		backgroundColor: "rgb(63 63 63)",
-		textAlign: "center",
-		width: "100%",
-		height: "300px",
-		display: "flex",
-		flexDirection: "column",
-		justifyContent: "center",
-		alignItems: "center",
-
-		"& p": {
-			color: "white",
-			fontFamily: "Ranchers",
-		},
-	},
-}));
+const useStyles = makeStyles((theme) => FooterStyles(theme));
 
 export const Footer = () => {
 	const classes = useStyles();

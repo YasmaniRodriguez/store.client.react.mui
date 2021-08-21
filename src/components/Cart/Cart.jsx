@@ -18,27 +18,9 @@ import { CartContext } from "../../contexts/CartContext";
 import { db } from "../../firebase/firebase";
 import firebase from "firebase/app";
 import "@firebase/firestore";
+import { CartStyles } from "./CartStyles";
 
-const useStyles = makeStyles((theme) => ({
-	container: {
-		height: "100vh",
-		display: "grid",
-		gap: "1rem",
-		gridTemplateColumns: "repeat(auto-fit, minmax(30rem, 1fr))",
-	},
-	list: {
-		display: "flex",
-		flexDirection: "column",
-		alignItems: "center",
-		padding: "20px 20px",
-		backgroundColor: "white",
-	},
-	summary: {
-		display: "flex",
-		flexDirection: "column",
-		justifyContent: "space-between",
-	},
-}));
+const useStyles = makeStyles((theme) => CartStyles(theme));
 
 export const Cart = () => {
 	const classes = useStyles();

@@ -1,19 +1,8 @@
 import React from "react";
 import { Button, Typography, makeStyles, TextField } from "@material-ui/core";
+import { TrackingStyles } from "./TrackingStyles";
 
-const useStyles = makeStyles((theme) => ({
-	container: {
-		padding: "10px 20px",
-		display: "flex",
-		flexDirection: "column",
-		justifyContent: "center",
-		alignItems: "center",
-		"& .MuiFormHelperText-root": {
-			alignSelf: "center",
-			fontFamily: "Ranchers",
-		},
-	},
-}));
+const useStyles = makeStyles((theme) => TrackingStyles(theme));
 
 export const Tracking = ({
 	orderToCheck,
