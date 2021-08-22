@@ -4,29 +4,9 @@ import { DialogComponent } from "../../components/Dialog/Dialog";
 import { SnackBarComponent } from "../../components/SnackBar/SnackBar";
 import { Tracking } from "../../components/Tracking/Tracking";
 import { db } from "../../firebase/firebase";
+import { TrackingContainerStyles } from "./TrackingContainerStyles";
 
-const useStyles = makeStyles((theme) => ({
-	container: {
-		padding: "10px 20px",
-		minHeight: "100vh",
-		backgroundColor: "rgb(253 247 247)",
-	},
-	tracking: {
-		//width: "100%",
-		height: "100vh",
-		//border: "solid 5px red",
-		display: "flex",
-		//flexDirection: "column",
-		justifyContent: "center",
-		alignItems: "center",
-	},
-	dialogContainer: {
-		width: "100%",
-		height: "100%",
-		display: "flex",
-		justifyContent: "center",
-	},
-}));
+const useStyles = makeStyles((theme) => TrackingContainerStyles(theme));
 
 export const TrackingContainer = (props) => {
 	const classes = useStyles();
@@ -88,12 +68,12 @@ export const TrackingContainer = (props) => {
 					)}
 				</DialogComponent>
 			</div>
-			<div>
-				<SnackBarComponent
-					open={openSnackBar}
-					message={`La Orden ${orderToCheck} no existe!`}
-					openSnackBar={setOpenSnackBar}></SnackBarComponent>
-			</div>
+
+			<SnackBarComponent
+				open={openSnackBar}
+				message={`La Orden ${orderToCheck} no existe!`}
+				openSnackBar={setOpenSnackBar}
+			/>
 		</section>
 	);
 };

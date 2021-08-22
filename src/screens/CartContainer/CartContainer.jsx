@@ -8,22 +8,9 @@ import {
 } from "@material-ui/core";
 import { CartContext } from "../../contexts/CartContext";
 import { Cart } from "../../components/Cart/Cart";
+import { CartContainerStyles } from "./CartContainerStyles";
 
-const useStyles = makeStyles((theme) => ({
-	container: {
-		padding: "10px 20px",
-		minHeight: "100vh",
-		backgroundColor: "rgb(253 247 247)",
-	},
-	messageContainer: {
-		width: "100%",
-		height: "100vh",
-		display: "flex",
-		flexDirection: "column",
-		justifyContent: "center",
-		alignItems: "center",
-	},
-}));
+const useStyles = makeStyles((theme) => CartContainerStyles(theme));
 
 export const CartContainer = (props) => {
 	const classes = useStyles();
@@ -112,8 +99,8 @@ export const CartContainer = (props) => {
 							style={{ fontFamily: "Ranchers" }}
 							variant='outlined'
 							onClick={(e) => {
-								history.push(`/`);
 								setOrder("");
+								history.push(`/`);
 							}}>
 							Quiero hacer otro pedido
 						</Button>

@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core";
 import { Item } from "../Item/Item.jsx";
 import { ItemListStyles } from "./ItemListStyles";
@@ -11,9 +11,7 @@ export const ItemList = ({ availableProducts }) => {
 	return (
 		<div className={classes.container}>
 			{availableProducts.map((product, i) => (
-				<Fragment key={i}>
-					<Item index={i} {...product} />
-				</Fragment>
+				<Item key={i} {...product} />
 			))}
 		</div>
 	);

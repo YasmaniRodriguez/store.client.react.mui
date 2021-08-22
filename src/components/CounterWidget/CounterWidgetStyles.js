@@ -5,6 +5,10 @@ export const CounterWidgetStyles = (theme) => {
 			flexDirection: "column",
 			justifyContent: "center",
 			alignItems: "center",
+			"& .MuiAvatar-colorDefault": { backgroundColor: "orange" },
+			"& :disabled": {
+				"& .MuiAvatar-colorDefault": { backgroundColor: "#bdbdbd" },
+			},
 		},
 		counter: {
 			display: "flex",

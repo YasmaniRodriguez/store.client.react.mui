@@ -4,14 +4,9 @@ import { makeStyles } from "@material-ui/core";
 import { CartContext } from "../../contexts/CartContext.js";
 import { ItemDetail } from "../../components/ItemDetail/ItemDetail.jsx";
 import { db } from "../../firebase/firebase.js";
+import { ItemDetailContainerStyles } from "./ItemDetailContainerStyles";
 
-const useStyles = makeStyles((theme) => ({
-	container: {
-		display: "flex",
-		padding: "10px 20px",
-		minHeight: "100vh",
-	},
-}));
+const useStyles = makeStyles((theme) => ItemDetailContainerStyles(theme));
 
 export const ItemDetailContainer = (props) => {
 	const classes = useStyles();

@@ -11,33 +11,31 @@ import { TrackingContainer } from "./screens/TrackingContainer/TrackingContainer
 
 const App = (props) => {
 	return (
-		<>
-			<BusinessContextProvider>
-				<CartContextProvider>
-					<BrowserRouter>
-						<NavBar />
-						<Switch>
-							<Route exact path='/'>
-								<ItemListContainer />
-							</Route>
-							<Route excat path='/category/:id'>
-								<ItemListContainer />
-							</Route>
-							<Route excat path='/product/:id'>
-								<ItemDetailContainer />
-							</Route>
-							<Route excat path='/tracking'>
-								<TrackingContainer />
-							</Route>
-							<Route excat path='/cart'>
-								<CartContainer />
-							</Route>
-						</Switch>
-						<Footer />
-					</BrowserRouter>
-				</CartContextProvider>
-			</BusinessContextProvider>
-		</>
+		<BusinessContextProvider>
+			<CartContextProvider>
+				<BrowserRouter>
+					<NavBar />
+					<Switch>
+						<Route exact path='/'>
+							<ItemListContainer />
+						</Route>
+						<Route path='/category/:id'>
+							<ItemListContainer />
+						</Route>
+						<Route path='/product/:id'>
+							<ItemDetailContainer />
+						</Route>
+						<Route path='/tracking'>
+							<TrackingContainer />
+						</Route>
+						<Route path='/cart'>
+							<CartContainer />
+						</Route>
+					</Switch>
+					<Footer />
+				</BrowserRouter>
+			</CartContextProvider>
+		</BusinessContextProvider>
 	);
 };
 
