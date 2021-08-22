@@ -15,13 +15,13 @@ const useStyles = makeStyles((theme) => CartContainerStyles(theme));
 export const CartContainer = (props) => {
 	const classes = useStyles();
 	const history = useHistory();
-	const { cart, order, setOrder, totalAmount } = useContext(CartContext);
+	const { cart, order, setOrder } = useContext(CartContext);
 
 	return (
 		<section className={classes.container}>
 			{cart.length === 0 ? (
 				order === "awaiting" ? (
-					<div
+					<article
 						style={{
 							display: "flex",
 							flexDirection: "column",
@@ -43,7 +43,7 @@ export const CartContainer = (props) => {
 							style={{ fontFamily: "Ranchers" }}>
 							Estamos enviando tu Orden al Proveedor...
 						</Typography>
-					</div>
+					</article>
 				) : order === "" ? (
 					<article className={classes.messageContainer}>
 						<Typography
@@ -107,7 +107,7 @@ export const CartContainer = (props) => {
 					</article>
 				)
 			) : (
-				<Cart cart={cart} totalAmount={totalAmount} />
+				<Cart />
 			)}
 		</section>
 	);

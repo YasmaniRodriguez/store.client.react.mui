@@ -1,7 +1,6 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Typography, makeStyles, CircularProgress } from "@material-ui/core";
-import { BusinessContext } from "../../contexts/BusinessContext.js";
 import { ItemList } from "../../components/ItemList/ItemList.jsx";
 import { db } from "../../firebase/firebase";
 import { ItemListContainerStyles } from "./ItemListContainerStyles";
@@ -10,31 +9,12 @@ const useStyles = makeStyles((theme) => ItemListContainerStyles(theme));
 
 export const ItemListContainer = () => {
 	const classes = useStyles();
-	const { id: onlyShowCategory } = useParams();
-	const { setAvailableCategories, availableProducts, setAvailableProducts } =
-		useContext(BusinessContext);
+	const { id: showCategory } = useParams();
+	const [availableProducts, setAvailableProducts] = useState([]);
 
 	useEffect(() => {
-		const query = db.collection("categories");
-
-		query
-			.get()
-			.then((querySnapshot) => {
-				const categories = querySnapshot.docs.map((category) => {
-					const myData = category.data();
-					const id = category.id;
-					const obj = { ...myData, id };
-					return obj;
-				});
-				setAvailableCategories(categories);
-			})
-			.catch((error) => console.log(error));
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
-
-	useEffect(() => {
-		const query = onlyShowCategory
-			? db.collection("products").where("category", "==", onlyShowCategory)
+		const query = showCategory
+			? db.collection("products").where("category", "==", showCategory)
 			: db.collection("products");
 
 		query
@@ -50,11 +30,11 @@ export const ItemListContainer = () => {
 			})
 			.catch((error) => console.log(error));
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [onlyShowCategory]);
+	}, [showCategory]);
 
 	return (
 		<section className={classes.container}>
-			{onlyShowCategory ? (
+			{showCategory ? (
 				<ItemList availableProducts={availableProducts} />
 			) : (
 				<>

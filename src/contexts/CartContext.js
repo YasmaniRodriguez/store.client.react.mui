@@ -49,6 +49,30 @@ export const CartContextProvider = ({ children }) => {
 		};
 	};
 
+	const changeBuyerName = (e) => {
+		setBuyer({
+			name: e.target.value,
+			phone: buyer.phone,
+			email: buyer.email,
+		});
+	};
+
+	const changeBuyerPhone = (e) => {
+		setBuyer({
+			name: buyer.name,
+			phone: e.target.value,
+			email: buyer.email,
+		});
+	};
+
+	const changeBuyerEmail = (e) => {
+		setBuyer({
+			name: buyer.name,
+			phone: buyer.phone,
+			email: e.target.value,
+		});
+	};
+
 	useEffect(() => {
 		async function getTotalAmount() {
 			const amount = await calcTotalAmount();
@@ -82,6 +106,9 @@ export const CartContextProvider = ({ children }) => {
 				buildNewOrder,
 				order,
 				setOrder,
+				changeBuyerName,
+				changeBuyerPhone,
+				changeBuyerEmail,
 			}}>
 			{children}
 		</CartContext.Provider>
