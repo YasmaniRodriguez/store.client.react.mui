@@ -57,10 +57,7 @@ export const TrackingContainer = (props) => {
 					title={`${orderToCheck}`}
 					labelPrimaryButton='Aceptar'>
 					{checkedOrder ? (
-						<Typography
-							variant='h5'
-							component='p'
-							style={{ fontFamily: "Ranchers" }}>
+						<Typography variant='h5' component='p'>
 							En Preparación
 						</Typography>
 					) : (

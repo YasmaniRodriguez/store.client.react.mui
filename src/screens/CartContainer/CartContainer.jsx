@@ -21,39 +21,21 @@ export const CartContainer = (props) => {
 		<section className={classes.container}>
 			{cart.length === 0 ? (
 				order === "awaiting" ? (
-					<article
-						style={{
-							display: "flex",
-							flexDirection: "column",
-							justifyContent: "center",
-							alignItems: "center",
-							height: "100vh",
-							width: "100%",
-						}}>
+					<article className={classes.messageContainer}>
 						<CircularProgress />
-						<Typography
-							variant='h3'
-							component='p'
-							style={{ fontFamily: "Ranchers" }}>
+						<Typography variant='h3' component='p'>
 							Aguarde un momento por favor,
 						</Typography>
-						<Typography
-							variant='h4'
-							component='p'
-							style={{ fontFamily: "Ranchers" }}>
+						<Typography variant='h4' component='p'>
 							Estamos enviando tu Orden al Proveedor...
 						</Typography>
 					</article>
 				) : order === "" ? (
 					<article className={classes.messageContainer}>
-						<Typography
-							variant='h4'
-							component='p'
-							style={{ fontFamily: "Ranchers" }}>
-							Lo sentimos, pero no agregaste productos a la carrito aún.
+						<Typography variant='h4' component='p'>
+							No agregaste productos a la carrito aún.
 						</Typography>
 						<Button
-							style={{ margin: "20px 0px", fontFamily: "Ranchers" }}
 							variant='outlined'
 							onClick={(e) => {
 								history.push(`/`);
@@ -63,40 +45,17 @@ export const CartContainer = (props) => {
 					</article>
 				) : (
 					<article className={classes.messageContainer}>
-						<Typography
-							variant='h3'
-							component='p'
-							style={{ fontFamily: "Ranchers" }}>
-							Felicitaciones! tu Orden fue aprobada!
+						<Typography variant='h3' component='p'>
+							Tu Orden ha sido aprobada!
 						</Typography>
-						<div
-							style={{
-								display: "flex",
-								flexDirection: "column",
-								justifyContent: "center",
-								alignItems: "center",
-								padding: "20px 0px",
-							}}>
-							<Typography
-								variant='h4'
-								component='p'
-								style={{ fontFamily: "Ranchers" }}>
-								Ya podés hacerle seguimiento con el código:
-							</Typography>
-							<Typography
-								variant='h5'
-								component='p'
-								style={{
-									color: "rgb(252 174 158)",
-									margin: "10px 0px",
-									fontFamily: "Ranchers",
-								}}>
-								{order}
-							</Typography>
-						</div>
 
+						<Typography variant='h5' component='p'>
+							Podés hacerle seguimiento con el código:
+						</Typography>
+						<Typography variant='h5' component='h5'>
+							{order}
+						</Typography>
 						<Button
-							style={{ fontFamily: "Ranchers" }}
 							variant='outlined'
 							onClick={(e) => {
 								setOrder("");
