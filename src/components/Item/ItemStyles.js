@@ -6,6 +6,7 @@ export const ItemStyles = (theme) => {
 			flexDirection: "column",
 			justifyContent: "space-around",
 			height: "100%",
+			"& .MuiCardMedia-root": { backgroundSize: "contain" },
 		},
 		media: {
 			height: "10em",
@@ -15,6 +16,9 @@ export const ItemStyles = (theme) => {
 			display: "flex",
 			flexDirection: "column",
 			justifyContent: "space-between",
+			"& .MuiButtonBase-root": {
+				fontFamily: "Ranchers",
+			},
 		},
 		product: {
 			textTransform: "uppercase",

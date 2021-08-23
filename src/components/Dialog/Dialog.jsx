@@ -44,10 +44,7 @@ export const DialogComponent = (props) => {
 			<DialogTitle className={classes.title}>{title}</DialogTitle>
 			<DialogContent>{children}</DialogContent>
 			<DialogActions className={classes.actions}>
-				<Button
-					onClick={handleConfirm}
-					disabled={disabled}
-					style={{ fontFamily: "Ranchers" }}>
+				<Button onClick={handleConfirm} disabled={disabled}>
 					{labelPrimaryButton}
 				</Button>
 			</DialogActions>

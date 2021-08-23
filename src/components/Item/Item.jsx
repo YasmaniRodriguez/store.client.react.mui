@@ -29,7 +29,6 @@ export const Item = ({ ...product }) => {
 			<CardMedia
 				className={classes.media}
 				image={product.image}
-				style={{ backgroundSize: "contain" }}
 				onClick={() => history.push(`/product/${product.id}`)}
 			/>
 			<CardContent className={classes.content}>
@@ -38,10 +37,7 @@ export const Item = ({ ...product }) => {
 				</Typography>
 				<Typography
 					className={classes.price}>{`$ ${product.price}`}</Typography>
-				<Button
-					onClick={(e) => addItemToCart(itemToAdd)}
-					variant='outlined'
-					style={{ fontFamily: "Ranchers" }}>
+				<Button onClick={(e) => addItemToCart(itemToAdd)} variant='outlined'>
 					Agregar al carrito
 				</Button>
 			</CardContent>

@@ -8,6 +8,12 @@ import { NavBarStyles } from "./NavBarStyles";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
+const availableCategories = [
+	{ code: "H7goUAw8f2LJEpDuKGyk", name: "pizzas", type: "ctg01" },
+	{ code: "8gzxJbPJeQK3eOe4FzUx", name: "tartas", type: "ctg02" },
+	{ code: "xKNLNVyuKst3owmdPkYR", name: "empanadas", type: "ctg03" },
+	{ code: "ejrgaOJODuoC7c0tbJTE", name: "bebidas", type: "ctg04" },
+];
 const useStyles = makeStyles((theme) => NavBarStyles(theme));
 
 export const NavBar = () => {
@@ -35,65 +41,26 @@ export const NavBar = () => {
 			</button>
 
 			<div className='collapse navbar-collapse' id='navbarSupportedContent'>
-				<ul
-					style={{
-						width: "100%",
-						justifyContent: "space-between",
-					}}
-					className='navbar-nav ml-auto'>
+				<ul className='navbar-nav ml-auto'>
 					<div
 						style={
 							matchesMobile
 								? { display: "flex", flexDirection: "column" }
 								: { display: "flex", flexDirection: "row" }
 						}>
-						<li className='nav-item'>
-							<Link
-								className='nav-link'
-								to={`/category/H7goUAw8f2LJEpDuKGyk`}
-								style={{ display: "flex" }}>
-								<img alt='icono categoria pizzas' src={getMyIcon("ctg01")} />
-								<Typography variant='h5' component='p'>
-									Pizzas
-								</Typography>
-							</Link>
-						</li>
-
-						<li className='nav-item'>
-							<Link
-								className='nav-link'
-								to={`/category/8gzxJbPJeQK3eOe4FzUx`}
-								style={{ display: "flex" }}>
-								<img alt='icono categoria tartas' src={getMyIcon("ctg02")} />
-								<Typography variant='h5' component='p'>
-									Tartas
-								</Typography>
-							</Link>
-						</li>
-
-						<li className='nav-item'>
-							<Link
-								className='nav-link'
-								to={`/category/xKNLNVyuKst3owmdPkYR`}
-								style={{ display: "flex" }}>
-								<img alt='icono categoria empanadas' src={getMyIcon("ctg03")} />
-								<Typography variant='h5' component='p'>
-									Empanadas
-								</Typography>
-							</Link>
-						</li>
-
-						<li className='nav-item'>
-							<Link
-								className='nav-link'
-								to={`/category/ejrgaOJODuoC7c0tbJTE`}
-								style={{ display: "flex" }}>
-								<img alt='icono categoria bebidas' src={getMyIcon("ctg04")} />
-								<Typography variant='h5' component='p'>
-									Bebidas
-								</Typography>
-							</Link>
-						</li>
+						{availableCategories.map((category, i) => (
+							<li key={i} className='nav-item'>
+								<Link className='nav-link' to={`/category/${category.code}`}>
+									<img
+										alt={`Categoria ${category.name}`}
+										src={getMyIcon(category.type)}
+									/>
+									<Typography variant='h5' component='p'>
+										{category.name}
+									</Typography>
+								</Link>
+							</li>
+						))}
 					</div>
 
 					<div className={classes.actions}>

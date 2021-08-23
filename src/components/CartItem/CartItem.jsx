@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import {
+	makeStyles,
 	Typography,
 	TextField,
 	ListItem,
@@ -12,11 +13,13 @@ import {
 import { Delete } from "@material-ui/icons";
 import { BusinessContext } from "../../contexts/BusinessContext";
 import { CartContext } from "../../contexts/CartContext";
+import { CartItemStyles } from "./CartItemStyles";
 import "@firebase/firestore";
 
-//const useStyles = makeStyles((theme) => CartStyles(theme));
+const useStyles = makeStyles((theme) => CartItemStyles(theme));
 
 export const CartItem = (props) => {
+	const classes = useStyles();
 	const { addItemToCart, removeItemToCart, calcRowAmount } =
 		useContext(CartContext);
 	const { getMyIcon } = useContext(BusinessContext);
@@ -57,39 +60,25 @@ export const CartItem = (props) => {
 	}, [myQuantity]);
 
 	return (
-		<ListItem
-			style={{
-				display: "flex",
-				justifyContent: "space-between",
-				margin: "5px 0px",
-			}}>
-			<div style={{ display: "flex", width: "70%" }}>
+		<ListItem className={classes.container}>
+			<div className={classes.product}>
 				<ListItemAvatar>
 					<Avatar src={getMyIcon(product.ctgid)} />
 				</ListItemAvatar>
-				<ListItemText
-					style={{ textTransform: "capitalize", fontFamily: "Ranchers" }}
-					primary={product.name}
-					secondary={"$" + product.price}
-				/>
+				<ListItemText primary={product.name} secondary={"$" + product.price} />
 			</div>
 
-			<div style={{ display: "block", width: "20%" }}>
+			<div className={classes.amount}>
 				<TextField
 					id='row-qty'
 					type='number'
 					value={myQuantity}
-					onChange={quantityChange}
-					style={{ fontFamily: "Ranchers" }}></TextField>
-
-				<Typography
-					variant='h6'
-					component='p'
-					style={{ fontFamily: "Ranchers" }}>
+					onChange={quantityChange}></TextField>
+				<Typography variant='h6' component='p'>
 					{"$" + myAmount}
 				</Typography>
 			</div>
-			<div style={{ display: "block", width: "10%" }}>
+			<div className={classes.action}>
 				<ListItemSecondaryAction>
 					<IconButton
 						edge='end'

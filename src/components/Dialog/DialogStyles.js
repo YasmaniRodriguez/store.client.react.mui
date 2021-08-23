@@ -11,6 +11,10 @@ export const DialogStyles = (theme) => {
 			"& .MuiDialogActions-root": {
 				marginTop: "1em",
 			},
+			"& .MuiTypography-root": {
+				fontFamily: "Ranchers !important",
+				textAlign: "center",
+			},
 		},
 		actions: {
 			display: "flex",
