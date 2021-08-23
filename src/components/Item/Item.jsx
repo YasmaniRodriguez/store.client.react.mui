@@ -8,7 +8,7 @@ import {
 	Typography,
 	makeStyles,
 } from "@material-ui/core";
-import { CartContext } from "../../contexts/CartContext.js";
+import { CartContext } from "../../contexts/CartContext";
 import { ItemStyles } from "./ItemStyles";
 
 const useStyles = makeStyles((theme) => ItemStyles(theme));

@@ -1,9 +1,14 @@
 import React from "react";
-import { Snackbar } from "@material-ui/core";
+import { Snackbar, makeStyles } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
+import { SnackBarStyles } from "./SnackBarStyles";
+
+const useStyles = makeStyles((theme) => SnackBarStyles(theme));
 
 export const SnackBarComponent = (props) => {
 	const { open, message, openSnackBar } = props;
+
+	const classes = useStyles();
 
 	const handleClose = (event, reason) => {
 		if (reason === "clickaway") {
@@ -14,14 +19,12 @@ export const SnackBarComponent = (props) => {
 
 	return (
 		<Snackbar
+			className={classes.container}
 			autoHideDuration={5000}
 			open={open}
 			message={message}
 			onClose={handleClose}>
-			<Alert
-				onClose={handleClose}
-				severity='error'
-				style={{ fontFamily: "Ranchers" }}>
+			<Alert onClose={handleClose} severity='error'>
 				{message}
 			</Alert>
 		</Snackbar>

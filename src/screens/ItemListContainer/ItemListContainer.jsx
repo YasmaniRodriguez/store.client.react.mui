@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Typography, makeStyles, CircularProgress } from "@material-ui/core";
-import { ItemList } from "../../components/ItemList/ItemList.jsx";
+import { ItemList } from "../../components/ItemList/ItemList";
 import { db } from "../../firebase/firebase";
 import { ItemListContainerStyles } from "./ItemListContainerStyles";
 

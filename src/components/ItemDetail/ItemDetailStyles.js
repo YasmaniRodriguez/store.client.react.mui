@@ -4,6 +4,16 @@ export const ItemDetailStyles = (theme) => {
 			display: "flex",
 			alignItems: "center",
 			justifyContent: "space-around",
+			"& h3": {
+				fontFamily: "Ranchers",
+				textTransform: "capitalize",
+			},
+			"& p": {
+				fontFamily: "Ranchers",
+			},
+			"& .MuiButton-label": {
+				fontFamily: "Ranchers",
+			},
 		},
 		detailImage: {
 			height: "100%",

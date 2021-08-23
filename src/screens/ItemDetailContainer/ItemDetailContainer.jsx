@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { makeStyles } from "@material-ui/core";
-import { CartContext } from "../../contexts/CartContext.js";
-import { ItemDetail } from "../../components/ItemDetail/ItemDetail.jsx";
-import { db } from "../../firebase/firebase.js";
+import { CartContext } from "../../contexts/CartContext";
+import { ItemDetail } from "../../components/ItemDetail/ItemDetail";
+import { db } from "../../firebase/firebase";
 import { ItemDetailContainerStyles } from "./ItemDetailContainerStyles";
 
 const useStyles = makeStyles((theme) => ItemDetailContainerStyles(theme));

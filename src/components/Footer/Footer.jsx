@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, makeStyles } from "@material-ui/core";
+import { Button, Typography, makeStyles } from "@material-ui/core";
 import { Facebook, Instagram, YouTube } from "@material-ui/icons";
 import { FooterStyles } from "./FooterStyles";
 
@@ -15,9 +15,17 @@ export const Footer = () => {
 				</Typography>
 			</div>
 			<div className={classes.socialMedia}>
-				<Facebook fontSize='large' />
-				<Instagram fontSize='large' />
-				<YouTube fontSize='large' />
+				<Button href='https://www.facebook.com/' target='_blank'>
+					<Facebook fontSize='large' />
+				</Button>
+
+				<Button href='https://www.instagram.com/' target='_blank'>
+					<Instagram fontSize='large' />
+				</Button>
+
+				<Button href='https://www.youtube.com//' target='_blank'>
+					<YouTube fontSize='large' />
+				</Button>
 			</div>
 			<div className={classes.rights}>
 				<Typography variant='h5' component='p'>

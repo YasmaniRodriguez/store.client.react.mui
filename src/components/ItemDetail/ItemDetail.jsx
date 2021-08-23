@@ -2,7 +2,6 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import {
 	Button,
-	Paper,
 	Typography,
 	makeStyles,
 	useMediaQuery,
@@ -38,27 +37,18 @@ export const ItemDetail = ({
 				matchesMobile ? { flexDirection: "column" } : { flexDirection: "row" }
 			}
 			className={classes.container}>
-			<Paper elevation={0} className={classes.detailImage}>
+			<div className={classes.detailImage}>
 				<img src={image} alt={name}></img>
-			</Paper>
-			<div elevation={0} className={classes.detailContent}>
+			</div>
+			<div className={classes.detailContent}>
 				<div className={classes.detailContent}>
-					<Typography
-						variant='h1'
-						component='p'
-						style={{ textTransform: "capitalize", fontFamily: "Ranchers" }}>
+					<Typography variant='h1' component='h3'>
 						{name}
 					</Typography>
-					<Typography
-						variant='h3'
-						component='p'
-						style={{ fontFamily: "Ranchers" }}>
+					<Typography variant='h3' component='p'>
 						$ {price}
 					</Typography>
-					<Typography
-						variant='h5'
-						component='p'
-						style={{ fontFamily: "Ranchers" }}>
+					<Typography variant='h5' component='p'>
 						{description}
 					</Typography>
 				</div>
@@ -76,21 +66,16 @@ export const ItemDetail = ({
 									setShowCheckOut(true);
 									addItemToCart(itemToAdd);
 								}}
-								variant='outlined'
-								style={{ fontFamily: "Ranchers" }}>
+								variant='outlined'>
 								Agregar al carrito
 							</Button>
 						</>
 					) : (
 						<>
-							<Button
-								onClick={() => history.push(`/cart`)}
-								variant='outlined'
-								style={{ fontFamily: "Ranchers" }}>
+							<Button onClick={() => history.push(`/cart`)} variant='outlined'>
 								Finalizar mi compra
 							</Button>
 							<Button
-								style={{ fontFamily: "Ranchers" }}
 								onClick={(e) => {
 									setShowCheckOut(false);
 									history.push(`/`);
