@@ -6,6 +6,9 @@ import {
 	makeStyles,
 	CircularProgress,
 } from "@material-ui/core";
+import { db } from "../../firebase/firebase";
+import firebase from "firebase/app";
+import "@firebase/firestore";
 import { CartContext } from "../../contexts/CartContext";
 import { Cart } from "../../components/Cart/Cart";
 import { CartContainerStyles } from "./CartContainerStyles";
@@ -15,7 +18,50 @@ const useStyles = makeStyles((theme) => CartContainerStyles(theme));
 export const CartContainer = (props) => {
 	const classes = useStyles();
 	const history = useHistory();
-	const { cart, order, setOrder } = useContext(CartContext);
+
+	const {
+		cart,
+		order,
+		setCart,
+		buildNewOrder,
+		setOrder,
+		totalAmount,
+		totalQuantity,
+		buyer,
+		changeBuyerName,
+		changeBuyerPhone,
+		changeBuyerEmail,
+	} = useContext(CartContext);
+
+	const sendOrderToProvider = () => {
+		setOrder("awaiting");
+		const query = db.collection("orders");
+
+		query
+			.add(buildNewOrder())
+			.then(({ id }) => {
+				updateStock();
+				setOrder(id);
+			})
+			.finally(setCart([]));
+	};
+
+	async function updateStock() {
+		const itemsToUpdate = db.collection("products").where(
+			firebase.firestore.FieldPath.documentId(),
+			"in",
+			cart.map((i) => i.product.id)
+		);
+
+		const query = await itemsToUpdate.get();
+		const batch = db.batch();
+		query.docs.forEach((docSnapshot, idx) => {
+			batch.update(docSnapshot.ref, {
+				stock: docSnapshot.data().stock - cart[idx].quantity,
+			});
+		});
+		batch.commit();
+	}
 
 	return (
 		<section className={classes.container}>
@@ -66,7 +112,16 @@ export const CartContainer = (props) => {
 					</article>
 				)
 			) : (
-				<Cart />
+				<Cart
+					sendOrderToProvider={sendOrderToProvider}
+					totalAmount={totalAmount}
+					totalQuantity={totalQuantity}
+					cart={cart}
+					buyer={buyer}
+					changeBuyerName={changeBuyerName}
+					changeBuyerPhone={changeBuyerPhone}
+					changeBuyerEmail={changeBuyerEmail}
+				/>
 			)}
 		</section>
 	);

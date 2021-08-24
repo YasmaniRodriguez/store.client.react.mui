@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import {
 	makeStyles,
 	Typography,
@@ -7,58 +7,21 @@ import {
 	Button,
 } from "@material-ui/core";
 import { CartItem } from "../CartItem/CartItem";
-import { CartContext } from "../../contexts/CartContext";
-import { db } from "../../firebase/firebase";
-import firebase from "firebase/app";
-import "@firebase/firestore";
 import { CartStyles } from "./CartStyles";
 
 const useStyles = makeStyles((theme) => CartStyles(theme));
 
-export const Cart = () => {
+export const Cart = ({
+	sendOrderToProvider,
+	totalAmount,
+	totalQuantity,
+	cart,
+	buyer,
+	changeBuyerName,
+	changeBuyerPhone,
+	changeBuyerEmail,
+}) => {
 	const classes = useStyles();
-	const {
-		cart,
-		setCart,
-		totalAmount,
-		totalQuantity,
-		buyer,
-		buildNewOrder,
-		setOrder,
-		changeBuyerName,
-		changeBuyerPhone,
-		changeBuyerEmail,
-	} = useContext(CartContext);
-
-	const sendOrderToProvider = () => {
-		setOrder("awaiting");
-		const query = db.collection("orders");
-
-		query
-			.add(buildNewOrder())
-			.then(({ id }) => {
-				updateStock();
-				setOrder(id);
-			})
-			.finally(setCart([]));
-	};
-
-	async function updateStock() {
-		const itemsToUpdate = db.collection("products").where(
-			firebase.firestore.FieldPath.documentId(),
-			"in",
-			cart.map((i) => i.product.id)
-		);
-
-		const query = await itemsToUpdate.get();
-		const batch = db.batch();
-		query.docs.forEach((docSnapshot, idx) => {
-			batch.update(docSnapshot.ref, {
-				stock: docSnapshot.data().stock - cart[idx].quantity,
-			});
-		});
-		batch.commit();
-	}
 
 	return (
 		<article className={classes.container}>
