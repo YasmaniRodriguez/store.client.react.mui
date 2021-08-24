@@ -16,6 +16,7 @@ export const ItemStyles = (theme) => {
 			display: "flex",
 			flexDirection: "column",
 			justifyContent: "space-between",
+			alignItems: "center",
 			"& .MuiButtonBase-root": {
 				fontFamily: "Ranchers",
 			},
@@ -27,12 +28,6 @@ export const ItemStyles = (theme) => {
 		price: {
 			padding: "10px 0px",
 			fontFamily: "Ranchers",
-		},
-		button: {
-			borderColor: theme.palette.success.light,
-			color: theme.palette.success.light,
-			textTransform: "none",
-			borderRadius: 50,
 		},
 	};
 };
